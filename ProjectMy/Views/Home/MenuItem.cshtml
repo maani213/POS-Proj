@@ -8,11 +8,129 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    
     <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <title>MenuItem</title>
 </head>
-<body>
-    <div> 
+<body style="background-color: #7abbea;">
+
+    <div class="row mainDiv">
+        <div class="col-lg-8 ">
+            <div class="row itemsArea">
+                <div class="col-md-2" style="height:130px; background-color:red">some</div>
+                <div class="col-md-2" style="background-color:red">some</div>
+                <div class="col-md-2" style="background-color:red">some</div>
+                <div class="col-md-2" style="background-color:red">some</div>
+                <div class="col-md-2" style="background-color:red">some</div>
+                <div class="col-md-2" style="background-color:red">some</div>
+            </div>
+        </div>
+        <div class="formArea col-lg-4">
+            <div class="title">Pizza</div>
+            <div class="subtitle">Verieties</div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Text</label>
+                </div>
+                <div class="col-md-10">
+                    <textarea id="text"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Desc</label>
+                </div>
+                <div class="col-md-10">
+                    <textarea id="text"></textarea>
+                </div>
+            </div>
+            <fieldset>
+                <legend>Fonts</legend>
+                <div>
+                    <div class="row" style="width:100%;height:auto;">
+                        <div class="fontSize col-md-4">
+                            <div class="btnsWrapper">Size</div>
+                            <div>
+                                <div><button class="customBtn" value="">+</button></div>
+                                <div><button class="customBtn" value="">-</button></div>
+                            </div>
+                        </div>
+                        <div class="fontFamily col-md-8">
+                            <div>
+                                <select id="fontstyle">
+                                    <option value="Times-New-Roman">Times New Roman</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Comic-Sans-MS">Comic Sans MS</option>
+                                    <option value="WildWest">WildWest</option>
+                                    <option value="Bedrock">Bedrock</option>
+                                    <option value="Arial"> Arial</option>
+                                    <option value="Courier"> Courier </option>
+                                    <option value="Tahoma"> Tahoma</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="sans-serif">sans-serif</option>
+                                </select><br />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><input type="checkbox" id="isBold" /><span>Bold</span></div>
+                                <div class="col-md-4"><input type="checkbox" id="isitalic" /><span>italic</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-5"><label>Text color</label> </div>
+                        <div class="col-md-7">
+                            <input id="mycolor" />
+                        </div>
+                        
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-5"><label>Button color</label> </div>
+                        <div class="col-md-7">
+                            <input id="mycolor" />
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-6">
+                            <input type="checkbox" /><span>Vatable</span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="checkbox" /><span> VAT Rate</span>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Menu Buttons</legend>
+
+            </fieldset>
+        </div>
+    </div>
+    <div class="row DeptArea">
+        <div class="col-md-2 customBttn">somename</div>
+        <div class="col-md-2 customBttn">somename</div>
+        <div class="col-md-3 customBttn">somename</div>
+        <div class="col-md-3 customBttn">somename</div>
+        <div class="col-md-2 customBttn">somename</div>
+        
+    </div>
+    <div class="row othersArea">
+        <div class="col-md-2 customBttn">Meal Deal</div>
+        <div class="col-md-3 customBttn">Cooking Instructions</div>
+        <div class="col-md-1 customBttn">Freebies</div>
+        <div class="col-md-3 customBttn">Special Pizza</div>
+        <div class="col-md-1 customBttn">Prices</div>
+        <div class="col-md-1 customBttn">Cancel</div>
+        <div class="col-md-1 customBttn">Exit</div>
     </div>
 </body>
 </html>
+<script type="text/javascript">
+                            $(document).ready(function () {
+                                $("#mycolor").colorpicker();
+                            });
+</script>
