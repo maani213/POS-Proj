@@ -4,6 +4,7 @@
 
 fieldset {
     margin-top: 10px;
+    margin-bottom:10px;
 }
 
 label {
@@ -18,6 +19,7 @@ textarea {
 .mainDiv {
     margin:1px !important;
     height:80%;
+    margin-bottom:5px !important;
 }
 
 .DeptArea {
@@ -39,6 +41,8 @@ textarea {
 
 .formArea {
     background-color: white;
+    padding-bottom:10px !important;
+    margin-right: 10px !important;
 }
 
 .title {
@@ -71,14 +75,13 @@ textarea {
 
 .btnsWrapper {
     float: left;
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-right:10px;
 }
 
 .customBtn {
-    text-align: center;
-    margin: 5px;
-    height: 22px;
-    width: 22px;
+    margin: 1px;
+    width: 35px;
 }
 
 .divdiv {
