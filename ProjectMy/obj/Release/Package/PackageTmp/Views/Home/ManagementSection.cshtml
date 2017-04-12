@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/styles/style.css" rel="stylesheet" />
+    
+    <title>Management Section</title>
+</head>
+<body>
+ 
+    <header class="loginHeader">
+        
+            <div class="leftHeader">
+                45 Minute Delay - @DateTime.Now.ToString("dd/MM/yyyy")
+            </div>
+           
+        
+        <div style="display: inline-block;">
+            Management Section
+        </div>
+        <div class="rightHeader">
+            @DateTime.Now.ToString("HH:mm:ss")
+        </div>
+    </header>
+
+    <div style="float:right;margin-top:35px;margin-right:50px;">
+        <button class="largeBtn whiteBg">
+            Reports
+        </button><br />
+        <button class="largeBtn skyBlueBg" onclick="location.href='@Url.Action("DataFiles", "Home")'">
+            Data Files
+        </button><br />
+        
+        <button class="largeBtn greenBg">
+            Settings
+        </button><br />
+        <button class="largeBtn orangeBg">
+            Expences
+        </button><br />
+        <button class="largeBtn orangeBg" >
+            Time Delay
+        </button><br />
+        <button class="largeBtn whiteBg">
+            Stock Control
+        </button><br />
+
+        <button class="largeBtn backBtn">
+            Back
+        </button><br />
+       
+    </div>
+        
+</body>
+</html>

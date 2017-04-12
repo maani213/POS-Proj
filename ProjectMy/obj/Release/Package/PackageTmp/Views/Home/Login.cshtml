@@ -1,0 +1,37 @@
+﻿@model IEnumerable<string>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/styles/loginview.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+<body>
+    <header class="loginHeader">
+        <div style="display: inline-block;">
+                @DateTime.Now.ToString("ddd dd MMM HH:mm")
+            </div>
+               
+    </header>
+    <div>
+        @foreach (string name in Model)
+        {
+            //onclick = "location.href='@Url.Action("TakeAway", "Home")'"
+            <button class="loginViewBtn" >@name</button>
+        }
+    </div>
+    <div class="bottomdiv">
+        <div class="clockin">
+            Clock in
+        </div>
+        <button class="exitBtn">
+            Exit options
+        </button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/customscripts/TakeawayHome.js"></script>
+
+
+    <title>Take Away</title>
+</head>
+<body style="background-color: #7abbea;">
+
+    <div class="row mainDiv">
+        <div class="col-lg-8">
+            @{
+                Html.RenderAction("ItemsView");
+            }
+        </div>
+        <div class="operationsArea col-lg-4">
+            <div class="row tableArea">
+                <div class="col-sm-11">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Qty</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableBody"></tbody>
+                    </table>
+                </div>
+                <div class="col-sm-1">
+                    <div class="arrows">
+                        <button class="btn btn-success" style="height:100%;">Up</button>
+                    </div>
+                    <div class="arrows">
+                        <button class="btn btn-success" style="height:100%;">Do</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2"><button class="btn btn-success BtnOpt">+</button></div>
+                
+                <div class="col-sm-2"><button class="btn btn-success BtnOpt">-</button></div>
+                
+                <div class="col-sm-3"><button class="btn btn-success BtnOpt">Misc Item</button></div>
+                
+                <div class="col-sm-3"><button class="btn btn-success BtnOpt">Edit Price</button></div>
+            </div>
+            <div class="row" style="background-color:yellow">
+                <div class="col-sm-4">Total</div>
+                <div class="col-sm-4">:</div>
+                <div class="col-sm-4" id="totalAmount">0</div>
+
+            </div>
+            <fieldset>
+                <legend>Fonts</legend>
+                <div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="btnsWrapper"><b>Size</b>(<span id="sizecount">5</span>)</div>
+                            <div>
+                                <div><button class="btn btn-success customBtn" value="">+</button></div>
+                                <div><button class="btn btn-danger customBtn" value="">-</button></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div>
+                                <select id="fontstyle">
+                                    <option value="Times-New-Roman">Times New Roman</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Comic-Sans-MS">Comic Sans MS</option>
+                                    <option value="WildWest">WildWest</option>
+                                    <option value="Bedrock">Bedrock</option>
+                                    <option value="Arial"> Arial</option>
+                                    <option value="Courier"> Courier </option>
+                                    <option value="Tahoma"> Tahoma</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="sans-serif">sans-serif</option>
+                                </select><br />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><input type="checkbox" id="isBold" /><span>Bold</span></div>
+                                <div class="col-md-4"><input type="checkbox" id="isitalic" /><span>italic</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-5"><label>Text color</label> </div>
+                        <div class="col-md-6">
+                            <input id="textcolor" />
+                        </div>
+                        <div class="col-md-1">
+
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-5"><label>Button color</label> </div>
+                        <div class="col-md-6">
+                            <input id="btncolor" />
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <input type="checkbox" /><span>Vatable</span>
+                        </div>
+                        <div class="col-md-3">
+                            VAT Rate
+                        </div>
+
+                        <div class="col-md-2">
+                            <select id="fontstyle">
+                                <option value="Times-New-Roman">Times New Roman</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Comic-Sans-MS">Comic Sans MS</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Menu Buttons</legend>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button class="btn btn-info" id="addItem">Add Item</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-danger" id="deleteItem">Delete Item</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row DeptArea">
+        <div class="col-md-2 "><button class="customBttn greenBg">Pizza</button></div>
+        <div class="col-md-2 "><button class="customBttn pinkBg">Burgers Pizza</button></div>
+        <div class="col-md-2 "> <button class="customBttn greenBg">Kebabs</button></div>
+        <div class="col-md-3 "><button class="customBttn whiteBg">Side Orders </button></div>
+        <div class="col-md-2 "> <button class="customBttn skyBlueBg">Drinks</button></div>
+
+    </div>
+    <div class="row othersArea">
+        <div class="col-md-2 customBttn skyBlueBg">Meal Deal</div>
+        <div class="col-md-3 customBttn skyBlueBg">Cooking Instructions</div>
+        <div class="col-md-1 customBttn skyBlueBg">Freebies</div>
+        <div class="col-md-2 customBttn skyBlueBg">Special Pizza</div>
+        <div class="col-md-1 customBttn greenBg">Prices</div>
+        <div class="col-md-1 customBttn redBg">Cancel</div>
+        <div class="col-md-1 customBttn redBg">Exit</div>
+    </div>
+</body>
+
+</html>
