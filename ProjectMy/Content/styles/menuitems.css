@@ -1,14 +1,14 @@
 ﻿body {
-    padding:10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 fieldset {
-    margin-top: 10px;
-    margin-bottom:10px;
+    margin-top: 10px !important;
+    margin-bottom: 10px;
 }
 
-label {
-   
+legend {
+    font-size: 20px !important;
 }
 
 textarea {
@@ -17,32 +17,58 @@ textarea {
 }
 
 .mainDiv {
-    margin:1px !important;
-    height:80%;
-    margin-bottom:5px !important;
+    margin: 1px !important;
+    margin-bottom: 5px !important;
 }
 
 .DeptArea {
-    font-size:20px;
-    margin:1px !important;
-    height:10%;
-    background-color:blue;
+    font-size: 20px;
+    text-align: center;
+    margin: 1px !important;
+    margin-bottom: 4px;
+    height: 10%;
+    background-color: papayawhip;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .othersArea {
-    font-size:20px;
-    margin:1px !important;
-    height:10%;
-    background-color:yellow;
+    padding: 2px;
+    font-size: 20px;
+    margin: 1px !important;
+    height: 10%;
+    padding-left: 60px;
+    padding-right: 10px;
 }
+
 .itemsArea {
-   margin-right:1px !important;
+    margin-right: 1px !important;
 }
 
 .formArea {
     background-color: white;
-    padding-bottom:10px !important;
-    margin-right: 10px !important;
+    padding-bottom: 10px !important;
+    margin-right: 0px !important;
+}
+
+.operationsArea {
+    padding-bottom: 10px !important;
+    padding: 2px;
+}
+
+.tableArea {
+    background-color: white;
+    height: 300px;
+    
+    /*background-color: antiquewhite;*/
+}
+
+.arrows {
+    margin-left: -35px;
+    margin-bottom: 5px;
+    height: 150px;
+    background-color: yellow;
 }
 
 .title {
@@ -76,7 +102,7 @@ textarea {
 .btnsWrapper {
     float: left;
     margin-top: 20px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .customBtn {
@@ -89,9 +115,66 @@ textarea {
     margin-right: 15px;
 }
 
-.rowcustom{
-    margin:10px;
+.rowcustom {
+    margin: 10px;
 }
-.customBttn{
-text-align:center;
+
+.customBttn {
+    text-align: center;
+    padding: 8px;
+    width: 100%;
+    margin: 2px;
+    border: solid;
+}
+
+.singleitem {
+    height: 120px;
+    margin: 1px;
+    vertical-align: middle;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    font-size: 20px;
+    text-align: center;
+    background-color: aqua;
+}
+
+.redBg {
+    background-color: red;
+    color: white;
+}
+
+.skyBlueBg {
+    background-color: #628fe0;
+    color: white;
+}
+
+.BlueBg {
+    background-color: #628fe0;
+    color: white;
+}
+
+.greenBg {
+    background-color: #00ff21;
+    color: #808080;
+}
+
+.pinkBg {
+    background-color: #f26cce;
+    color: white;
+}
+
+.whiteBg {
+    background-color: white;
+}
+
+.selected {
+    border: solid;
+}
+
+.DeptSelected {
+    border: solid;
+}
+
+.BtnOpt {
+    text-align: center;
 }

@@ -1,0 +1,10 @@
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\DataLayer.dll.config
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\DataLayer.dll
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\DataLayer.pdb
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\EntityFramework.dll
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\EntityFramework.xml
+D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\myProjects\ProjectMy\FriendCode\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\myProjects\ProjectMy\FriendCode\DataLayer\obj\Debug\DataLayer.dll
+D:\myProjects\ProjectMy\FriendCode\DataLayer\obj\Debug\DataLayer.pdb

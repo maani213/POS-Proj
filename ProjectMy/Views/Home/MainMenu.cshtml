@@ -58,7 +58,7 @@
         <button class="smallBtn">
             Activate Order
         </button><br />
-        <button class="largeBtn redBg" id="management">
+        <button class="largeBtn redBg" id="management" onclick="location.href='@Url.Action("ManagementSection", "Home")'">
             Management
         </button><br />
         <button class="smallBtn BlueBg">
@@ -143,9 +143,9 @@
             }
         });
 
-               $("#management").on("click", function () {
-            dialog.dialog("open");
-        });
+        //       $("#management").on("click", function () {
+        //    dialog.dialog("open");
+        //});
     </script>
 </body>
 </html>

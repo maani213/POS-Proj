@@ -21,7 +21,8 @@
     <div>
         @foreach (string name in Model)
         {
-            <button class="loginViewBtn" onclick="location.href='@Url.Action("TakeAway", "Home")'">@name</button>
+            //onclick = "location.href='@Url.Action("TakeAway", "Home")'"
+            <button class="loginViewBtn" >@name</button>
         }
     </div>
     <div class="bottomdiv">
