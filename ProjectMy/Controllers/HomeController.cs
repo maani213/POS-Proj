@@ -68,5 +68,17 @@ namespace ProjectMy.Controllers
             };
             return PartialView("_ItemsView", dummy);
         }
+
+        [HttpGet]
+        public PartialViewResult ItemsTable()
+        {
+            return PartialView("_ItemsTable",new List<OrderDetails>());
+        }
+
+        [HttpPost]
+        public ActionResult OrderComplete(List<OrderDetails> orders)
+        {
+            return View();
+        }
     }
 }

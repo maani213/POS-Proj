@@ -27,12 +27,12 @@ $(document).ready(function () {
         var description = $('#desc').val();
         var textStyle = $('#fontstyle').val();
         
-        if(TitleText!=""&&bgColor!="")
+        if(TitleText!==""&&bgColor!=="")
         {
             var html = $('<div class="col-md-2 singleitem" style="background-color:' + bgColor + ';">' + TitleText + '</div>');
             $('.itemsArea').append(html);
             var item = { Title: TitleText, Description: description, Price: price, BackgroundColor: bgColor, TextStyle: textStyle, Size: "1" };
-            //addItem(item);
+            addItem(item);
         }
         else {
             alert("enter information");

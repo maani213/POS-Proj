@@ -13,7 +13,18 @@ namespace DataLayer.DAC
 
         public void AddItem(Pizza item)
         {
-            db.Pizzas.Add(item);
+           var res = db.Pizzas.Add(item);
+            db.SaveChanges();
+        }
+
+        public void DeletePizza(int? id)
+        {
+            if(id!=null)
+            {
+                var result = db.Pizzas.Find(id);
+                db.Pizzas.Remove(result);
+                db.SaveChanges();
+            }
         }
 
         public List<Pizza> GetAllPizzas()

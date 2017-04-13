@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\DAC.cs" />
+    <Compile Include="Entities\OrderDetails.cs" />
+    <Compile Include="Entities\Orders.cs" />
     <Compile Include="Entities\Pizza.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="myContext.cs" />
