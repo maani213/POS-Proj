@@ -55,6 +55,7 @@ textarea {
 .operationsArea {
     padding-bottom: 10px !important;
     padding: 2px;
+    border:solid thick;
 }
 
 .tableArea {

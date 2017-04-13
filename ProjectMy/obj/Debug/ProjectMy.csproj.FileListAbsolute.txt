@@ -72,3 +72,5 @@ D:\myProjects\ProjectMy\FriendCode\ProjectMy\obj\Debug\ProjectMy.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\obj\Debug\ProjectMy.pdb
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\DataLayer.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\DataLayer.pdb
+D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.SqlServer.dll
+D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.SqlServer.xml

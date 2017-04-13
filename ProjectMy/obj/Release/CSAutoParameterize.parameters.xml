@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="POSdb-Web.config Connection String" description="POSdb Connection String used in web.config by the application to access the database." defaultValue="Data Source=tcp:noumandb.database.windows.net,1433;Initial Catalog=POSdb;Persist Security Info=False;User ID=developer;Password=Admin@1bs;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\myProjects\\ProjectMy\\FriendCode\\ProjectMy\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='POSdb']/@connectionString" />
+  </parameter>
+</parameters>
