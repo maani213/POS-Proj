@@ -1,0 +1,101 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/styles/style.css" rel="stylesheet" />
+    <title>DataFiles</title>
+
+    <style>
+        .largeButton {
+            width: 245px;
+            height: 40px;
+            margin-top: 4px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .skyBlueBackg {
+            background-color: #628fe0;
+            color: white;
+        }
+
+        .rightpane {
+            float: right;
+            margin-top: -10px;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header class="loginHeader">
+
+        <div class="leftHeader">
+            45 Minute Delay - @DateTime.Now.ToString("dd/MM/yyyy")
+        </div>
+
+
+        <div style="display: inline-block;">
+            Data Files
+        </div>
+        <div class="rightHeader">
+            @DateTime.Now.ToString("HH:mm:ss")
+        </div>
+    </header>
+
+    <div class="rightpane">
+        <button class="largeButton skyBlueBackg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">
+            Menu Items
+        </button><br />
+        <button class="smallBtn skyBlueBackg">
+            Customers List
+        </button>
+        <button class="smallBtn skyBlueBackg">
+            Customers
+        </button><br />
+        <button class="largeButton skyBlueBackg">
+            Staff
+        </button><br />
+        <button class="largeButton skyBlueBackg">
+            Suppliers & Contracts
+        </button><br />
+        <button class="largeButton skyBlueBackg">
+            Recipes
+        </button><br />
+
+        <button class="smallBtn skyBlueBackg">
+            Adress Lables
+        </button>
+        <button class="smallBtn skyBlueBackg">
+            Win
+        </button><br />
+
+        <button class="largeButton skyBlueBackg">
+            Cancel Reason Options
+        </button><br />
+        <button class="largeButton skyBlueBackg">
+            Discount Reason Options
+        </button><br />
+        <button class="largeButton skyBlueBackg">
+            Refunf Reason Options
+        </button><br />
+        <button class="largeButton skyBlueBackg">
+            Expense Item Options
+        </button><br />
+
+        <button class="largeButton skyBlueBackg">
+            Waste Reason Options
+        </button><br />
+
+        <button class="largeButton redBg">
+            Exit Options
+        </button><br />
+    </div>
+</body>
+</html>

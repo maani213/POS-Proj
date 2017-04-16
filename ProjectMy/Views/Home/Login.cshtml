@@ -8,6 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <link href="~/Content/styles/loginview.css" rel="stylesheet" />
     <title>Login</title>
 </head>
@@ -22,7 +23,7 @@
         @foreach (string name in Model)
         {
             //onclick = "location.href='@Url.Action("TakeAway", "Home")'"
-            <button class="loginViewBtn" >@name</button>
+            <button class="loginViewBtn">@name</button>
         }
     </div>
     <div class="bottomdiv">
@@ -35,3 +36,16 @@
     </div>
 </body>
 </html>
+<script>
+    $('.loginViewBtn').on("click", function () {
+        var text = $(this).text();
+        if(text=="Admin" || text == "admin")
+        {
+            window.location = '@Url.Action("ManagementSection", "Home")';
+        }
+        else
+        {
+            window.location = '@Url.Action("TakeAway", "Home")';
+        }
+    })
+</script>

@@ -1,22 +1,25 @@
 ﻿@model IEnumerable<DataLayer.Entities.Pizza>
-<div class="row itemsArea">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-2"><button class="Btn btn-group-justified singleitemBtn" value="@item.Price" style="background-color:@item.BackgroundColor;">@item.Title</button></div>
-        <div class="col-md-2"><button class="Btn btn-group-justified singleitemBtn" value="@item.Price" style="background-color:@item.BackgroundColor;">@item.Title</button></div>
-        @*<div class="col-md-2 singleitem">some</div>
-            <div class="col-md-2 singleitem">some</div>
-            <div class="col-md-2 singleitem">some</div>
-            <div class="col-md-2 singleitem">some</div>
-            <div class="col-md-2 singleitem">some</div>*@
-    }
+<div class="abc">
+    <div class="row itemsArea">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-2 customRow"><button class="Btn btn-group-justified singleitemBtn" value="@item.Price" style="background-color:@item.BackgroundColor;">@item.Title</button></div>
+            <div class="col-md-2 customRow"><button class="Btn btn-group-justified singleitemBtn" value="@item.Price" style="background-color:@item.BackgroundColor;">@item.Title</button></div>
+            <div class="col-md-2 customRow"><button class="Btn btn-group-justified singleitemBtn" value="@item.Price" style="background-color:@item.BackgroundColor;">@item.Title</button></div>
+            @*<div class="col-md-2 singleitem">some</div>
+                <div class="col-md-2 singleitem">some</div>
+                <div class="col-md-2 singleitem">some</div>
+                <div class="col-md-2 singleitem">some</div>
+                <div class="col-md-2 singleitem">some</div>*@
+        }
+    </div>
 </div>
-
 <style>
     .singleitemBtn {
         width: 100%;
         height: 120px;
         font-size: 20px;
-        border:none;
+        border: none;
+        margin-top: 3px;
     }
 </style>

@@ -37,21 +37,7 @@ namespace ProjectMy.Controllers
             return View();
         }
 
-        public ActionResult ManagementSection()
-        {
-            return View();
-        }
-
-        public ActionResult DataFiles()
-        {
-            return View();
-        }
-
-        public ActionResult MenuItem()
-        {
-            return View();
-        }
-
+       
         public JsonResult AddItem(Pizza model)
         {
             data.AddItem(model);
@@ -61,24 +47,34 @@ namespace ProjectMy.Controllers
         public PartialViewResult ItemsView(string deptName = "Pizza")
         {
             List<Pizza> dummy = new List<Pizza>() {
-                new Pizza() { BackgroundColor="green" ,Title="Test" , Price="500" },
-                new Pizza() { BackgroundColor="pink" ,Title="Test" , Price="500" },
-                new Pizza() { BackgroundColor="blue" ,Title="Test" , Price="500" }
+                new Pizza() { BackgroundColor="green" ,Title="Pizza" , Price="900" },
+                new Pizza() { BackgroundColor="pink" ,Title="Burger" , Price="350" },
+                new Pizza() { BackgroundColor="blue" ,Title="Cake" , Price="500" },
+                new Pizza() { BackgroundColor="blue" ,Title="Cake" , Price="500" }
 
             };
             return PartialView("_ItemsView", dummy);
         }
 
-        [HttpGet]
-        public PartialViewResult ItemsTable()
+        [HttpPost]
+        public JsonResult CompleteOrder(List<OrderDetails> orders)
         {
-            return PartialView("_ItemsTable",new List<OrderDetails>());
+            TempData["ordersList"] = orders;
+            return Json("ok", JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        
         public ActionResult OrderComplete(List<OrderDetails> orders)
         {
-            return View();
+            List<OrderDetails> orders1 = TempData["ordersList"] as List<OrderDetails>;
+            return View(orders1);
         }
+
+        public JsonResult ClearCash(List<OrderDetails> orders , int totalpaid , int balance)
+        {
+            return Json("Order Completed", JsonRequestBehavior.AllowGet);
+        }
+
+        
     }
 }

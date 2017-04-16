@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\styles\loginview.css" />
     <Content Include="Content\styles\menuitems.css" />
+    <Content Include="Content\styles\ordercmplt.css" />
     <Content Include="Content\styles\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -159,6 +160,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\customscripts\myscript.js" />
+    <Content Include="Scripts\customscripts\orderCmplt.js" />
     <Content Include="Scripts\customscripts\TakeawayHome.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -173,6 +175,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagementSectionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,8 +194,12 @@
     <Content Include="Views\Home\DataFiles.cshtml" />
     <Content Include="Views\Home\MenuItem.cshtml" />
     <Content Include="Views\Home\_ItemsView.cshtml" />
-    <Content Include="Views\Home\_ItemsTable.cshtml" />
     <Content Include="Views\Home\OrderComplete.cshtml" />
+    <Content Include="Views\ManagementSection\ManagementSection.cshtml" />
+    <Content Include="Views\ManagementSection\DataFiles.cshtml" />
+    <Content Include="Views\ManagementSection\MenuItem.cshtml" />
+    <Content Include="Views\ManagementSection\MealDeal.cshtml" />
+    <Content Include="Views\ManagementSection\Course.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

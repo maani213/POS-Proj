@@ -1,9 +1,4 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -13,18 +8,36 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/customscripts/myscript.js"></script>
-    <title>MenuItem</title>
+
+    <title>Course</title>
+    <style>
+        .formArea {
+            height: 466px !important;
+        }
+
+        .customBttn {
+            margin-top: 3px !important;
+        }
+    </style>
 </head>
+
 <body style="background-color: darkblue;">
 
     <div class="row mainDiv">
         <div class="col-lg-8 itemsArea">
 
+            @*<div class="row">
+                <div class="col-md-2"><button class="singleitem greenBg"></button></div>
+                <div class="col-md-2"><button class="singleitem skyBlueBg"></button></div>
+                <div class="col-md-2"><button class="singleitem skyBlueBg"></button></div>
+                <div class="col-md-2"><button class="singleitem pinkBg"></button></div>
+                <div class="col-md-2"><button class="singleitem whiteBg"></button></div>
+                <div class="col-md-2"><button class="singleitem BlueBg"></button></div>
+            </div>
             <div class="row">
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
+                <div class="col-md-2"><button class="singleitem skyBlueBg"></button></div>
+                <div class="col-md-2"><button class="singleitem greenBg"></button></div>
+                <div class="col-md-2"><button class="singleitem whiteBg"></button></div>
                 <div class="col-md-2"><button class="singleitem"></button></div>
                 <div class="col-md-2"><button class="singleitem"></button></div>
                 <div class="col-md-2"><button class="singleitem"></button></div>
@@ -44,19 +57,10 @@
                 <div class="col-md-2"><button class="singleitem"></button></div>
                 <div class="col-md-2"><button class="singleitem"></button></div>
                 <div class="col-md-2"><button class="singleitem"></button></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-            </div>
+            </div>*@
         </div>
         <div class="formArea col-lg-4">
-            <div class="title">Pizza</div>
-            <div class="subtitle">Verieties</div>
+            <div class="title">Meal Deal</div>
             <div class="row" style="margin:2px !important;">
                 <div class="col-md-2">
                     <label>Text</label>
@@ -122,44 +126,14 @@
                         <div class="col-md-1">
                         </div>
                     </div>
-                    <div class="row rowcustom">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <input type="checkbox" /><span>Vatable</span>
-                        </div>
-                        <div class="col-md-3">
-                            VAT Rate
-                        </div>
-
-                        <div class="col-md-2">
-                            <select id="fontstyle">
-                                <option value="0"></option>
-                                <option value="Times-New-Roman">Times New Roman</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="Comic-Sans-MS">Comic Sans MS</option>
-
-                            </select>
-                        </div>
-
-                        <div class="col-md-1"></div>
-                    </div>
                 </div>
 
             </fieldset>
-
-            <fieldset>
-                <legend>Menu Buttons</legend>
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                        <button class="menuBtn" id="addItem">Add Item</button>
-                    </div>
-                    <div class="col-md-4">
-                        <button class="menuBtn" id="deleteItem">Delete Item</button>
-                    </div>
-                    <div class="col-md-2"></div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="customBttn greenBg" style="margin-top: 108px !important;">Edit <span>Pizza Deal 1</span></button>
                 </div>
-            </fieldset>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -170,14 +144,6 @@
             <div class="col-md-2 "> <button class="customBttn greenBg">Kebabs</button></div>
             <div class="col-md-2 "><button class="customBttn whiteBg">Side Orders </button></div>
             <div class="col-md-2 "> <button class="customBttn skyBlueBg">Drinks</button></div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="row">
-                <div class="col-md-4 "><button class="sizeVerBtn greenBg">Sizes(3)</button></div>
-                <div class="col-md-4 "><button class="sizeVerBtn pinkBg">Verieties(5)</button></div>
-                <div class="col-md-4 "> <button class="sizeVerBtn greenBg">Extras(12)</button></div>
-            </div>
         </div>
     </div>
 

@@ -29,7 +29,7 @@ $(document).ready(function () {
         
         if(TitleText!==""&&bgColor!=="")
         {
-            var html = $('<div class="col-md-2 singleitem" style="background-color:' + bgColor + ';">' + TitleText + '</div>');
+            var html = $('<div class="col-md-2"><button class="singleitem" style="background-color:'+ bgColor +'">'+TitleText+'</button></div>')
             $('.itemsArea').append(html);
             var item = { Title: TitleText, Description: description, Price: price, BackgroundColor: bgColor, TextStyle: textStyle, Size: "1" };
             addItem(item);
