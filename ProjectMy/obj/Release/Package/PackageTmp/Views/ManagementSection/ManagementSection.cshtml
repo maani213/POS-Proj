@@ -9,18 +9,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/styles/style.css" rel="stylesheet" />
-    
+
     <title>Management Section</title>
 </head>
 <body>
- 
+
     <header class="loginHeader">
-        
-            <div class="leftHeader">
-                45 Minute Delay - @DateTime.Now.ToString("dd/MM/yyyy")
-            </div>
-           
-        
+
+        <div class="leftHeader">
+            45 Minute Delay - @DateTime.Now.ToString("dd/MM/yyyy")
+        </div>
+
+
         <div style="display: inline-block;">
             Management Section
         </div>
@@ -33,17 +33,17 @@
         <button class="largeBtn whiteBg">
             Reports
         </button><br />
-        <button class="largeBtn skyBlueBg" onclick="location.href='@Url.Action("DataFiles", "Home")'">
+        <button class="largeBtn skyBlueBg" onclick="location.href='@Url.Action("DataFiles", "ManagementSection")'">
             Data Files
         </button><br />
-        
+
         <button class="largeBtn greenBg">
             Settings
         </button><br />
         <button class="largeBtn orangeBg">
             Expences
         </button><br />
-        <button class="largeBtn orangeBg" >
+        <button class="largeBtn orangeBg">
             Time Delay
         </button><br />
         <button class="largeBtn whiteBg">
@@ -53,8 +53,8 @@
         <button class="largeBtn backBtn">
             Back
         </button><br />
-       
+
     </div>
-        
+
 </body>
 </html>

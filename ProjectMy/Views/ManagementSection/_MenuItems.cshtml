@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DataLayer.Entities.Item>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@item.BackgroundColor;color:@item.TextColor">@item.Title</button><input type="hidden" value="@item.PositionNumber" /></div>
+    }
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="2" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="3" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="4" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="5" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="6" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="7" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="8" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="9" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="10" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="11" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="12" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="13" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="14" /></div>
+    </div>
+@*<script src="~/Scripts/customscripts/myscript.js"></script>*@
+<script>
+
+    $(document).ready(function () {
+        $('.singleitem').on("click", function () {
+            $('.singleitem').removeClass("selected");
+
+            $(this).addClass("selected");
+        });
+    });
+</script>

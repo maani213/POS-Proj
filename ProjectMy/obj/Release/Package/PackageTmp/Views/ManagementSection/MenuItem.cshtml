@@ -12,49 +12,37 @@
     <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscripts/myscript.js"></script>
     <title>MenuItem</title>
+    <style>
+    </style>
 </head>
-<body style="background-color: #7abbea;">
-
+<body style="background-color: darkblue;">
     <div class="row mainDiv">
-        <div class="col-lg-8">
-
-            <div class="row itemsArea">
-                <div class="col-md-2 singleitem">some</div>
-                <div class="col-md-2 singleitem">some</div>
-                <div class="col-md-2 singleitem ">some</div>
-                <div class="col-md-2 singleitem">some</div>
-                <div class="col-md-2 singleitem">some</div>
-                <div class="col-md-2 singleitem">some</div>
-            </div>
+        <div class="col-lg-8" id="itemsArea">
+            @{
+                Html.RenderAction("MenuItems");
+            }
         </div>
         <div class="formArea col-lg-4">
             <div class="title">Pizza</div>
             <div class="subtitle">Verieties</div>
-            <div class="row">
+            <div class="row" style="margin:2px !important;">
                 <div class="col-md-2">
                     <label>Text</label>
                 </div>
                 <div class="col-md-10">
-                    <textarea id="text"></textarea>
+                    <input type="text" id="text" style="width: 84%;" />
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin:2px !important;">
                 <div class="col-md-2">
-                    <label>Desc</label>
+                    <label>Toppings</label>
                 </div>
                 <div class="col-md-10">
-                    <textarea id="desc"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <label>Price</label>
-                </div>
-                <div class="col-md-10">
-                    <input type="text" id="price"/>
+                    <textarea id="toppings"></textarea>
                 </div>
             </div>
             <fieldset>
@@ -136,32 +124,40 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                        <button class="btn btn-info" id="addItem">Add Item</button>
+                        <button class="menuBtn" id="addItem">Add Item</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-danger" id="deleteItem">Delete Item</button>
+                        <button class="menuBtn" id="deleteItem">Delete Item</button>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
             </fieldset>
         </div>
     </div>
-    <div class="row DeptArea">
-        <div class="col-md-2 "><button class="customBttn greenBg">Pizza</button></div>
-        <div class="col-md-2 "><button class="customBttn pinkBg">Burgers Pizza</button></div>
-        <div class="col-md-2 "> <button class="customBttn greenBg">Kebabs</button></div>
-        <div class="col-md-3 "><button class="customBttn whiteBg">Side Orders </button></div>
-        <div class="col-md-2 "> <button class="customBttn skyBlueBg">Drinks</button></div>
+    <div class="row">
+        <div class="col-sm-8">
+            @{ Html.RenderAction("GetCategories"); }
+        </div>
 
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-md-2 "></div>
+                <div class="col-md-4 "><button class="sizeVerBtn greenBg">Sizes(3)</button></div>
+                <div class="col-md-4 "><button class="sizeVerBtn pinkBg">Verieties(5)</button></div>
+                <div class="col-md-2 "></div>
+
+            </div>
+        </div>
     </div>
+
     <div class="row othersArea">
-        <div class="col-md-2 customBttn skyBlueBg">Meal Deal</div>
-        <div class="col-md-3 customBttn skyBlueBg">Cooking Instructions</div>
-        <div class="col-md-1 customBttn skyBlueBg">Freebies</div>
-        <div class="col-md-2 customBttn skyBlueBg">Special Pizza</div>
-        <div class="col-md-1 customBttn greenBg">Prices</div>
-        <div class="col-md-1 customBttn redBg">Cancel</div>
-        <div class="col-md-1 customBttn redBg">Exit</div>
+        <div class="col-md-2"><button class="customBttn skyBlueBg">Meal Deals</button></div>
+        <div class="col-md-2 "><button class="customBttn skyBlueBg">Cooking Instructions</button></div>
+        <div class="col-md-2 "><button class="customBttn skyBlueBg">Freebies</button></div>
+        <div class="col-md-2 "><button class="customBttn skyBlueBg">Special Pizza</button></div>
+        <div class="col-md-1 "><button class="customBttn greenBg">Prices</button></div>
+        <div class="col-md-1 "><button class="customBttn redBg">Cancel</button></div>
+        <div class="col-md-1 "><button class="customBttn redBg">Exit</button></div>
     </div>
 </body>
 

@@ -38,22 +38,9 @@ namespace ProjectMy.Controllers
         }
 
        
-        public JsonResult AddItem(Pizza model)
-        {
-            data.AddItem(model);
-            return Json("item added", JsonRequestBehavior.AllowGet);
-        }
-
         public PartialViewResult ItemsView(string deptName = "Pizza")
         {
-            List<Pizza> dummy = new List<Pizza>() {
-                new Pizza() { BackgroundColor="green" ,Title="Pizza" , Price="900" },
-                new Pizza() { BackgroundColor="pink" ,Title="Burger" , Price="350" },
-                new Pizza() { BackgroundColor="blue" ,Title="Cake" , Price="500" },
-                new Pizza() { BackgroundColor="blue" ,Title="Cake" , Price="500" }
-
-            };
-            return PartialView("_ItemsView", dummy);
+           return PartialView("_ItemsView");
         }
 
         [HttpPost]
@@ -75,6 +62,25 @@ namespace ProjectMy.Controllers
             return Json("Order Completed", JsonRequestBehavior.AllowGet);
         }
 
-        
+        [ChildActionOnly]
+        public PartialViewResult GetCategories()
+        {
+            return PartialView("_Categories", DAC.GetAllCategories());
+        }
+
+        [HttpGet]
+        public PartialViewResult TakeAwayItems(int categoryId = 1)
+        {
+            TakeAwayItemsModel model = new TakeAwayItemsModel();
+            model.items = DAC.GetItemsByCategoryId(categoryId);
+            model.sizes = DAC.GetSizesByCategoryId(categoryId);
+            return PartialView("_TakeAwayItems", model);
+        }
+        [HttpGet]
+        public JsonResult GetItemPrice(int itemID , int sizeId)
+        {
+            decimal price = DAC.GetItemPrice(itemID, sizeId);
+            return Json(price, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -25,7 +25,8 @@
 .largeBtn{
     width:245px;
     height:45px;margin-top:5px;
-    
+    color:white;
+    text-decoration:none;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size:15px;
     font-weight:bold;

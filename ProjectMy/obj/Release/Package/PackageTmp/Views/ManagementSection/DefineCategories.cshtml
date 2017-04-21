@@ -1,0 +1,181 @@
+﻿@model IEnumerable<DataLayer.Entities.Categories>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/customscripts/myscript.js"></script>
+    <title>DefineCategories</title>
+    <style>
+        .menuBtn {
+            font-size: 15px;
+            font-weight: bold;
+            height: 52px !important;
+        }
+
+        .formArea {
+            padding-bottom: 52px !important;
+            margin-right: 0px !important;
+        }
+    </style>
+</head>
+<body style="background-color: darkblue;">
+    <div class="row mainDiv">
+        <div class="col-lg-8" id="itemsArea">
+            <div class="row">
+                @foreach (var cat in Model)
+                {
+                    <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" value="@cat.PositionNumber" /></div>
+                }
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="1" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="2" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="3" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="4" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="5" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="6" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="7" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="8" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="9" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="10" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="11" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="12" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="13" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="14" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="15" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="16" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="17" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="18" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="19" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="20" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="21" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="22" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="23" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="24" /></div>
+
+            </div>
+        </div>
+        <div class="formArea col-lg-4">
+            <div class="title">Categories</div>
+            <div class="row" style="margin:2px !important;">
+                <div class="col-md-2">
+                    <label>Text</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" id="text" style="width: 84%;" />
+                </div>
+            </div>
+            <fieldset>
+                <legend>Fonts</legend>
+                <div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="btnsWrapper"><b>Size</b>(<span id="sizecount">5</span>)</div>
+                            <div>
+                                <div><button class="btn btn-success customBtn" value="">+</button></div>
+                                <div><button class="btn btn-danger customBtn" value="">-</button></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div>
+                                <select id="fontstyle">
+                                    <option value="Times-New-Roman">Times New Roman</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Comic-Sans-MS">Comic Sans MS</option>
+                                    <option value="WildWest">WildWest</option>
+                                    <option value="Bedrock">Bedrock</option>
+                                    <option value="Arial"> Arial</option>
+                                    <option value="Courier"> Courier </option>
+                                    <option value="Tahoma"> Tahoma</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="sans-serif">sans-serif</option>
+                                </select><br />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4"><input type="checkbox" id="isBold" /><span>Bold</span></div>
+                                <div class="col-md-4"><input type="checkbox" id="isitalic" /><span>italic</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-5"><label>Text color</label> </div>
+                        <div class="col-md-6">
+                            <input id="textcolor" />
+                        </div>
+                        <div class="col-md-1">
+
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-5"><label>Button color</label> </div>
+                        <div class="col-md-6">
+                            <input id="btncolor" />
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                    </div>
+                    <div class="row rowcustom">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <input type="checkbox" /><span>Vatable</span>
+                        </div>
+                        <div class="col-md-3">
+                            VAT Rate
+                        </div>
+
+                        <div class="col-md-2">
+                            <select id="fontstyle">
+                                <option value="0"></option>
+                                <option value="Times-New-Roman">Times New Roman</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Comic-Sans-MS">Comic Sans MS</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Menu Buttons</legend>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button class="menuBtn greenBg" id="addCategory">Add Category</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="menuBtn redBg" id="deleteCategory">Delete Category</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $('.singleitem').on("click", function () {
+            $('.singleitem').removeClass("selected");
+
+            $(this).addClass("selected");
+        });
+    });
+</script>

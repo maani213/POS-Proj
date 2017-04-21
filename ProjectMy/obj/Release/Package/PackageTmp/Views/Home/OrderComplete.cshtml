@@ -1,0 +1,213 @@
+﻿
+@model IEnumerable<DataLayer.Entities.OrderDetails>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/styles/ordercmplt.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/customscripts/orderCmplt.js"></script>
+
+
+    <title>OrderComplete</title>
+    <style>
+        .customBttn1 {
+            padding: 3px;
+            width: 100%;
+            border: solid;
+            height: 100px;
+        }
+    </style>
+</head>
+<body style="background-color: darkblue;">
+
+    <div class="row mainDiv">
+        <div class="row cust">
+            <div class="col-sm-12">
+                <b>Customer Name</b>
+            </div>
+        </div>
+        <div class="col-lg-8" style="margin-left: 26px;">
+            <div class="row">
+                <div class="col-sm-6">
+                    <textarea style="width:102%;height: 115px;"></textarea>
+                </div>
+                <div class="col-sm-3 cutomclass">
+                    <button class="customBttn greenBg" style="width:97%;"><b>Customer Details</b></button>
+
+                    <button class="customBttn skyBlueBg" style="width:97%"><b>Change to Collection</b></button>
+                </div>
+                <div class="col-sm-3 cutomclass">
+                    <div class="row">
+                        <div class="col-sm-1"><button class="BtnOpt"><b>+</b></button></div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-1"><button class="BtnOpt"><b>+</b></button></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><input type="text" class="form-control" style="width: 86% !important;" /> </div>
+                        <div class="col-sm-1" style="margin-left: -13%;margin-top: 6px;">:</div>
+                        <div class="col-sm-4"><input type="text" class="form-control" style="margin-left: -24px;width: 86% !important;" /></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1"><button class="BtnOpt"><b>-</b></button></div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-1"><button class="BtnOpt"><b>-</b></button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="newBg selected">Cash</button>
+                    <button class="customBttn BlueBg">Cheque</button>
+                    <button class="customBttn BlueBg">Credit Card</button>
+                    <button class="customBttn BlueBg">Voucher</button>
+                    <button class="customBttn greenBg" id="clearCash">Clear Cash</button>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">7</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">8</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">9</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomfBtn">&pound <span>5</span></button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomPercBtn"> <span>5</span>%</button></div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">4</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">5</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">6</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomfBtn">&pound <span>10</span></button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomPercBtn"><span>10</span>%</button></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">1</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">2</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">3</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomfBtn">&pound <span>20</span></button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomPercBtn"><span>15</span>%</button></div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2 cutomclass"><button id="doublezero">00</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="calculatorBtn">0</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomfontBtn" id="fullAmount">Full Amount</button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomfBtn">&pound <span>50</span></button></div>
+                        <div class="col-sm-2 cutomclass"><button class="CustomPercBtn"><span>25</span>%</button></div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4 customlable cutomclass">
+                            Take Away Order No.2
+                        </div>
+                        <div class="col-sm-2 cutomclass"><span></span></div>
+
+                        <div class="col-sm-4 cutomclass"><button class="cstmBtn">Loyalty</button></div>
+                        <div class="col-sm-2 cutomclass"></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10 cutomclass">
+                            <input class="form-control" />
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="operationsArea col-sm-4 col-md-4 col-lg-4">
+            <div class="row ">
+                <div class="col-sm-12 ordertableArea">
+                    <table class="table table-bordered" id="itemsTable">
+                        <thead>
+                            <tr>
+                                <th>Qty</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tableBody">
+                            @foreach (var item in Model)
+                                     {
+                                    <tr>
+                                        <td id="qty">@item.ItemQty</td>
+                                        <td>@item.ItemName</td>
+                                        <td id="price">@item.ItemTotalPrice</td>
+                                    </tr>
+                                }
+
+                            @*<tr>
+                                <td id="qty">2</td>
+                                <td>Test</td>
+                                <td id="price">1000</td>
+                            </tr>*@
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="totalArea">
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6"><b>Sub Total</b></div>
+                    <div class="col-sm-3"><b id="Subtotal">1000</b></div>
+                </div>
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6"><b>Total</b></div>
+                    <div class="col-sm-3"><b id="totalAmount">1000</b></div>
+                </div>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6"><b>Paid Amount</b></div>
+                    <div class="col-sm-3"><b id="paidAmount"></b></div>
+                </div>
+
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6"><b>Balance</b></div>
+                    <div class="col-sm-3"><b id="balance"></b></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row " style="">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Cancel Order</b></button></div>
+        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Discount</b></button></div>
+        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Till</b></button></div>
+        <div class="col-sm-1"><button class="OptionBtns orangeBg"><b>Print All</b></button></div>
+        <div class="col-sm-1"><button class="OptionBtns BlueBg"><b>Send To Kitchen/Bar</b></button></div>
+        <div class="col-sm-1"><button class="OptionBtns greenBg"><b>Back to order</b></button></div>
+        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Exit</b></button></div>
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-1"></div>
+
+
+    </div>
+</body>
+
+</html>

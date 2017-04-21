@@ -2,66 +2,65 @@
 
 
 $(document).ready(function () {
+
     $('.singleitemBtn').on("click", function () {
         $('.singleitemBtn').removeClass("selected");
         $(this).addClass("selected");
-        var price =  $(this).val();
+        var price = $(this).val();
         var name = $(this).text();
-        
-        var item = $('<tr><th>1</th><th>' + name + '</th><th>' + price + '</th></tr>');
+
+        var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + price + '</td></tr>');
         $('.tableBody').append(item);
         var totalAmount = $('#totalAmount').text();
         var newTotal = parseInt(totalAmount) + parseInt(price);
-        
+
         $('#totalAmount').text('');
         $('#totalAmount').text(newTotal);
     });
 
-    //$('.customBttn').on("click", function () {
-    //    $('.customBttn').removeClass("DeptSelected");
-    //    $(this).addClass("DeptSelected");
-    //    var dept = $('.DeptSelected').html();
+    $('#orderCmplt').on("click", function (evt) {
 
-    //    $('.title').text(dept);
-    //});
-    //$('#addItem').on("click", function () {
+        var itemsList = [];
+        
+        $('.tableBody tr').each(function () {
+            if (!this.rowIndex) return; // skip first row
+            Quantity = this.cells[0].innerHTML;
+            productName = this.cells[1].innerHTML;
+            totalAmount = this.cells[2].innerHTML;
 
-    //    var textColor = $('#textcolor').val();
-    //    var bgColor = $('#btncolor').val();
-    //    var price = $('#price').val();
-    //    var isBold = $('#isBold').is(':checked');
-    //    var isItalic = $('#isitalic').is(':checked');
+            var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
 
-    //    var TitleText = $('#text').val();
-    //    var description = $('#desc').val();
-    //    var textStyle = $('#fontstyle').val();
-    //    alert(textStyle);
-    //    var html = $('<div class="col-md-2 singleitem" style="background-color:' + bgColor + ';color:' + textColor + ';">' + TitleText + '</div>');
-    //    $('.itemsArea').append(html);
-    //    var item = { Title: TitleText, Description: description, Price: price, BackgroundColor: bgColor, TextStyle: textStyle, Size: "1" };
-    //    //addItem(item);
-    //});
-    //$('#deleteItem').on("click", function () {
-    //    $('div').remove(".selected");
-    //});
+            itemsList.push(item);
+        });
+        
+        if (itemsList.length == 0)
+        {
+            alert("Please Select at least 1 item to place an order.");
+            ev.preventDefault();
+        }
+        addItem(itemsList);
+    });
 
-})
+    $("#row1").click(function () {
+        alert("clicke");
+        $(this).toggleClass("rowSelected");
+    });
+});
 
-//function addItem(data1) {
-//    $.ajax({
+function addItem(orders) {
+    $.ajax({
 
-//        url: '/Home/AddItem',
-//        type: 'POST',
-//        data: JSON.stringify({
-//            model: data1
-//        }),
-//        dataType: "json",
-//        contentType: "application/json; charset=utf-8",
-//        success: function (data) {
-//            alert('Data: ' + data);
-//        },
-//        error: function (request, error) {
-//            alert("Request: " + JSON.stringify(request));
-//        }
-//    });
-//}
+        url: '/Home/CompleteOrder',
+        type: 'POST',
+        data: JSON.stringify(orders),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+            window.location.href = "/Home/OrderComplete";
+        },
+        error: function (request, error) {
+            alert("request: " + json.stringify(request));
+        }
+    });
+};
+

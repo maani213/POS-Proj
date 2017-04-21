@@ -41,25 +41,34 @@ textarea {
     padding-right: 10px;
 }
 
-.itemsArea {
+#itemsArea {
     overflow: auto;
-    max-height: 443px !important;
+    max-height: 474px !important;
 }
 
+#TakeAwayitemsArea {
+    max-height: 474px !important;
+}
+#PricesitemsArea{
+    overflow: auto;
+    max-height: 530px !important;
+}
 .formArea {
     background-color: white;
     padding-bottom: 10px !important;
     margin-right: 0px !important;
 }
-.customRow{
-        padding-right: 3px !important;
+
+.customRow {
+    padding-right: 3px !important;
     padding-left: 3px !important;
 }
+
 .operationsArea {
     padding-bottom: 2px !important;
-    padding-right:0px !important;
-    padding-left:0px !important;
-border-left: solid thin;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    border-left: solid thin;
     margin-bottom: -50px;
 }
 
@@ -158,31 +167,86 @@ border-left: solid thin;
     margin: 8px;
 }
 
-.customBttn1 {
-    font-size: 13px;
+#ItemsDiv {
+    overflow: auto;
+    height: 362px !important;
+}
+
+.sizeBtn {
     font-weight: bold;
+    font-size: 17px;
+    height: 48px !important;
     width: 100%;
+    margin: 2px;
     border: groove;
-    height: 100px;
-    color: black !important;
+    margin-top: 9px;
+    background-color: green;
+    color: white;
+}
+
+.customBttn1 {
+    font-weight: bold;
+    font-size: 17px;
+    height: 48px !important;
+    width: 100%;
+    margin: 2px;
+    border: groove;
+    margin-top: 9px;
 }
 
 .customBttn {
     font-weight: bold;
     font-size: 17px;
-    height: 53px !important;
+    height: 48px !important;
     width: 100%;
     margin: 2px;
     border: groove;
-    margin-top: 13px;
+    margin-top: 9px;
+    display: inline-block;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-color: none !important;
+    text-decoration: none;
+    border: groove;
 }
 
+    .customBttn:active {
+        text-decoration: none;
+        color: white;
+    }
+
+    .customBttn:hover {
+        text-decoration: none;
+        color: white;
+    }
+
 .singleitem {
-    width: 100%;
+    width: 98%;
     margin: 1px;
     font-weight: bold;
     font-size: 12px;
-    height: 111px;
+    height: 108px;
+    border: groove;
+    /*background-color: aqua;*/
+}
+
+.singleSizeitem {
+    width: 98%;
+    margin: 1px;
+    font-weight: bold;
+    font-size: 12px;
+    height: 216px;
     border: groove;
     /*background-color: aqua;*/
 }
@@ -208,7 +272,7 @@ border-left: solid thin;
 
 .greenBg {
     background-color: #2be000;
-    color: black;
+    color: white;
 }
 
 .pinkBg {
@@ -226,10 +290,12 @@ border-left: solid thin;
 
 .selected {
     border: solid;
+    border-color: white;
 }
 
 .DeptSelected {
     border: solid;
+    border-color: black;
 }
 
 .BtnOpt {
@@ -262,4 +328,9 @@ border-left: solid thin;
     font-size: 13px;
     height: 42px;
     width: 81%;
+}
+
+.cusotomCol {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }

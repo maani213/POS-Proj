@@ -3,25 +3,40 @@
 
 $(document).ready(function () {
 
-    $('.singleitemBtn').on("click", function () {
-        $('.singleitemBtn').removeClass("selected");
+    $('#canelOrder').on("click", function (evt) {
+        if ($('.table tbody').find('tr').length > 0) {
+            if (confirm('Are you sure to Cancel Order?')) {
+                $('.table tbody').empty();
+                $('#totalAmount').text(0);
+            }
+            else {
+                evt.preventDefault();
+            }
+        }
+        else {
+            alert('Order is already empty.');
+        }
+
+    });
+    $(document).on("click", '.singleitem', function () {
+        $('.singleitem').removeClass("selected");
         $(this).addClass("selected");
-        var price = $(this).val();
-        var name = $(this).text();
+        
+    });
 
-        var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + price + '</td></tr>');
-        $('.tableBody').append(item);
-        var totalAmount = $('#totalAmount').text();
-        var newTotal = parseInt(totalAmount) + parseInt(price);
-
-        $('#totalAmount').text('');
-        $('#totalAmount').text(newTotal);
+    $(document).on("click", '.sizeBtn', function () {
+        $('.sizeBtn').removeClass("selected");
+        $(this).addClass("selected");
+        var name = $('.selected').text();
+        var itemID = $('.selected').attr('id');
+        var size = $(this).siblings('input').val();
+        GetItemPrice(name, itemID, size);
     });
 
     $('#orderCmplt').on("click", function (evt) {
 
         var itemsList = [];
-        
+
         $('.tableBody tr').each(function () {
             if (!this.rowIndex) return; // skip first row
             Quantity = this.cells[0].innerHTML;
@@ -32,9 +47,8 @@ $(document).ready(function () {
 
             itemsList.push(item);
         });
-        
-        if (itemsList.length == 0)
-        {
+
+        if (itemsList.length === 0) {
             alert("Please Select at least 1 item to place an order.");
             ev.preventDefault();
         }
@@ -62,5 +76,29 @@ function addItem(orders) {
             alert("request: " + json.stringify(request));
         }
     });
+};
+function GetItemPrice(name, itemId, size) {
+    $.get('/Home/GetItemPrice/?' + "itemID=" + itemId + "&sizeId=" + size, function (data) {
+
+        var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + data + '</td></tr>');
+        $('.tableBody').append(item);
+        var totalAmount = $('#totalAmount').text();
+        var newTotal = parseFloat(totalAmount) + parseFloat(data);
+
+        $('#totalAmount').text('');
+        $('#totalAmount').text(newTotal);
+
+    })
+    //$.ajax({
+    //    url: '/Home/GetItemPrice/?' + "itemID=" + itemId + "&sizeId=" + size,
+    //    type: 'GET',
+    //    success: function (data) {
+    //        json.stringify(data)
+    //        return data;
+    //    },
+    //    error: function (request, error) {
+    //        //alert("request: " + json.stringify(request));
+    //    }
+    //});
 };
 

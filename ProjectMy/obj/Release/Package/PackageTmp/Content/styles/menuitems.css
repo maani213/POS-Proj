@@ -3,17 +3,19 @@
 }
 
 fieldset {
-    margin-top: 10px !important;
+    margin-top: 2px !important;
     margin-bottom: 10px;
 }
 
 legend {
-    font-size: 20px !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    margin-bottom: 14px !important;
 }
 
 textarea {
     margin-top: 10px;
-    width: 70%;
+    width: 84%;
 }
 
 .mainDiv {
@@ -22,14 +24,11 @@ textarea {
 }
 
 .DeptArea {
+    width: 886px !important;
     font-size: 20px;
-    text-align: center;
     margin: 1px !important;
     margin-bottom: 4px;
     height: 10%;
-    background-color: papayawhip;
-    padding: 2px;
-    padding-left: 10px;
     padding-right: 10px;
 }
 
@@ -42,8 +41,9 @@ textarea {
     padding-right: 10px;
 }
 
-.itemsArea {
-    margin-right: 1px !important;
+#itemsArea {
+    overflow: auto;
+    max-height: 443px !important;
 }
 
 .formArea {
@@ -52,38 +52,72 @@ textarea {
     margin-right: 0px !important;
 }
 
-.operationsArea {
-    padding-bottom: 10px !important;
-    padding: 2px;
-    border:solid thick;
+.customRow {
+    padding-right: 3px !important;
+    padding-left: 3px !important;
 }
 
-.tableArea {
+.operationsArea {
+    padding-bottom: 2px !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    border-left: solid thin;
+    margin-bottom: -50px;
+}
+
+.ordertableArea {
+    width: 97% !important;
+    height: 350px;
+    overflow: auto;
     background-color: white;
-    height: 300px;
-    
-    /*background-color: antiquewhite;*/
+}
+
+.table thead th {
+    text-align: center;
+}
+
+.tableBody tr {
+    font-weight: bold;
+    font-size: 12px !important;
+}
+
+#qty {
+    text-align: center;
+}
+
+#price {
+    text-align: right;
+}
+
+.totalRow {
+    background-color: yellow;
+    padding: 3px;
+    margin-top: 5px;
+    margin-right: -4px !important;
+    font-size: 15px;
+}
+
+.cutomclass {
+    padding-left: 1px !important;
+    padding-right: 1px !important;
 }
 
 .arrows {
-    margin-left: -35px;
-    margin-bottom: 5px;
+    margin-left: -30px;
+    margin-bottom: 2px;
     height: 150px;
-    background-color: yellow;
 }
 
 .title {
-    margin-top: 5px;
-    margin-bottom: 5px;
     color: black;
-    font-size: 26px;
+    font-size: 24px;
     text-align: center;
 }
 
 .subtitle {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: black;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
 }
 
@@ -116,26 +150,82 @@ textarea {
     margin-right: 15px;
 }
 
+.menuBtn {
+    font-size: 15px;
+    font-weight: bold;
+    height: 33px;
+}
+
 .rowcustom {
-    margin: 10px;
+    margin: 8px;
+}
+
+.customBttn1 {
+        font-weight: bold;
+    font-size: 17px;
+    height: 48px !important;
+    width: 100%;
+    margin: 2px;
+    border: groove;
+    margin-top: 9px;
+
 }
 
 .customBttn {
-    text-align: center;
-    padding: 8px;
+    font-weight: bold;
+    font-size: 17px;
+    height: 48px !important;
     width: 100%;
     margin: 2px;
-    border: solid;
+    border: groove;
+    margin-top: 9px;
+    display: inline-block;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-color:none !important;
+    text-decoration:none;
+    border: groove;
+}
+.customBttn:active {
+    text-decoration:none;
+    color:white;
+}
+.customBttn:hover{
+    text-decoration:none;
+    color:white;
+}
+.singleitem {
+    width: 98%;
+    margin: 1px;
+    font-weight: bold;
+    font-size: 12px;
+    height: 108px;
+    border: groove;
+    /*background-color: aqua;*/
 }
 
-.singleitem {
-    height: 120px;
+.singleSizeitem {
+    width: 98%;
     margin: 1px;
-    vertical-align: middle;
-    padding-top: 45px;
-    padding-bottom: 45px;
-    font-size: 20px;
-    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    height: 216px;
+    border: groove;
+    /*background-color: aqua;*/
+}
+
+.aquaBg {
     background-color: aqua;
 }
 
@@ -155,8 +245,8 @@ textarea {
 }
 
 .greenBg {
-    background-color: #00ff21;
-    color: #808080;
+    background-color: #2be000;
+    color: white;
 }
 
 .pinkBg {
@@ -168,14 +258,53 @@ textarea {
     background-color: white;
 }
 
+.orangeBg {
+    background-color: orange;
+}
+
 .selected {
     border: solid;
+    border-color:white;
 }
 
 .DeptSelected {
     border: solid;
+    border-color:black;
 }
 
 .BtnOpt {
-    text-align: center;
+    height: 44px;
+    width: 68px;
+    background-color: #33d448;
+}
+
+.totalArea {
+    padding-top: 10px;
+    height: 150px;
+    border-top: solid thin;
+    width: 100%;
+}
+
+.orderBtn {
+    height: 60px;
+    width: 100%;
+}
+
+.rowSelected {
+    color: white;
+    background-color: #0908a9;
+}
+
+.sizeVerBtn {
+    background-color: #33f14c;
+    font-weight: bold;
+    color: black;
+    font-size: 13px;
+    height: 42px;
+    width: 81%;
+}
+
+.cusotomCol {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }

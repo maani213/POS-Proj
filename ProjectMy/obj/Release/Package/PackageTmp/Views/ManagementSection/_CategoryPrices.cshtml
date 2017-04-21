@@ -1,0 +1,122 @@
+﻿@model ProjectMy.Models.PriceViewModel
+
+<table>
+    <thead>
+        <tr>
+            <th>Items</th>
+            @foreach (var item in Model.SizeTitles)
+            {
+                <th>@item</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ItemPrices)
+        {
+            <tr>
+                <td>@item.ItemName</td>
+                @foreach (var amount in item.PriceAmount)
+                {
+                    <td>@amount</td>
+                }
+                <td><button id="EditPrice">Edit Price</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="DivToAppendPartialView" ></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+
+        $('#EditPrice').click(function (e) {
+            e.preventDefault();
+            //EditClient(this.id);
+            EditClient();
+        })
+
+        //function EditClient() {
+        //    var ph = $("#DivToAppendPartialVoew");
+        //    ph.load("/Home/EditClient/" + cid, function () {
+        //        ph.dialog({
+        //            modal: true,
+        //            width: 400,
+        //            height: 350,
+        //            title: "Edit Client",
+        //            resizable: false
+        //        });
+        //    });
+        //}
+        function EditClient() {
+            var ph = $("#DivToAppendPartialVoew");
+            ph.load("/ManagementSection/DefinePrice", function () {
+                ph.dialog({
+                    modal: true,
+                    width: 400,
+                    height: 350,
+                    title: "Edit Prices",
+                    resizable: false
+                });
+            });
+        }
+
+        $('.delete').click(function (e) {
+            e.preventDefault();
+            DeleteProduct(this.id);
+        })
+
+        function DeleteProduct(cid) {
+            if (confirm("Do you want to delete product: " + cid)) {
+                var data = { 'cid': cid }
+                $.post('/Home/DeleteClient', data,
+                function (data) {
+                    if (data == true)
+                        location = location.href;
+                    else
+                        location = location.href;
+                    //alert("Could not delete");
+                });
+            }
+        }
+
+        $('#create').click(function (e) {
+            e.preventDefault();
+            OpenCreatePopup();
+        })
+
+        function OpenCreatePopup() {
+            var div = $("#DivToAppendPartialVoew");
+            div.load("/Home/AddClient", function () {
+                div.dialog({
+                    modal: true,
+                    width: 400,
+                    height: 350,
+                    title: "Add New Client",
+                    resizable: false
+                });
+            });
+        }
+
+        function UpdateProduct() {
+            var cId = $("#ProductId").val();
+            var cname = $("#ProductName").val();
+            var cpath = $("#Price").val();
+
+            var product = {
+                "id": pId, "Name": pname,
+                "Path": cpath
+            };
+
+            $.post('/products/Edit', product,
+            function (data) { if (data == 0) { location = location.href; } }, 'json');
+
+        }
+    });
+
+</script>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

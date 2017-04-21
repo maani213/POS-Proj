@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DataLayer.Entities.Categories>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-2 ">
+        @Ajax.ActionLink(item.Title, "GetCategoryPrices", new { categoryId = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:" + item.BackgroundColor + ";color:" + item.TextColor })
+        <input type="hidden" value="@item.Id" />
+    </div>
+
+}
+
+@*<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+@*<div class="col-md-3 ">@Ajax.ActionLink("Burger", "MenuItems", new { category = "Burger" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "itemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn greenBg" })</div>
+    <div class="col-md-3 ">@Ajax.ActionLink("Kebab", "MenuItems", new { category = "Kebab" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "itemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn greenBg" })</div>
+    <div class="col-md-3 ">@Ajax.ActionLink("Side Orders", "MenuItems", new { category = "SideOrders" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "itemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn greenBg" })</div>
+    <div class="col-md-3 ">@Ajax.ActionLink("Drinks", "MenuItems", new { category = "Drinks" }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "itemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn greenBg" })</div>*@
+
+
+
+
+
+

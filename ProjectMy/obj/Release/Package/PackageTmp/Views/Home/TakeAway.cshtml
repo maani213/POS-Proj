@@ -13,33 +13,25 @@
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscripts/TakeawayHome.js"></script>
 
 
     <title>Take Away</title>
-    <style>
-        .customBttn1 {
-            /*text-align: center;*/
-            padding: 3px;
-            width: 100%;
-            /*margin: 1px;*/
-            border: solid;
-            height: 100px;
-        }
-    </style>
+
 </head>
-<body style="background-color: #7abbea;">
+<body style="background-color:darkblue">
 
     <div class="row mainDiv">
-        <div class="col-lg-8">
+        <div class="col-lg-8" id="itemsArea">
             @{
-                Html.RenderAction("ItemsView");
+                Html.RenderAction("TakeAwayItems");
             }
         </div>
-        <div class="operationsArea col-lg-4">
-            <div class="row tableArea">
-                <div class="col-sm-11">
+        <div class="operationsArea col-sm-4 col-md-4 col-lg-4 ">
+            <div class="row " style="margin-left:0px !important">
+                <div class="col-sm-12 ordertableArea customRow">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -48,65 +40,62 @@
                                 <th>Price</th>
                             </tr>
                         </thead>
-                        <tbody class="tableBody"></tbody>
+                        <tbody class="tableBody" id="tbl"></tbody>
+
                     </table>
                 </div>
                 <div class="col-sm-1">
-                    <div class="arrows">
-                        <button class="btn btn-success" style="height:100%;">Up</button>
-                    </div>
-                    <div class="arrows">
-                        <button class="btn btn-success" style="height:100%;">Do</button>
-                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2"><button class="btn btn-success BtnOpt">+</button></div>
+                
+                <div class="col-sm-3"><button class="BtnOpt"><b>+</b></button></div>
 
-                <div class="col-sm-2"><button class="btn btn-success BtnOpt">-</button></div>
+                <div class="col-sm-3"><button class="BtnOpt"><b>-</b></button></div>
 
-                <div class="col-sm-3"><button class="btn btn-success BtnOpt">Misc Item</button></div>
+                <div class="col-sm-3"><button class="BtnOpt"><b>Misc Item</b></button></div>
 
-                <div class="col-sm-3"><button class="btn btn-success BtnOpt">Edit Price</button></div>
+                <div class="col-sm-3"><button class="BtnOpt"><b>Edit Price</b></button></div>
             </div>
-            <div class="row" style="background-color:yellow;padding:7px;margin-top:10px; font-size:15px;">
+            <div class="row totalRow" style="margin-right: -4px !important;margin-left:0px">
                 <div class="col-sm-4"><b>Total</b></div>
                 <div class="col-sm-4">:</div>
                 <div class="col-sm-4" id="totalAmount">0</div>
 
             </div>
-            <div class="row" style="margin-top:10px; font-size:15px;">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-5"><button class="btn btn-danger"><b>Cancel Order</b></button> </div>
-                <div class="col-sm-5"><button class="btn btn-success"><b>Order Complete</b></button> </div>
-                <div class="col-sm-1"></div>
-
+            <div class="row" style="margin-top:7px; font-size:15px;">
+                
+                <div class="col-sm-5"><button class="redBg orderBtn"><b>Cancel Order</b></button> </div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5"><button class="greenBg orderBtn" id="orderCmplt"><b>Order Complete</b></button> </div>
             </div>
 
         </div>
     </div>
     <div class="row DeptArea">
-        <div class="col-md-2 "><button class="customBttn greenBg">Pizza</button></div>
-        <div class="col-md-2 "><button class="customBttn pinkBg">Burgers Pizza</button></div>
-        <div class="col-md-2 "> <button class="customBttn greenBg">Kebabs</button></div>
-        <div class="col-md-3 "><button class="customBttn whiteBg">Side Orders </button></div>
-        <div class="col-md-2 "> <button class="customBttn skyBlueBg">Drinks</button></div>
+        <div class="col-md-3 "><button class="customBttn skyBlueBg">Meal Deals</button></div>
+        <div class="col-md-2 "><button class="customBttn greenBg">Cook Inst</button></div>
+        <div class="col-md-2 "> <button class="customBttn redBg">No</button></div>
+        <div class="col-md-3 "><button class="customBttn greenBg">Extras / Toppings</button></div>
+
 
     </div>
     <div class="row " style="padding-top:2px;padding-bottom:2px;margin-left:2px;margin-right:2px; background-color:antiquewhite">
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Pizza</button></div>
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Freebies</button></div>
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Special Pizza</button></div>
-        <div class="col-md-1"><button class="customBttn1 orangeBg">Soft And Hot Drinks</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Cancel</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Extra Lunch and Special Menu</button></div>
+       @{ 
+           Html.RenderAction("GetCategories");
+       }
+         @*<div class="col-md-1"><button class="customBttn1 pinkBg">Pizza</button></div>
+        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Antipasti</button></div>
+        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Le Nostre Past and Zuppe</button></div>
+        <div class="col-md-1"><button class="customBttn1" style="background-color:darkgoldenrod;">I Nostri Secondi and Contorni</button></div>
+        <div class="col-md-1"><button class="customBttn1 orangeBg">Soft and Hot Drinks</button></div>
+        <div class="col-md-1"><button class="customBttn1 pinkBg">Sheris Vermouths</button></div>
+        <div class="col-md-1"><button class="customBttn1 redBg">Lista dei vini and champane</button></div>
+        <div class="col-md-1"><button class="customBttn1 greenBg">Liqours Menu</button></div>
+        <div class="col-md-1"><button class="customBttn1 redBg">Larger Menu</button></div>
+        <div class="col-md-1"><button class="customBttn1 BlueBg">Desserts ice Cream</button></div>
+        <div class="col-md-1"><button class="customBttn1 aquaBg">Spirite and Whisky Menu</button></div>
+        <div class="col-md-1"><button class="customBttn1 greenBg">Extra Lunch and Special Menu</button></div>*@
 
     </div>
 </body>

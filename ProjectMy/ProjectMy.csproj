@@ -156,6 +156,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -168,6 +169,8 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -179,7 +182,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TakeAwayItemsModel.cs" />
     <Compile Include="Models\PizzaModel.cs" />
+    <Compile Include="Models\PriceModel.cs" />
+    <Compile Include="Models\PriceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,9 +196,6 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\TakeAway.cshtml" />
-    <Content Include="Views\Home\ManagementSection.cshtml" />
-    <Content Include="Views\Home\DataFiles.cshtml" />
-    <Content Include="Views\Home\MenuItem.cshtml" />
     <Content Include="Views\Home\_ItemsView.cshtml" />
     <Content Include="Views\Home\OrderComplete.cshtml" />
     <Content Include="Views\ManagementSection\ManagementSection.cshtml" />
@@ -200,6 +203,18 @@
     <Content Include="Views\ManagementSection\MenuItem.cshtml" />
     <Content Include="Views\ManagementSection\MealDeal.cshtml" />
     <Content Include="Views\ManagementSection\Course.cshtml" />
+    <Content Include="Views\ManagementSection\_MenuItems.cshtml" />
+    <Content Include="Views\ManagementSection\DefineCategories.cshtml" />
+    <Content Include="Views\ManagementSection\_Categories.cshtml" />
+    <Content Include="Views\ManagementSection\Sizes.cshtml" />
+    <Content Include="Views\ManagementSection\_Sizes.cshtml" />
+    <Content Include="Views\ManagementSection\_CategoriesSize.cshtml" />
+    <Content Include="Views\ManagementSection\Prices.cshtml" />
+    <Content Include="Views\ManagementSection\_PriceCategories.cshtml" />
+    <Content Include="Views\ManagementSection\_CategoryPrices.cshtml" />
+    <Content Include="Views\Home\_Categories.cshtml" />
+    <Content Include="Views\Home\_TakeAwayItems.cshtml" />
+    <Content Include="Views\ManagementSection\_DefinePrice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

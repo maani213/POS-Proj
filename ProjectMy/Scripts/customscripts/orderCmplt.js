@@ -6,7 +6,7 @@ $(document).ready(function () {
     $('.tableBody tr').each(function () {
         if (!this.rowIndex) return; // skip first row
 
-        totalAmount = totalAmount + parseInt(this.cells[2].innerHTML);
+        totalAmount = parseFloat(parseFloat(totalAmount) + parseFloat(this.cells[2].innerHTML));
 
     });
     $('#totalAmount').text(totalAmount);
@@ -16,7 +16,7 @@ $(document).ready(function () {
     $('#fullAmount').on("click", function () {
 
         $('#paidAmount').text(totalAmount);
-        var balance = parseInt($('#paidAmount').text()) - parseInt($('#totalAmount').text());
+        var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
         $('#balance').text(balance);
     });
@@ -25,7 +25,7 @@ $(document).ready(function () {
         var amount = $('#paidAmount').text();
         var numb = $(this).find("span").text();
         $('#paidAmount').text(numb);
-        var balance = parseInt($('#paidAmount').text()) - parseInt($('#totalAmount').text());
+        var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
         $('#balance').text(balance);
     });
@@ -37,7 +37,7 @@ $(document).ready(function () {
         var calculated = (numb / 100) * totalAmount;
 
         $('#paidAmount').text(calculated);
-        var balance = parseInt($('#paidAmount').text()) - parseInt($('#totalAmount').text());
+        var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
         $('#balance').text(balance);
     });
@@ -48,10 +48,10 @@ $(document).ready(function () {
         var numb = $(this).text();
         
         var newAmount = 0;
-        if (parseInt(paidamount) > 0) {
+        if (parseFloat(paidamount) > 0) {
             var newAmount = paidamount + numb;
             $('#paidAmount').text(newAmount);
-            var balance = parseInt($('#paidAmount').text()) - parseInt($('#totalAmount').text());
+            var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
             $('#balance').text(balance);
         }
@@ -64,7 +64,7 @@ $(document).ready(function () {
         var numb = $(this).text();
         var newAmount = amount + numb;
         $('#paidAmount').text(newAmount);
-        var balance = parseInt($('#paidAmount').text()) - parseInt($('#totalAmount').text());
+        var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
         $('#balance').text(balance);
     })

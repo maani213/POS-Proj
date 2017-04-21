@@ -28,7 +28,7 @@
     </header>
 
     <div style="float:right;margin-top:35px;">
-        <button class="largeBtn greenBg">
+        <button class="largeBtn greenBg" onclick="location.href='@Url.Action("TakeAway", "Home")'">
             Take Away
         </button><br />
         <button class="largeBtn greenBg">
@@ -58,7 +58,7 @@
         <button class="smallBtn">
             Activate Order
         </button><br />
-        <button class="largeBtn redBg" id="management" onclick="location.href='@Url.Action("ManagementSection", "Home")'">
+        <button class="largeBtn redBg" id="management" onclick="location.href='@Url.Action("ManagementSection", "ManagementSection")'">
             Management
         </button><br />
         <button class="smallBtn BlueBg">
@@ -81,24 +81,24 @@
         </button><br />
     </div>
     <div id="dialog-form" title="Enter your Credentials" style="background-color:#3828c6;color:white;">
-        
+
         <form class="form-horizontal">
-            
-                <div style="margin-bottom:10px; margin-top:15px;">
-                    <div>
-                        <label for="name">User Name :</label> <input type="text" name="name" id="name">
-                    </div>
-                   
-                </div>
+
+            <div style="margin-bottom:10px; margin-top:15px;">
                 <div>
-                    <div>
-                        <label for="password">Password :&nbsp;&nbsp;</label> <input type="password" name="password" id="password">
-                    </div>
-                    
+                    <label for="name">User Name :</label> <input type="text" name="name" id="name">
                 </div>
-                <!-- Allow form submission with keyboard without duplicating the dialog button -->
-                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-            
+
+            </div>
+            <div>
+                <div>
+                    <label for="password">Password :&nbsp;&nbsp;</label> <input type="password" name="password" id="password">
+                </div>
+
+            </div>
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+
         </form>
     </div>
     <script>

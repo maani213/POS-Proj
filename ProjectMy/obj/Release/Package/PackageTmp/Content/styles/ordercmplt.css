@@ -1,0 +1,240 @@
+﻿body {
+    padding: 10px 10px 10px 10px;
+}
+
+textarea {
+    margin-top: 10px;
+    width: 70%;
+}
+
+.mainDiv {
+    margin: 1px !important;
+    margin-bottom: 5px !important;
+}
+
+.itemsArea {
+    margin-right: 1px !important;
+}
+
+.cust {
+    padding-left: 40px;
+    color: darkorange;
+}
+
+.operationsArea {
+    padding-bottom: 10px !important;
+    background-color: white;
+    border: solid thin;
+    margin-left: -91px;
+}
+
+.tableArea {
+    background-color: white;
+    height: 300px;
+    overflow: auto;
+    margin-right: 0px;
+}
+
+.table thead th {
+    text-align: center;
+}
+
+.tableBody tr {
+    font-weight: bold;
+    font-size: 12px !important;
+}
+
+#qty {
+    text-align: center;
+}
+
+#price {
+    text-align: right;
+}
+
+.fontSize {
+    float: left;
+    width: 40%;
+}
+
+.fontFamily {
+    width: 55%;
+}
+
+#fontstyle {
+    margin-bottom: 25px;
+}
+
+.btnsWrapper {
+    float: left;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.customBtn {
+    margin: 1px;
+    width: 35px;
+}
+
+
+.rowcustom {
+    margin: 10px;
+}
+
+.customBttn {
+    text-align: center;
+    padding: 14px;
+    width: 100%;
+    margin: 2px;
+    border: groove;
+}
+
+.newBg {
+    padding: 14px;
+    width: 100%;
+    margin: 2px;
+    border: groove;
+    font-weight: bold;
+    background-color: #dbc627;
+    color: black;
+}
+
+.redBg {
+    font-weight: bold;
+    background-color: red;
+    color: white;
+}
+
+.skyBlueBg {
+    font-weight: bold;
+    background-color: #628fe0;
+    color: white;
+}
+
+.BlueBg {
+    font-weight: bold;
+    background-color: #628fe0;
+    color: white;
+}
+
+.greenBg {
+    font-weight: bold;
+    background-color: #00ff21;
+    color: black;
+}
+
+.pinkBg {
+    font-weight: bold;
+    background-color: #f26cce;
+    color: white;
+}
+
+.whiteBg {
+    font-weight: bold;
+    background-color: white;
+}
+
+.selected {
+    border: solid;
+}
+
+.BtnOpt {
+    text-align: center;
+    background-color: #e0c4c4;
+    color: green;
+    height: 40px;
+    width: 45px;
+}
+
+.ordertableArea {
+    width: 100%;
+    height: 350px;
+    overflow: auto;
+}
+
+.totalArea {
+    padding-top: 10px;
+    height: 150px;
+    border-top: solid thin;
+    width: 100%;
+}
+
+.calculatorBtn {
+    font-size: 47px;
+    font-weight: bold;
+    height: 67px;
+    width: 96%;
+    margin-top: 4px;
+    border: groove;
+    background-color: white;
+}
+
+.CustomfBtn {
+    font-size: 20px;
+    font-weight: bold;
+    height: 67px;
+    /*padding: 14px;*/
+    width: 96%;
+    margin-top: 4px;
+    background-color: white;
+    border: groove;
+}
+
+#doublezero {
+    font-size: 20px;
+    font-weight: bold;
+    height: 67px;
+    /*padding: 14px;*/
+    width: 96%;
+    margin-top: 4px;
+    background-color: white;
+    border: groove;
+}
+
+.CustomPercBtn {
+    font-size: 20px;
+    font-weight: bold;
+    height: 67px;
+    width: 96%;
+    margin-top: 4px;
+    border: groove;
+    background-color: papayawhip;
+}
+
+.CustomfontBtn {
+    background-color: #e67878;
+    font-size: 17px;
+    font-weight: bold;
+    height: 67px;
+    width: 96%;
+    margin-top: 4px;
+    border: groove;
+}
+
+.cutomclass {
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+}
+
+.cstmBtn {
+    font-size: 20px;
+    font-weight: bold;
+    height: 50px;
+    width: 98%;
+    margin-top: 4px;
+    border: groove;
+    background-color: papayawhip;
+}
+
+.customlable {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: white;
+}
+
+.OptionBtns {
+    height: 55px;
+    width: 133%;
+    margin: 2px;
+    border: solid;
+}

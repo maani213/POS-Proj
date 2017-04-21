@@ -12,47 +12,19 @@
     <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscripts/myscript.js"></script>
     <title>MenuItem</title>
+    <style>
+    </style>
 </head>
 <body style="background-color: darkblue;">
-
     <div class="row mainDiv">
-        <div class="col-lg-8 itemsArea">
-
-            <div class="row">
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-                <div class="col-md-2"><button class="singleitem"></button></div>
-            </div>
+        <div class="col-lg-8" id="itemsArea">
+            @{
+                Html.RenderAction("MenuItems");
+            }
         </div>
         <div class="formArea col-lg-4">
             <div class="title">Pizza</div>
@@ -67,12 +39,13 @@
             </div>
             <div class="row" style="margin:2px !important;">
                 <div class="col-md-2">
-                    <label>Desc</label>
+                    <label>Toppings</label>
                 </div>
                 <div class="col-md-10">
-                    <textarea id="desc"></textarea>
+                    <textarea id="toppings"></textarea>
                 </div>
             </div>
+            
             <fieldset>
                 <legend>Fonts</legend>
                 <div>
@@ -122,7 +95,7 @@
                         <div class="col-md-1">
                         </div>
                     </div>
-                    <div class="row rowcustom">
+                    @*<div class="row rowcustom">
                         <div class="col-md-1"></div>
                         <div class="col-md-3">
                             <input type="checkbox" /><span>Vatable</span>
@@ -142,7 +115,7 @@
                         </div>
 
                         <div class="col-md-1"></div>
-                    </div>
+                    </div>*@
                 </div>
 
             </fieldset>
@@ -164,19 +137,16 @@
     </div>
     <div class="row">
         <div class="col-sm-8">
-
-            <div class="col-md-3 "><button class="customBttn greenBg">Pizza</button></div>
-            <div class="col-md-3 "><button class="customBttn pinkBg">Burgers Pizza</button></div>
-            <div class="col-md-2 "> <button class="customBttn greenBg">Kebabs</button></div>
-            <div class="col-md-2 "><button class="customBttn whiteBg">Side Orders </button></div>
-            <div class="col-md-2 "> <button class="customBttn skyBlueBg">Drinks</button></div>
+            @{ Html.RenderAction("GetCategories"); }
         </div>
 
         <div class="col-sm-4">
             <div class="row">
-                <div class="col-md-4 "><button class="sizeVerBtn greenBg">Sizes(3)</button></div>
-                <div class="col-md-4 "><button class="sizeVerBtn pinkBg">Verieties(5)</button></div>
-                <div class="col-md-4 "> <button class="sizeVerBtn greenBg">Extras(12)</button></div>
+                <div class="col-md-2 "></div>
+                <div class="col-md-4 "><button class="sizeVerBtn greenBg" onclick="location.href='@Url.Action("Sizes", "ManagementSection")'">Sizes()</button></div>
+                <div class="col-md-4 "><button class="sizeVerBtn pinkBg">Verieties()</button></div>
+                <div class="col-md-2 "></div>
+
             </div>
         </div>
     </div>
@@ -186,9 +156,9 @@
         <div class="col-md-2 "><button class="customBttn skyBlueBg">Cooking Instructions</button></div>
         <div class="col-md-2 "><button class="customBttn skyBlueBg">Freebies</button></div>
         <div class="col-md-2 "><button class="customBttn skyBlueBg">Special Pizza</button></div>
-        <div class="col-md-1 "><button class="customBttn greenBg">Prices</button></div>
+        <div class="col-md-1 "><button class="customBttn greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection")'">Prices</button></div>
         <div class="col-md-1 "><button class="customBttn redBg">Cancel</button></div>
-        <div class="col-md-1 "><button class="customBttn redBg">Exit</button></div>
+        <div class="col-md-1 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Exit</button></div>
     </div>
 </body>
 

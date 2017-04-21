@@ -14,8 +14,8 @@ namespace DataLayer.Entities
 
         public string ItemName { get; set; }
 
-        public int ItemQty { get; set; }
+        public decimal ItemQty { get; set; }
 
-        public int ItemTotalPrice { get; set; }
+        public decimal ItemTotalPrice { get; set; }
     }
 }
