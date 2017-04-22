@@ -51,11 +51,13 @@
   <ItemGroup>
     <Compile Include="DAC\DAC.cs" />
     <Compile Include="Entities\Categories.cs" />
+    <Compile Include="Entities\Extras.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\OrderDetails.cs" />
     <Compile Include="Entities\Orders.cs" />
     <Compile Include="Entities\Sizes.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddOrderModel.cs" />
     <Compile Include="Models\Properties.cs" />
     <Compile Include="myContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

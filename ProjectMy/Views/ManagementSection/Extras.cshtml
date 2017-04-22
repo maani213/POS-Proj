@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/customscripts/myscript.js"></script>
+    <title>Extras</title>
+    <style>
+        .formArea {
+            height: 425px !important;
+        }
+    </style>
+</head>
+<body style="background-color: darkblue;">
+    <div class="row mainDiv">
+        <div class="col-lg-8" id="ExtraitemsArea">
+            @{
+                Html.RenderAction("CategoryExtras");
+            }
+        </div>
+        <div class="formArea col-lg-4">
+            <div class="title">Pizza</div>
+            
+            <div class="row" style="margin:2px !important; margin-top:100px !important;margin-bottom:100px !important;">
+                <div class="col-md-2">
+                    <label>Text</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" id="text" style="width: 84%;" />
+                </div>
+            </div>
+            <div class="row" style="margin:2px !important;">
+                </div>
+
+            
+            <fieldset>
+                <legend>Menu Buttons</legend>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button class="menuBtn" id="addItem">Add Item</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="menuBtn" id="deleteItem">Delete Item</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+
+
+
+            <div class="col-md-3 ">
+                @Ajax.ActionLink("PIZZA", "CategoryExtras", new { categoryId = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:pink;" })
+            </div>
+            <div class="col-md-3 ">
+                @Ajax.ActionLink("BURGERS", "CategoryExtras", new { categoryId = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:green;color:white;" })
+            </div>
+            <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
+            }
+
+        </div>
+
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+
+</body>
+
+</html>

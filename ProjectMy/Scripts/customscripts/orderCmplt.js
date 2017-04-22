@@ -9,16 +9,16 @@ $(document).ready(function () {
         totalAmount = parseFloat(parseFloat(totalAmount) + parseFloat(this.cells[2].innerHTML));
 
     });
-    $('#totalAmount').text(totalAmount);
-    $('#Subtotal').text(totalAmount);
+    $('#totalAmount').text(totalAmount.toFixed(2));
+    $('#Subtotal').text(totalAmount.toFixed(2));
 
 
     $('#fullAmount').on("click", function () {
 
-        $('#paidAmount').text(totalAmount);
+        $('#paidAmount').text(totalAmount.toFixed(2));
         var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
-        $('#balance').text(balance);
+        $('#balance').text(balance.toFixed(2));
     });
 
     $('.CustomfBtn').on("click", function () {
@@ -27,7 +27,7 @@ $(document).ready(function () {
         $('#paidAmount').text(numb);
         var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
-        $('#balance').text(balance);
+        $('#balance').text(balance.toFixed(2));
     });
 
     $('.CustomPercBtn').on("click", function () {
@@ -39,21 +39,21 @@ $(document).ready(function () {
         $('#paidAmount').text(calculated);
         var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
-        $('#balance').text(balance);
+        $('#balance').text(balance.toFixed(2));
     });
 
 
     $('#doublezero').on("click", function () {
         var paidamount = $('#paidAmount').text();
         var numb = $(this).text();
-        
+
         var newAmount = 0;
         if (parseFloat(paidamount) > 0) {
             var newAmount = paidamount + numb;
-            $('#paidAmount').text(newAmount);
+            $('#paidAmount').text(newAmount.toFixed(2));
             var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
-            $('#balance').text(balance);
+            $('#balance').text(balance.toFixed(2));
         }
 
 
@@ -66,43 +66,50 @@ $(document).ready(function () {
         $('#paidAmount').text(newAmount);
         var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
-        $('#balance').text(balance);
+        $('#balance').text(balance.toFixed(2));
     })
 
-    $('#clearCash').on("click", function () {
+    $('#clearCash').on("click", function (evt) {
+        if ($('#balance').text()=="")
+        {
+            evt.preventDefault();
+            alert("Amount is not Cleared Yet...");
+        }
+        else {
+            var itemsList = [];
 
-        var itemsList = [];
+            $('.tableBody tr').each(function () {
+                if (!this.rowIndex) return; // skip first row
+                Quantity = this.cells[0].innerHTML;
+                productName = this.cells[1].innerHTML;
+                totalAmount = this.cells[2].innerHTML;
 
-        $('.tableBody tr').each(function () {
-            if (!this.rowIndex) return; // skip first row
-            Quantity = this.cells[0].innerHTML;
-            productName = this.cells[1].innerHTML;
-            totalAmount = this.cells[2].innerHTML;
+                var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
 
-            var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
-
-            itemsList.push(item);
-        });
-        var totalpaid = $('#paidAmount').text();
-        var balance = $('#balance').text();
-
-        addItem(itemsList,totalpaid,balance);
+                itemsList.push(item);
+            });
+            var customerName = $('#CustomerName').val();
+            var totalpaid = $('#paidAmount').text();
+            var balance = $('#balance').text();
+            
+            addItem(itemsList, totalpaid, balance, customerName);
+        }
     });
 
 });
-function addItem(orders , totalpaid , balance) {
+function addItem(itemList, totalpaid1, balance1, customerName1) {
+    
     $.ajax({
-
         url: '/Home/ClearCash',
         type: 'POST',
-        data: JSON.stringify({ orders, totalpaid, balance }),
+        data: JSON.stringify({ 'orders': itemList, 'CustomerName': customerName1, 'totalpaid': totalpaid1, 'balance': balance1 }),
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             window.location.href = "/Home/TakeAway";
         },
         error: function (request, error) {
-            alert("request: " + json.stringify(request));
+            alert("request: " + error);
         }
     });
 };

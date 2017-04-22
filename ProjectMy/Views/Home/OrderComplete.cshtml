@@ -39,7 +39,7 @@
         <div class="col-lg-8" style="margin-left: 26px;">
             <div class="row">
                 <div class="col-sm-6">
-                    <textarea style="width:102%;height: 115px;"></textarea>
+                    <textarea style="width:102%;height: 115px;" id="CustomerName"></textarea>
                 </div>
                 <div class="col-sm-3 cutomclass">
                     <button class="customBttn greenBg" style="width:97%;"><b>Customer Details</b></button>
@@ -132,8 +132,8 @@
 
             </div>
         </div>
-        <div class="operationsArea col-sm-4 col-md-4 col-lg-4">
-            <div class="row ">
+        <div class="operationsArea col-sm-4 col-md-4 col-lg-4" id="operationsArea">
+            <div class="row " style="margin-bottom:25px;">
                 <div class="col-sm-12 ordertableArea">
                     <table class="table table-bordered" id="itemsTable">
                         <thead>
@@ -145,19 +145,19 @@
                         </thead>
                         <tbody class="tableBody">
                             @foreach (var item in Model)
-                                     {
-                                    <tr>
-                                        <td id="qty">@item.ItemQty</td>
-                                        <td>@item.ItemName</td>
-                                        <td id="price">@item.ItemTotalPrice</td>
-                                    </tr>
-                                }
+                            {
+                                <tr>
+                                    <td id="qty">@item.ItemQty</td>
+                                    <td>@item.ItemName</td>
+                                    <td id="price">@item.ItemTotalPrice</td>
+                                </tr>
+                            }
 
                             @*<tr>
-                                <td id="qty">2</td>
-                                <td>Test</td>
-                                <td id="price">1000</td>
-                            </tr>*@
+                                    <td id="qty">2</td>
+                                    <td>Test</td>
+                                    <td id="price">1000</td>
+                                </tr>*@
                         </tbody>
                     </table>
 
@@ -166,48 +166,98 @@
             </div>
             <div class="totalArea">
                 <div class="row" style="margin-bottom:10px;">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6"><b>Sub Total</b></div>
-                    <div class="col-sm-3"><b id="Subtotal">1000</b></div>
-                </div>
-                <div class="row" style="margin-bottom:20px;">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6"><b>Total</b></div>
-                    <div class="col-sm-3"><b id="totalAmount">1000</b></div>
-                </div>
-                <div class="row" style="margin-top:10px;">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6"><b>Paid Amount</b></div>
-                    <div class="col-sm-3"><b id="paidAmount"></b></div>
-                </div>
+                    <table cellpadding="4" class="table table-responsive">
+                        <thead><tr></tr></thead>
+                        <tbody>
+                            <tr>
+                                <td>  </td>
+                                <td><b>Sub Total  </b></td>
+                                <td><b>:</b></td>
+                                <td><b id="Subtotal"></b></td>
+                            </tr>
 
-                <div class="row" style="margin-top:30px;">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6"><b>Balance</b></div>
-                    <div class="col-sm-3"><b id="balance"></b></div>
-                </div>
+                            <tr>
+                                <td> </td>
+                                <td><b>Total  </b></td>
+                                <td><b>:</b></td>
+                                <td><b id="totalAmount"></b></td>
+                            </tr>
 
+                            <tr>
+                                <td> </td>
+                                <td><b>Paid Amount  </b></td>
+                                <td><b>:</b></td>
+                                <td><b id="paidAmount"></b></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td></td>
+                                <td><b>Balance </b></td>
+                                <td><b>:</b></td>
+                                <td><b id="balance"></b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @*<div class="col-sm-3"></div>
+                            <div class="col-sm-6"><b>Sub Total</b></div>
+                            <div class="col-sm-3"><b id="Subtotal">1000</b></div>
+                        </div>
+                        <div class="row" style="margin-bottom:20px;">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6"><b>Total</b></div>
+                            <div class="col-sm-3"><b id="totalAmount"></b></div>
+                        </div>
+                        <div class="row" style="margin-top:10px;">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6"><b>Paid Amount</b></div>
+                            <div class="col-sm-3"><b id="paidAmount"></b></div>
+                        </div>
+
+                        <div class="row" style="margin-top:30px;">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6"><b>Balance</b></div>
+                            <div class="col-sm-3"><b id="balance"></b></div>
+                        </div>*@
+
+                </div>
             </div>
+
         </div>
+        <div class="row " style="">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-1"></div>
 
-    </div>
-    <div class="row " style="">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-1"></div>
+            <div class="col-sm-1"><button class="OptionBtns redBg"><b>Cancel Order</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns redBg"><b>Discount</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns redBg"><b>Till</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns orangeBg" id="print"><b>Print All</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns BlueBg"><b>Send To Kitchen/Bar</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns greenBg"><b>Back to order</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns redBg"><b>Exit</b></button></div>
+            <div class="col-sm-1"></div>
 
-        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Cancel Order</b></button></div>
-        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Discount</b></button></div>
-        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Till</b></button></div>
-        <div class="col-sm-1"><button class="OptionBtns orangeBg"><b>Print All</b></button></div>
-        <div class="col-sm-1"><button class="OptionBtns BlueBg"><b>Send To Kitchen/Bar</b></button></div>
-        <div class="col-sm-1"><button class="OptionBtns greenBg"><b>Back to order</b></button></div>
-        <div class="col-sm-1"><button class="OptionBtns redBg"><b>Exit</b></button></div>
-        <div class="col-sm-1"></div>
-
-        <div class="col-sm-1"></div>
+            <div class="col-sm-1"></div>
 
 
-    </div>
+        </div>
+        
 </body>
 
 </html>
+<script>
+    $('#print').on('click', function (evt) {
+        if ($('#balance').text() == "") {
+            evt.preventDefault();
+            alert("Amount is not Paid Yet...");
+        }
+        else {
+            var prtContent = document.getElementById('operationsArea');
+            var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+        }
+    })
+
+</script>

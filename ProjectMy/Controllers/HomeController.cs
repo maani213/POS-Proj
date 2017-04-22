@@ -1,5 +1,6 @@
 ﻿using DataLayer.DAC;
 using DataLayer.Entities;
+using DataLayer.Models;
 using ProjectMy.Models;
 using System;
 using System.Collections.Generic;
@@ -37,10 +38,10 @@ namespace ProjectMy.Controllers
             return View();
         }
 
-       
+
         public PartialViewResult ItemsView(string deptName = "Pizza")
         {
-           return PartialView("_ItemsView");
+            return PartialView("_ItemsView");
         }
 
         [HttpPost]
@@ -50,15 +51,19 @@ namespace ProjectMy.Controllers
             return Json("ok", JsonRequestBehavior.AllowGet);
         }
 
-        
+
         public ActionResult OrderComplete(List<OrderDetails> orders)
         {
             List<OrderDetails> orders1 = TempData["ordersList"] as List<OrderDetails>;
             return View(orders1);
         }
 
-        public JsonResult ClearCash(List<OrderDetails> orders , int totalpaid , int balance)
+        [HttpPost]
+        public JsonResult ClearCash(List<OrderViewModel> orders, string CustomerName="Test" , int totalpaid = 0, int balance = 0 )
         {
+            AddOrderModel orderModel = new AddOrderModel();
+            orderModel.order.CustomerName = CustomerName;
+            //orderModel.orderDetail.ItemName = orders.ItemName;
             return Json("Order Completed", JsonRequestBehavior.AllowGet);
         }
 
@@ -77,9 +82,16 @@ namespace ProjectMy.Controllers
             return PartialView("_TakeAwayItems", model);
         }
         [HttpGet]
-        public JsonResult GetItemPrice(int itemID , int sizeId)
+        public JsonResult GetItemPrice(int itemID, int sizeId)
         {
             decimal price = DAC.GetItemPrice(itemID, sizeId);
+            return Json(price, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetExtrasPrices(List<int> toppingIds, int sizeId = 0)
+        {
+            decimal price = DAC.GetExtrasPrices(toppingIds, sizeId);
             return Json(price, JsonRequestBehavior.AllowGet);
         }
     }

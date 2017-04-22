@@ -174,5 +174,66 @@ namespace ProjectMy.Controllers
             else
                 return Json("Invalid Information Entered", JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult UpdateExtrasPrices(PriceModel prices)
+        {
+            if (prices != null)
+            {
+                Extras item = new Extras()
+                {
+                    Id = prices.ItemId,
+                    Price1 = prices.price1,
+                    Price2 = prices.price2,
+                    Price3 = prices.price3
+                };
+                DAC.UpdateExtrasPrices(item);
+                return Json("Updated Successfully", JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json("Invalid Information Entered", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Extras() {
+            return View();
+        }
+        [ChildActionOnly]
+        public PartialViewResult CategoryExtras()
+        {
+            var extras = DAC.GetExtrasByCategoryId(1);
+            if (extras != null) {
+                return PartialView("_CategoryExtras",extras);
+            }
+            else
+            {
+                return PartialView("_CategoryExtras",new List<Extras>());
+            }
+           
+        }
+
+        [HttpGet]
+        public PartialViewResult ExtrasPrices()
+        {
+            List<Extras> extras = new List<Extras>();
+            extras = DAC.GetExtrasByCategoryId(1);
+            return PartialView("_ExtrasPrices", extras);
+        }
+
+        [HttpGet]
+        public PartialViewResult CategoryExtras(int categoryId=1)
+        {
+            var extras = DAC.GetExtrasByCategoryId(categoryId);
+            if (extras != null)
+            {
+                return PartialView("_CategoryExtras", extras);
+            }
+            else
+            {
+                return PartialView("_CategoryExtras", new List<Extras>());
+            }
+        }
+
+        
     }
 }

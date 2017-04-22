@@ -21,16 +21,28 @@ $(document).ready(function () {
     $(document).on("click", '.singleitem', function () {
         $('.singleitem').removeClass("selected");
         $(this).addClass("selected");
-        
+        if($('.sizeBtn').length===0)
+        {
+            var name = $('.selected').text();
+            if (name.length > 2) {
+                name = $('.selected').text();
+                var itemID = $('.selected').attr('id');
+                var size = 1;
+                GetItemPrice(name, itemID, size);
+            }
+        }
     });
 
     $(document).on("click", '.sizeBtn', function () {
-        $('.sizeBtn').removeClass("selected");
-        $(this).addClass("selected");
+        $('.sizeBtn').removeClass("SizeSelected");
+        $(this).addClass("SizeSelected");
         var name = $('.selected').text();
-        var itemID = $('.selected').attr('id');
-        var size = $(this).siblings('input').val();
-        GetItemPrice(name, itemID, size);
+        if (name.length > 2) {
+            name = name + "-" + $('.SizeSelected').text();
+            var itemID = $('.selected').attr('id');
+            var size = $(this).siblings('input').val();
+            GetItemPrice(name, itemID, size);
+        }
     });
 
     $('#orderCmplt').on("click", function (evt) {
@@ -55,8 +67,8 @@ $(document).ready(function () {
         addItem(itemsList);
     });
 
-    $("#row1").click(function () {
-        alert("clicke");
+    $(document).on("click", "#row1", function () {
+
         $(this).toggleClass("rowSelected");
     });
 });
@@ -86,8 +98,8 @@ function GetItemPrice(name, itemId, size) {
         var newTotal = parseFloat(totalAmount) + parseFloat(data);
 
         $('#totalAmount').text('');
-        $('#totalAmount').text(newTotal);
-
+        $('#totalAmount').text(newTotal.toFixed(2));
+        $('.selected').removeClass('selected');
     })
     //$.ajax({
     //    url: '/Home/GetItemPrice/?' + "itemID=" + itemId + "&sizeId=" + size,

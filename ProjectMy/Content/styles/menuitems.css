@@ -53,6 +53,11 @@ textarea {
     overflow: auto;
     max-height: 530px !important;
 }
+#ExtraitemsArea{
+    overflow: auto;
+    max-height: 474px !important;
+}
+
 .formArea {
     background-color: white;
     padding-bottom: 10px !important;
@@ -169,7 +174,7 @@ textarea {
 
 #ItemsDiv {
     overflow: auto;
-    height: 362px !important;
+    height: 395px !important;
 }
 
 .sizeBtn {
@@ -241,6 +246,15 @@ textarea {
     /*background-color: aqua;*/
 }
 
+.Extraitem{
+width: 98%;
+    margin: 1px;
+    font-weight: bold;
+    font-size: 12px;
+    height: 108px;
+    border: groove;
+}
+
 .singleSizeitem {
     width: 98%;
     margin: 1px;
@@ -292,7 +306,10 @@ textarea {
     border: solid;
     border-color: white;
 }
-
+.SizeSelected{
+    border: solid;
+    border-color: white;
+}
 .DeptSelected {
     border: solid;
     border-color: black;

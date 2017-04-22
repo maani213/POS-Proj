@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities;
+using DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -26,6 +27,26 @@ namespace DataLayer.DAC
             else if (sizeId == 3)
             {
                 price = db.Items.SingleOrDefault(m => m.Id == id).Price3;
+            }
+
+            return price;
+        }
+
+        public static decimal GetExtrasPrices(List<int> id, int sizeId)
+        {
+            decimal price = 0;
+            if (sizeId == 1)
+            {
+                price = db.Extras.Where(m => id.Contains(m.Id)).Sum(m => m.Price1);
+                //price = db.Items.SingleOrDefault(m => m.Id == id).Price1;
+            }
+            else if (sizeId == 2)
+            {
+                price = db.Extras.Where(m => id.Contains(m.Id)).Sum(m => m.Price2);
+            }
+            else if (sizeId == 3)
+            {
+                price = db.Extras.Where(m => id.Contains(m.Id)).Sum(m => m.Price3);
             }
 
             return price;
@@ -134,6 +155,17 @@ namespace DataLayer.DAC
             db.Entry(Updated).State = EntityState.Modified;
             db.SaveChanges();
         }
+
+        public static void UpdateExtrasPrices(Extras itemPrices)
+        {
+            Extras Updated = db.Extras.Find(itemPrices.Id);
+            Updated.Price1 = itemPrices.Price1;
+            Updated.Price2 = itemPrices.Price2;
+            Updated.Price3 = itemPrices.Price3;
+
+            db.Entry(Updated).State = EntityState.Modified;
+            db.SaveChanges();
+        }
         //public static List<Prices> GetPricesCategorywise(int categoryId)
         //{
         //    var result = (from itm in db.Items
@@ -165,5 +197,18 @@ namespace DataLayer.DAC
         //        return new List<Pizza>();
         //    }
         //}
+        public static List<Extras> GetExtrasByCategoryId(int categoryId)
+        {
+            var result = db.Extras.Where(m => m.CategoryId == categoryId).ToList();
+            return result;
+        }
+
+        public static void AddOrder(AddOrderModel orderDetails)
+        {
+            db.Orders.Add(orderDetails.order);
+            db.OrderDetails.Add(orderDetails.orderDetail);
+            db.SaveChanges();
+        }
+
     }
 }

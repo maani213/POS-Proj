@@ -15,6 +15,8 @@
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <script src="~/Scripts/customscripts/TakeawayHome.js"></script>
 
 
@@ -41,16 +43,14 @@
                             </tr>
                         </thead>
                         <tbody class="tableBody" id="tbl"></tbody>
-                        <tr>
-                            
-                        </tr>
+                        <tr></tr>
                     </table>
                 </div>
                 <div class="col-sm-1">
                 </div>
             </div>
             <div class="row">
-                
+
                 <div class="col-sm-3"><button class="BtnOpt"><b>+</b></button></div>
 
                 <div class="col-sm-3"><button class="BtnOpt"><b>-</b></button></div>
@@ -66,7 +66,7 @@
 
             </div>
             <div class="row" style="margin-top:7px; font-size:15px;">
-                
+
                 <div class="col-sm-5"><button class="redBg orderBtn" id="canelOrder"><b>Cancel Order</b></button> </div>
                 <div class="col-sm-2"></div>
                 <div class="col-sm-5"><button class="greenBg orderBtn" id="orderCmplt"><b>Order Complete</b></button> </div>
@@ -78,28 +78,107 @@
         <div class="col-md-3 "><button class="customBttn skyBlueBg">Meal Deals</button></div>
         <div class="col-md-2 "><button class="customBttn greenBg">Cook Inst</button></div>
         <div class="col-md-2 "> <button class="customBttn redBg">No</button></div>
-        <div class="col-md-3 "><button class="customBttn greenBg">Extras / Toppings</button></div>
+        <div class="col-md-3 "><button class="customBttn greenBg" id="toppings">Extras / Toppings</button></div>
 
 
     </div>
-    <div class="row " style="padding-top:2px !important;padding-bottom:8px !important;margin-left:2px;margin-right:2px;margin-top:5px !important; background-color:antiquewhite;overflow-x:auto">
-       @{ 
-           Html.RenderAction("GetCategories");
-       }
-         @*<div class="col-md-1"><button class="customBttn1 pinkBg">Pizza</button></div>
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Antipasti</button></div>
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Le Nostre Past and Zuppe</button></div>
-        <div class="col-md-1"><button class="customBttn1" style="background-color:darkgoldenrod;">I Nostri Secondi and Contorni</button></div>
-        <div class="col-md-1"><button class="customBttn1 orangeBg">Soft and Hot Drinks</button></div>
-        <div class="col-md-1"><button class="customBttn1 pinkBg">Sheris Vermouths</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Lista dei vini and champane</button></div>
-        <div class="col-md-1"><button class="customBttn1 greenBg">Liqours Menu</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Larger Menu</button></div>
-        <div class="col-md-1"><button class="customBttn1 BlueBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 aquaBg">Spirite and Whisky Menu</button></div>
-        <div class="col-md-1"><button class="customBttn1 greenBg">Extra Lunch and Special Menu</button></div>*@
+    <div class="row " style="padding-top:0px !important;padding-bottom:3px !important;margin-left:2px;margin-right:2px;margin-top:5px !important; background-color:antiquewhite;overflow-x:auto">
+        @{
+            Html.RenderAction("GetCategories");
+        }
+        @*<div class="col-md-1"><button class="customBttn1 pinkBg">Pizza</button></div>
+            <div class="col-md-1"><button class="customBttn1 skyBlueBg">Antipasti</button></div>
+            <div class="col-md-1"><button class="customBttn1 skyBlueBg">Le Nostre Past and Zuppe</button></div>
+            <div class="col-md-1"><button class="customBttn1" style="background-color:darkgoldenrod;">I Nostri Secondi and Contorni</button></div>
+            <div class="col-md-1"><button class="customBttn1 orangeBg">Soft and Hot Drinks</button></div>
+            <div class="col-md-1"><button class="customBttn1 pinkBg">Sheris Vermouths</button></div>
+            <div class="col-md-1"><button class="customBttn1 redBg">Lista dei vini and champane</button></div>
+            <div class="col-md-1"><button class="customBttn1 greenBg">Liqours Menu</button></div>
+            <div class="col-md-1"><button class="customBttn1 redBg">Larger Menu</button></div>
+            <div class="col-md-1"><button class="customBttn1 BlueBg">Desserts ice Cream</button></div>
+            <div class="col-md-1"><button class="customBttn1 aquaBg">Spirite and Whisky Menu</button></div>
+            <div class="col-md-1"><button class="customBttn1 greenBg">Extra Lunch and Special Menu</button></div>*@
 
+    </div>
+
+    <div id="dialog" title="Toppings">
+        @{
+            Html.RenderAction("CategoryExtras", "ManagementSection");
+        }
     </div>
 </body>
 
 </html>
+<script>
+    $(function () {
+        $("#dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 750,
+            modal: true,
+            buttons: {
+                "Add Selected Toppings": function () {
+                    GetSetToppingsPrice();
+                    $(this).dialog("close");
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            },
+            show: {
+                effect: "blind",
+                duration: 100
+            },
+            hide: {
+                effect: "explode",
+                duration: 100
+            }
+        });
+
+        $("#toppings").on("click", function () {
+            $("#dialog").dialog("open");
+        });
+    });
+
+    function GetSetToppingsPrice() {
+        var name = "Toppings - ";
+        var ids = [];
+        $('.selectedTopping').each(function () {
+            name = name + $(this).text() + " , ";
+            var eId = $(this).siblings('input').val();
+            ids.push(eId);
+            $(this).removeClass('selectedTopping');
+        });
+        var size = $(".SizeSelected").siblings('input').val();
+        
+        //GetItemPrice(name, itemID, size);
+
+        //$.get('/Home/GetExtrasPrices/?' + "toppingIds=" + ids + "&sizeId=" + size, function (data) {
+        //$.get('/Home/GetExtrasPrices', {toppingIds : ids , sizeId:size}, function (data) {
+        //    
+
+        //})
+        $.ajax({
+
+            url: '/Home/GetExtrasPrices',
+            type: 'GET',
+            data: { toppingIds: ids, sizeId: size },
+            dataType: "json",
+            traditional: true,
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + data + '</td></tr>');
+                $('.tableBody').append(item);
+                var totalAmount = $('#totalAmount').text();
+                var newTotal = parseFloat(totalAmount) + parseFloat(data);
+
+                $('#totalAmount').text('');
+                $('#totalAmount').text(newTotal.toFixed(2));
+            },
+            error: function (request, error) {
+                alert("request:" + error);
+            }
+        });
+
+    }
+</script>

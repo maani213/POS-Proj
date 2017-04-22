@@ -25,8 +25,9 @@
     <div class="row">
         <div class="col-sm-12">
             @{ Html.RenderAction("GetPriceCategories"); }
-
+            <div class="col-md-2 ">@Ajax.ActionLink("Toppings / Extras", "ExtrasPrices", new { } , new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:green;color:white;" })</div>
             <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
+           
         </div>
     </div>
     <div class="row mainDiv" style="background-color:white;">
@@ -87,6 +88,41 @@
             $.ajax({
 
                 url: '/ManagementSection/UpdatePrices',
+                type: 'POST',
+                data: JSON.stringify({ prices: price }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $('input:text').attr('readonly', true);
+                    $('input:text').css('border', 'none');
+
+                },
+                error: function (request, error) {
+                    alert("Request: " + JSON.stringify(request));
+                }
+            });
+        });
+
+        $(document).on("click", ".btnExtrasSubmit", function (evt) {
+            evt.preventDefault();
+            var data = [];
+            var price = {};
+            var c = 0;
+            $(this).closest('tr').each(function () {
+                $(this).find("td").each(function (index) {
+
+                    data.push($(this).find('.fields').val());
+                    //alert($(this).find('.fields').val());
+
+                });
+
+            });
+
+                price = { ItemId: data[0], price1: data[1], price2: data[2], price3: data[3] }
+
+            $.ajax({
+
+                url: '/ManagementSection/UpdateExtrasPrices',
                 type: 'POST',
                 data: JSON.stringify({ prices: price }),
                 dataType: "json",

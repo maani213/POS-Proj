@@ -182,6 +182,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ExtrasPriceViewModel.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\TakeAwayItemsModel.cs" />
     <Compile Include="Models\PizzaModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
@@ -215,6 +217,9 @@
     <Content Include="Views\Home\_Categories.cshtml" />
     <Content Include="Views\Home\_TakeAwayItems.cshtml" />
     <Content Include="Views\ManagementSection\_DefinePrice.cshtml" />
+    <Content Include="Views\ManagementSection\Extras.cshtml" />
+    <Content Include="Views\ManagementSection\_CategoryExtras.cshtml" />
+    <Content Include="Views\ManagementSection\_ExtrasPrices.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

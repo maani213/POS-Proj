@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DataLayer.Entities.Extras>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        if (item.Id > 17)
+        {
+            <div class="col-md-2 cusotomCol"><button class="Extraitem" style="background-color:hotpink;color:white">@item.Title </button><input type="hidden" value="@item.Id" /> </div>
+        }
+        else
+        {
+            <div class="col-md-2 cusotomCol"><button class="Extraitem" style="background-color:green;color:white">@item.Title</button><input type="hidden" value="@item.Id" /></div>
+        }
+    }
+    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="2" /></div>
+    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="3" /></div>
+    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="4" /></div>
+    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="5" /></div>
+
+</div>
+@*<script src="~/Scripts/customscripts/myscript.js"></script>*@
+<script>
+
+    $(document).ready(function () {
+        $('.Extraitem').on("click", function () {
+            $(this).toggleClass("selectedTopping");
+        });
+    });
+    
+</script>
+<style>
+    .selectedTopping {
+        border: 3px solid;
+        background-color: chartreuse !important;
+        /*color:white;*/
+    }
+</style>
