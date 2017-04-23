@@ -75,14 +75,14 @@
         </div>
     </div>
     <div class="row DeptArea">
-        <div class="col-md-3 "><button class="customBttn skyBlueBg">Meal Deals</button></div>
-        <div class="col-md-2 "><button class="customBttn greenBg">Cook Inst</button></div>
-        <div class="col-md-2 "> <button class="customBttn redBg">No</button></div>
-        <div class="col-md-3 "><button class="customBttn greenBg" id="toppings">Extras / Toppings</button></div>
+        <div class="col-md-3 "><button class="customBttn1 skyBlueBg">Meal Deals</button></div>
+        <div class="col-md-2 "><button class="customBttn1 greenBg">Cook Inst</button></div>
+        <div class="col-md-2 "> <button class="customBttn1 redBg">No</button></div>
+        <div class="col-md-3 "><button class="customBttn1 greenBg" id="toppings">Extras / Toppings</button></div>
 
 
     </div>
-    <div class="row " style="padding-top:0px !important;padding-bottom:3px !important;margin-left:2px;margin-right:2px;margin-top:5px !important; background-color:antiquewhite;overflow-x:auto">
+    <div class="row " style="padding-top:0px !important;padding-bottom:1px !important;margin-left:2px;margin-right:2px;margin-top:0px !important; background-color:antiquewhite;overflow-x:auto">
         @{
             Html.RenderAction("GetCategories");
         }
@@ -100,85 +100,19 @@
             <div class="col-md-1"><button class="customBttn1 greenBg">Extra Lunch and Special Menu</button></div>*@
 
     </div>
-
+    <div id="sizesDialog" title="Size">
+        @{
+            Html.RenderAction("GetSizesPartial", new { categoryId = 1 });
+        }
+    </div>
     <div id="dialog" title="Toppings">
         @{
-            Html.RenderAction("CategoryExtras", "ManagementSection");
+            Html.RenderAction("GetExtrasPartial", new { categoryId = 1 });
         }
     </div>
 </body>
 
 </html>
 <script>
-    $(function () {
-        $("#dialog").dialog({
-            autoOpen: false,
-            height: 600,
-            width: 750,
-            modal: true,
-            buttons: {
-                "Add Selected Toppings": function () {
-                    GetSetToppingsPrice();
-                    $(this).dialog("close");
-                },
-                Cancel: function () {
-                    $(this).dialog("close");
-                }
-            },
-            show: {
-                effect: "blind",
-                duration: 100
-            },
-            hide: {
-                effect: "explode",
-                duration: 100
-            }
-        });
 
-        $("#toppings").on("click", function () {
-            $("#dialog").dialog("open");
-        });
-    });
-
-    function GetSetToppingsPrice() {
-        var name = "Toppings - ";
-        var ids = [];
-        $('.selectedTopping').each(function () {
-            name = name + $(this).text() + " , ";
-            var eId = $(this).siblings('input').val();
-            ids.push(eId);
-            $(this).removeClass('selectedTopping');
-        });
-        var size = $(".SizeSelected").siblings('input').val();
-        
-        //GetItemPrice(name, itemID, size);
-
-        //$.get('/Home/GetExtrasPrices/?' + "toppingIds=" + ids + "&sizeId=" + size, function (data) {
-        //$.get('/Home/GetExtrasPrices', {toppingIds : ids , sizeId:size}, function (data) {
-        //    
-
-        //})
-        $.ajax({
-
-            url: '/Home/GetExtrasPrices',
-            type: 'GET',
-            data: { toppingIds: ids, sizeId: size },
-            dataType: "json",
-            traditional: true,
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + data + '</td></tr>');
-                $('.tableBody').append(item);
-                var totalAmount = $('#totalAmount').text();
-                var newTotal = parseFloat(totalAmount) + parseFloat(data);
-
-                $('#totalAmount').text('');
-                $('#totalAmount').text(newTotal.toFixed(2));
-            },
-            error: function (request, error) {
-                alert("request:" + error);
-            }
-        });
-
-    }
 </script>

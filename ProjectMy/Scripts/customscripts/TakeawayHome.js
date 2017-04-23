@@ -179,12 +179,12 @@ $(document).ready(function () {
     $(document).on("click", '.sizeBtn', function () {
         $('.sizeBtn').removeClass("SizeSelected");
         $(this).addClass("SizeSelected");
-        $('#sizesDialog').dialog("close");
+        
         var extrasCount = $('.Extraitem').length;
 
         if (extrasCount === 0) {
             var name = $('.selected').text();
-            alert($('.SizeSelected').length);
+          
             name = name + "-" + $('.SizeSelected').text();
             
             var itemId = $('.selected').attr('id');
@@ -216,8 +216,10 @@ $(document).ready(function () {
             $('#totalAmount').text(newTotal.toFixed(2));
             $('.singleitem').removeClass("selected");
             $('.sizeBtn').removeClass("SizeSelected");
+            $('#sizesDialog').dialog("close");
         }
         else {
+            $('#sizesDialog').dialog("close");
             $("#dialog").dialog("open");
         }
         //var name = $('.selected').text();
