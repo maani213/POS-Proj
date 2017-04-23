@@ -20,14 +20,13 @@ textarea {
 
 .mainDiv {
     margin: 1px !important;
-    margin-bottom: 5px !important;
 }
 
 .DeptArea {
     width: 886px !important;
     font-size: 20px;
-    margin: 1px !important;
-    margin-bottom: 4px;
+    /*margin: 1px !important;*/
+    /*margin-bottom: 4px;*/
     height: 10%;
     padding-right: 10px;
 }
@@ -49,11 +48,13 @@ textarea {
 #TakeAwayitemsArea {
     max-height: 474px !important;
 }
-#PricesitemsArea{
+
+#PricesitemsArea {
     overflow: auto;
     max-height: 530px !important;
 }
-#ExtraitemsArea{
+
+#ExtraitemsArea {
     overflow: auto;
     max-height: 474px !important;
 }
@@ -174,7 +175,7 @@ textarea {
 
 #ItemsDiv {
     overflow: auto;
-    height: 395px !important;
+    height: 476px !important;
 }
 
 .sizeBtn {
@@ -196,17 +197,17 @@ textarea {
     width: 100%;
     margin: 2px;
     border: groove;
-    margin-top: 9px;
 }
 
-.customBttn {
+.ajaxcustomBttn {
     font-weight: bold;
     font-size: 17px;
-    height: 48px !important;
+    height: 70px !important;
     width: 100%;
+    max-width: 100%;
     margin: 2px;
     border: groove;
-    margin-top: 9px;
+    /*margin-top: 9px;*/
     display: inline-block;
     padding: 10px 12px;
     margin-bottom: 0;
@@ -226,28 +227,62 @@ textarea {
     border: groove;
 }
 
-    .customBttn:active {
+    .ajaxcustomBttn:active {
         text-decoration: none;
         color: white;
     }
 
-    .customBttn:hover {
+    .ajaxcustomBttn:hover {
         text-decoration: none;
         color: white;
     }
+.customBttncat {
+    font-weight: bold;
+    font-size: 17px;
+    height: 70px !important;
+    width: 100%;
+    max-width: 100%;
+}
+/*.customBttn {
+    font-weight: bold;
+    font-size: 17px;
+    height: 70px !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 2px;
+    border: groove;
+    /*margin-top: 9px;
+    display: inline-block;
+    padding: 10px 12px;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border-color: none !important;
+    text-decoration: none;
+    border: groove;
+}*/
 
 .singleitem {
     width: 98%;
     margin: 1px;
     font-weight: bold;
     font-size: 12px;
-    height: 108px;
+    height: 93px;
     border: groove;
     /*background-color: aqua;*/
 }
 
-.Extraitem{
-width: 98%;
+.Extraitem {
+    width: 98%;
     margin: 1px;
     font-weight: bold;
     font-size: 12px;
@@ -306,10 +341,12 @@ width: 98%;
     border: solid;
     border-color: white;
 }
-.SizeSelected{
+
+.SizeSelected {
     border: solid;
     border-color: white;
 }
+
 .DeptSelected {
     border: solid;
     border-color: black;
@@ -350,4 +387,5 @@ width: 98%;
 .cusotomCol {
     padding-left: 0px !important;
     padding-right: 0px !important;
+    /*display:table;*/
 }

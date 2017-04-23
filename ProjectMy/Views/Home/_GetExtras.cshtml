@@ -1,0 +1,9 @@
+﻿@model IEnumerable<DataLayer.Entities.Extras>
+<div id="extrasDialog" class="row">
+    @foreach (var item in Model)
+            {
+        <div class="col-md-2 cusotomCol"><button class="Extraitem" style="background-color:green;color:white">@item.Title</button><input type="hidden" value="@item.Id" /></div>
+    }
+
+</div>
+

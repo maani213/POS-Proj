@@ -76,9 +76,9 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public PartialViewResult TakeAwayItems(int categoryId = 1)
         {
-            TakeAwayItemsModel model = new TakeAwayItemsModel();
-            model.items = DAC.GetItemsByCategoryId(categoryId);
-            model.sizes = DAC.GetSizesByCategoryId(categoryId);
+            List<Item> model = new List<Item>();
+            model= DAC.GetItemsByCategoryId(categoryId);
+            
             return PartialView("_TakeAwayItems", model);
         }
         [HttpGet]
@@ -93,6 +93,30 @@ namespace ProjectMy.Controllers
         {
             decimal price = DAC.GetExtrasPrices(toppingIds, sizeId);
             return Json(price, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public PartialViewResult GetSizes( int categoryId)
+        {
+            return PartialView("_GetSizes", DAC.GetSizesByCategoryId(categoryId));
+        }
+
+        [HttpGet]
+        public PartialViewResult GetExtras(int categoryId)
+        {
+            return PartialView("_GetExtras", DAC.GetExtrasByCategoryId(categoryId));
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult GetSizesPartial(int categoryId)
+        {
+            return PartialView("_GetSizes", DAC.GetSizesByCategoryId(categoryId));
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult GetExtrasPartial(int categoryId)
+        {
+            return PartialView("_GetExtras", DAC.GetExtrasByCategoryId(categoryId));
         }
     }
 }

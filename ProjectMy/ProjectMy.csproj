@@ -220,6 +220,8 @@
     <Content Include="Views\ManagementSection\Extras.cshtml" />
     <Content Include="Views\ManagementSection\_CategoryExtras.cshtml" />
     <Content Include="Views\ManagementSection\_ExtrasPrices.cshtml" />
+    <Content Include="Views\Home\_GetSizes.cshtml" />
+    <Content Include="Views\Home\_GetExtras.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

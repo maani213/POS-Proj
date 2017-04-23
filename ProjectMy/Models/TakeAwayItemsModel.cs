@@ -11,5 +11,8 @@ namespace ProjectMy.Models
         public List<Sizes> sizes { get; set; }
         
         public List<Item> items { get; set; }
+
+        public List<Extras> Extras { get; set; }
+
     }
 }

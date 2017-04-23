@@ -1,8 +1,7 @@
-﻿@*@model IEnumerable<DataLayer.Entities.Item>*@
-@model ProjectMy.Models.TakeAwayItemsModel
+﻿@model IEnumerable<DataLayer.Entities.Item>
 
 <div class="row" id="ItemsDiv">
-    @foreach (var item in Model.items)
+    @foreach (var item in Model)
     {
         <div class="col-md-2 cusotomCol">
             <button class="singleitem" id="@item.Id" style="background-color:@item.BackgroundColor;color:@item.TextColor">@item.Title</button>
@@ -11,7 +10,7 @@
 
         </div>
     }
-    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="2" /></div>
+    @*<div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="2" /></div>
     <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="3" /></div>
     <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="4" /></div>
     <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="5" /></div>
@@ -25,32 +24,16 @@
     <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="13" /></div>
     <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="14" /></div>
     <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="15" /></div>
-    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="16" /></div>
+    <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="16" /></div>*@
 
 </div>
-<div class="row">
-    <div class="col-sm-12" style="text-align:center"> <h4 style="margin-top: 0px;color:white;margin-bottom: 0px;">Size</h4> </div>
-</div>
-<div class="row">
-    <div class="col-md-3 cusotomCol"></div>
-    @{ int c = 0; }
-    @foreach (var sizes in Model.sizes)
-    {
-        c++;
 
-        <div class="col-md-2 "><button class="sizeBtn">@sizes.Title</button><input class="hidd" type="hidden" value="@c" /></div>
 
+
+<style>
+    .selectedTopping {
+        border: 3px solid;
+        background-color: chartreuse !important;
+        /*color:white;*/
     }
-    <div class="col-md-3 cusotomCol"></div>
-</div>
-@*<script src="~/Scripts/customscripts/myscript.js"></script>*@
-@*<script>
-
-        $(document).ready(function () {
-            $('.singleitem').on("click", function () {
-                $('.singleitem').removeClass("selected");
-
-                $(this).addClass("selected");
-            });
-        });
-    </script>*@
+</style>
