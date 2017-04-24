@@ -240,5 +240,18 @@ namespace ProjectMy.Controllers
             return PartialView("_CategoriesForExtras", DAC.GetAllCategories());
         }
         
+        [HttpPost]
+        public JsonResult AddExrtaItem(Extras extra)
+        {
+            if(extra==null)
+            {
+                return Json("Erro : Invalid Data Added", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                DAC.AddExtra(extra);
+                return Json("Added", JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

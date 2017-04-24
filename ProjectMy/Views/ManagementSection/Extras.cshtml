@@ -65,7 +65,13 @@
             Html.RenderAction("CategoriesForExtras");
         }
     </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9"></div>
+            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
+        </div>
 
+    </footer>
 
     @*<div class="col-md-3 ">
             @Ajax.ActionLink("PIZZA", "CategoryExtras", new { categoryId = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:pink;" })
@@ -81,3 +87,10 @@
 </body>
 
 </html>
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>

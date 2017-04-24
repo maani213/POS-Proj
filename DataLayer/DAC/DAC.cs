@@ -209,6 +209,10 @@ namespace DataLayer.DAC
             db.OrderDetails.Add(orderDetails.orderDetail);
             db.SaveChanges();
         }
-
+        public static void AddExtra(Extras extra)
+        {
+            db.Extras.Add(extra);
+            db.SaveChanges();
+        }
     }
 }

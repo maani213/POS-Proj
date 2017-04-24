@@ -137,7 +137,7 @@
     </div>
     <div class="row">
         <div class="col-sm-8">
-            @{ Html.RenderAction("GetCategories"); }
+            
         </div>
 
         <div class="col-sm-4">
@@ -149,15 +149,20 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            @{ Html.RenderAction("GetCategories"); }
+        </div>
 
+    </div>
     <div class="row othersArea">
-        <div class="col-md-2"><button class="customBttn skyBlueBg">Meal Deals</button></div>
-        <div class="col-md-2 "><button class="customBttn skyBlueBg">Cooking Instructions</button></div>
-        <div class="col-md-2 "><button class="customBttn skyBlueBg">Freebies</button></div>
-        <div class="col-md-2 "><button class="customBttn skyBlueBg">Special Pizza</button></div>
-        <div class="col-md-1 "><button class="customBttn greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection")'">Prices</button></div>
-        <div class="col-md-1 "><button class="customBttn redBg">Cancel</button></div>
-        <div class="col-md-1 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Exit</button></div>
+        <div class="col-md-2"><button class="customBttn2 skyBlueBg">Meal Deals</button></div>
+        <div class="col-md-2 "><button class="customBttn2 skyBlueBg">Cooking Instructions</button></div>
+        <div class="col-md-2 "><button class="customBttn2 skyBlueBg">Freebies</button></div>
+        <div class="col-md-2 "><button class="customBttn2 skyBlueBg">Special Pizza</button></div>
+        <div class="col-md-1 "><button class="customBttn2 greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection")'">Prices</button></div>
+        <div class="col-md-1 "><button class="customBttn2 redBg">Cancel</button></div>
+        <div class="col-md-1 "><button class="customBttn2 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Exit</button></div>
     </div>
 </body>
 
