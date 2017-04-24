@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DataLayer.Entities.Categories>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TakeAywayHome</title>
+
+    <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/customscripts/TakeawayHome.js"></script>
+    <style>
+        footer {
+  position: fixed;
+  bottom: 0;
+  width:100%;
+}
+    </style>
+</head>
+<body style="background-color:darkblue">
+    <div class="row" style="color:white;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:20px;">
+        <div class="col-sm-4">
+            @DateTime.Now.ToString("dd/MM/yyyy")
+        </div>
+        <div class="col-sm-4" style="text-align:center">
+            TakeAway Home
+        </div>
+        <div class="col-sm-4" style="text-align:right">
+            @DateTime.Now.ToString("HH:mm:ss")
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:30px;">
+        <div class="col-md-4 ">
+
+        </div>
+        <div class="col-md-4 ">
+
+            <div class="row">
+                @foreach (var cat in Model)
+            {
+                    <div class="col-md-6 " style="margin-bottom:2px;">
+                        @*<button class="customBttn1" style="background-color:@cat.BackgroundColor;color:@cat.TextColor"> @Html.ActionLink(@cat.Title, "TakeAway", new { categoryId = cat.Id }, null) </button>*@
+                        @Html.ActionLink(@cat.Title, "TakeAway", new { categoryId = cat.Id }, new { @class = "btn customBttn1", @style = "background-color:"+cat.BackgroundColor+";color:"+cat.TextColor+";" })
+                    </div>
+
+                }
+            </div>
+        </div>
+        <div class="col-md-4 ">
+
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9"></div>
+            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Back</button></div>
+        </div>
+
+        </footer>
+</body>
+</html>

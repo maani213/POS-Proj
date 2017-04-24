@@ -48,7 +48,6 @@ $(document).ready(function () {
                 var item = { Title: TitleText, Toppings: toppings, BackgroundColor: bgColor, TextColor: textColor, PositionNumber: positionNumb, CategoryId: categoryId };
                 addItem(item);
 
-
                 var textColor = $('#textcolor').val("");
                 var bgColor = $('#btncolor').val("");
                 var price = $('#price').val();
@@ -68,34 +67,31 @@ $(document).ready(function () {
 
     $('#addCategory').on("click", function (evt) {
 
-        if ($(".selected").length === 0) {
-            evt.preventDefault();
-            alert("Please Select a button to add Item.");
+        var textColor = $('#textcolor').val();
+        var bgColor = $('#btncolor').val();
+
+        var isBold = $('#isBold').is(':checked');
+        var isItalic = $('#isitalic').is(':checked');
+
+        var TitleText = $('#text').val();
+
+        var textStyle = $('#fontstyle').val();
+        var positionNumb = parseInt($(".singleitem").length) + 1;
+
+        if (TitleText !== "" && bgColor !== "") {
+            //var html = '<div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:' + bgColor + ';color:' + textColor + '>' + TitleText + '</button><input type="hidden" value="' + positionNumb + '" /></div>'
+            //$('#catArea').append(html);
+            //$(".selected").css({
+            //    "background-color": bgColor,
+            //    "color": textColor
+            //});
+            //$(".selected").text(TitleText);
+            var category = { Title: TitleText, BackgroundColor: bgColor, TextColor: textColor, PositionNumber: positionNumb };
+            addCategory(category);
+            location.reload(true);
         }
-
         else {
-            var textColor = $('#textcolor').val();
-            var bgColor = $('#btncolor').val();
-            var price = $('#price').val();
-            var isBold = $('#isBold').is(':checked');
-            var isItalic = $('#isitalic').is(':checked');
-
-            var TitleText = $('#text').val();
-
-            var textStyle = $('#fontstyle').val();
-            var positionNumb = $(".selected").siblings('input').val();
-            if (TitleText !== "" && bgColor !== "") {
-                $(".selected").css({
-                    "background-color": bgColor,
-                    "color": textColor
-                });
-                $(".selected").text(TitleText);
-                var category = { Title: TitleText, BackgroundColor: bgColor, TextColor: textColor, PositionNumber: positionNumb };
-                addCategory(category);
-            }
-            else {
-                alert("enter information");
-            }
+            alert("enter information");
         }
 
     });
@@ -160,7 +156,7 @@ function addItem(data1) {
 }
 function addCategory(category) {
     $.ajax({
-
+        async: false,
         url: '/ManagementSection/DefineCategories',
         type: 'POST',
         data: JSON.stringify({

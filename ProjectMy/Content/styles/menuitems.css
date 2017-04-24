@@ -191,12 +191,14 @@ textarea {
 }
 
 .customBttn1 {
-    font-weight: bold;
-    font-size: 17px;
+    font-weight: bold !important;
+    font-size: 17px !important;
     height: 48px !important;
     width: 100%;
     margin: 2px;
-    border: groove;
+    border: groove !important;
+    /*color:white !important;*/
+    border-radius:0px !important;
 }
 
 .ajaxcustomBttn {
@@ -272,6 +274,16 @@ textarea {
 }*/
 
 .singleitem {
+    width: 98%;
+    margin: 1px;
+    font-weight: bold;
+    font-size: 12px;
+    height: 93px;
+    border: groove;
+    /*background-color: aqua;*/
+}
+
+.pizzItem {
     width: 98%;
     margin: 1px;
     font-weight: bold;

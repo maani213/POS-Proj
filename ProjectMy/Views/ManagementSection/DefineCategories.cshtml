@@ -33,12 +33,12 @@
 <body style="background-color: darkblue;">
     <div class="row mainDiv">
         <div class="col-lg-8" id="itemsArea">
-            <div class="row">
+            <div class="row" id="catArea">
                 @foreach (var cat in Model)
                 {
                     <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" value="@cat.PositionNumber" /></div>
                 }
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="1" /></div>
+                @*<div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="1" /></div>
                 <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="2" /></div>
                 <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="3" /></div>
                 <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="4" /></div>
@@ -61,7 +61,7 @@
                 <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="21" /></div>
                 <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="22" /></div>
                 <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="23" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="24" /></div>
+                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="24" /></div>*@
 
             </div>
         </div>

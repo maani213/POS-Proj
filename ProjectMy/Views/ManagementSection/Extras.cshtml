@@ -31,7 +31,7 @@
         </div>
         <div class="formArea col-lg-4">
             <div class="title">Pizza</div>
-            
+
             <div class="row" style="margin:2px !important; margin-top:100px !important;margin-bottom:100px !important;">
                 <div class="col-md-2">
                     <label>Text</label>
@@ -41,15 +41,15 @@
                 </div>
             </div>
             <div class="row" style="margin:2px !important;">
-                </div>
+            </div>
 
-            
+
             <fieldset>
                 <legend>Menu Buttons</legend>
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
-                        <button class="menuBtn" id="addItem">Add Item</button>
+                        <button class="menuBtn" id="addExtraItem">Add Item</button>
                     </div>
                     <div class="col-md-4">
                         <button class="menuBtn" id="deleteItem">Delete Item</button>
@@ -59,26 +59,24 @@
             </fieldset>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8">
 
-
-
-            <div class="col-md-3 ">
-                @Ajax.ActionLink("PIZZA", "CategoryExtras", new { categoryId = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:pink;" })
-            </div>
-            <div class="col-md-3 ">
-                @Ajax.ActionLink("BURGERS", "CategoryExtras", new { categoryId = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:green;color:white;" })
-            </div>
-            <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
-            }
-
-        </div>
-
-        <div class="col-sm-4">
-
-        </div>
+    <div class="row " style="padding-top:0px !important;padding-bottom:1px !important;margin-left:2px;margin-right:2px;margin-top:0px !important; background-color:antiquewhite;overflow-x:auto">
+        @{
+            Html.RenderAction("CategoriesForExtras");
+        }
     </div>
+
+
+    @*<div class="col-md-3 ">
+            @Ajax.ActionLink("PIZZA", "CategoryExtras", new { categoryId = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:pink;" })
+        </div>
+        <div class="col-md-3 ">
+            @Ajax.ActionLink("BURGERS", "CategoryExtras", new { categoryId = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:green;color:white;" })
+        </div>
+        <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
+        }*@
+
+
 
 </body>
 

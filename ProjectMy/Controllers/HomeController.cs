@@ -33,8 +33,10 @@ namespace ProjectMy.Controllers
             return View(names);
         }
 
-        public ActionResult TakeAway()
+        [HttpGet]
+        public ActionResult TakeAway(int categoryId=1)
         {
+            ViewBag.CategoryID = categoryId;
             return View();
         }
 
@@ -117,6 +119,12 @@ namespace ProjectMy.Controllers
         public PartialViewResult GetExtrasPartial(int categoryId)
         {
             return PartialView("_GetExtras", DAC.GetExtrasByCategoryId(categoryId));
+        }
+
+        [HttpGet]
+        public ActionResult TakeAwayHome()
+        {
+            return View(DAC.GetAllCategories());
         }
     }
 }

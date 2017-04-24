@@ -234,6 +234,11 @@ namespace ProjectMy.Controllers
             }
         }
 
+        [ChildActionOnly]
+        public PartialViewResult CategoriesForExtras()
+        {
+            return PartialView("_CategoriesForExtras", DAC.GetAllCategories());
+        }
         
     }
 }

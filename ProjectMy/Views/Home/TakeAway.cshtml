@@ -28,7 +28,8 @@
     <div class="row mainDiv">
         <div class="col-lg-8" id="TakeAwayitemsArea">
             @{
-                Html.RenderAction("TakeAwayItems");
+                int catId = ViewBag.CategoryID;
+                Html.RenderAction("TakeAwayItems", catId);
             }
         </div>
         <div class="operationsArea col-sm-4 col-md-4 col-lg-4 ">
@@ -51,13 +52,13 @@
             </div>
             <div class="row">
 
-                <div class="col-sm-3"><button class="BtnOpt"><b>+</b></button></div>
+                <div class="col-sm-3"><button class="BtnOpt" id="plus"><b>+</b></button></div>
 
-                <div class="col-sm-3"><button class="BtnOpt"><b>-</b></button></div>
+                <div class="col-sm-3"><button class="BtnOpt" id="minus"><b>-</b></button></div>
 
-                <div class="col-sm-3"><button class="BtnOpt"><b>Misc Item</b></button></div>
+                <div class="col-sm-3"><button class="BtnOpt" id="miscItem"><b>Misc Item</b></button></div>
 
-                <div class="col-sm-3"><button class="BtnOpt"><b>Edit Price</b></button></div>
+                <div class="col-sm-3"><button class="BtnOpt" id="editPrice"><b>Edit Price</b></button></div>
             </div>
             <div class="row totalRow" style="margin-right: -4px !important;margin-left:0px">
                 <div class="col-sm-4"><b>Total</b></div>
@@ -79,7 +80,7 @@
         <div class="col-md-2 "><button class="customBttn1 greenBg">Cook Inst</button></div>
         <div class="col-md-2 "> <button class="customBttn1 redBg">No</button></div>
         <div class="col-md-3 "><button class="customBttn1 greenBg" id="toppings">Extras / Toppings</button></div>
-
+        <div class="col-md-2 "> <button class="customBttn1 redBg" onclick="location.href='@Url.Action("TakeAwayHome", "Home")'">Back</button></div>
 
     </div>
     <div class="row " style="padding-top:0px !important;padding-bottom:1px !important;margin-left:2px;margin-right:2px;margin-top:0px !important; background-color:antiquewhite;overflow-x:auto">
@@ -109,6 +110,12 @@
         @{
             Html.RenderAction("GetExtrasPartial", new { categoryId = 1 });
         }
+    </div>
+    <div id="dialog-message" title="Download complete">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            <b>Please Select Free Pizza ...</b>
+        </p>
     </div>
 </body>
 
