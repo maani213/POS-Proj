@@ -7,7 +7,7 @@ $(document).ready(function () {
         if (!this.rowIndex) return; // skip first row
 
         totalAmount = parseFloat(totalAmount) + parseFloat(this.cells[2].innerHTML);
-        alert(totalAmount);
+        
     });
     $('#totalAmount').text(totalAmount.toFixed(2));
     $('#Subtotal').text(totalAmount.toFixed(2));
