@@ -397,37 +397,32 @@ $(document).ready(function () {
                         finalName = finalName + name;
                         price = 0.00;
                         name = "";
+                        $('#dialog-message').dialog("open");
                     }
-                    else {
+                    else if (isFree === 2) {
                         var totalAmount = $('#totalAmount').text();
                         var newTotal = 0.00;
                         var newName = finalName + " + " + name;
+                        var item = "";
                         if (price > FirstPrice) {
 
-                            var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
+                            item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
                             newTotal = parseFloat(totalAmount) + parseFloat(price);
                         }
                         else if (price === FirstPrice) {
 
-                            var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
+                            item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
                             newTotal = parseFloat(totalAmount) + parseFloat(price);
                         }
                         else {
-                            var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + FirstPrice.toFixed(2) + '</td></tr>');
+                            item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + FirstPrice.toFixed(2) + '</td></tr>');
                             newTotal = parseFloat(totalAmount) + parseFloat(FirstPrice);
                         }
-                        //var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
+
                         $('.tableBody').append(item);
-                        if (isFree === 2) {
-                            isFree = 0;
-                            finalName = "";
-                            FinalPrice = 0.00;
-
-
-                        }
-                        //var totalAmount = $('#totalAmount').text();
-                        //var newTotal = parseFloat(totalAmount) + parseFloat(price);
-
+                        isFree = 0;
+                        finalName = "";
+                        FinalPrice = 0.00;
                         $('#totalAmount').text('');
                         $('#totalAmount').text(newTotal.toFixed(2));
                     }
@@ -441,48 +436,47 @@ $(document).ready(function () {
             if (isFree === 1) {
                 FirstPrice = price;
                 finalName = finalName + name;
+                $('#dialog-message').dialog("open");
             }
-            else {
+            else if (isFree === 2) {
                 var totalAmount = $('#totalAmount').text();
                 var newTotal = 0.00;
                 var newName = finalName + " + " + name;
+                var item = "";
                 if (price > FirstPrice) {
-                    var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
+                    item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
                     newTotal = parseFloat(totalAmount) + parseFloat(price);
                 }
                 else if (price === FirstPrice) {
 
-                    var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
+                    item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
                     newTotal = parseFloat(totalAmount) + parseFloat(price);
                 }
                 else {
-                    var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + FirstPrice.toFixed(2) + '</td></tr>');
+                    item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + FirstPrice.toFixed(2) + '</td></tr>');
                     newTotal = parseFloat(totalAmount) + parseFloat(FirstPrice);
                 }
-                if (isFree === 2) {
-                    isFree = 0;
-                    finalName = "";
-                    FinalPrice = 0.00;
-                }
-                //var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
+                isFree = 0;
+                finalName = "";
+                FinalPrice = 0.00;
+
                 $('.tableBody').append(item);
-                //var totalAmount = $('#totalAmount').text();
-                //var newTotal = parseFloat(totalAmount) + parseFloat(price);
 
                 $('#totalAmount').text('');
                 $('#totalAmount').text(newTotal.toFixed(2));
             }
-            if (isFree === 1) {
-                $('#dialog-message').dialog("open");
-                $('.singleitem').removeClass("selected");
-                $('.Extraitem').removeClass('selectedTopping');
-            }
-            else {
+        }
 
-                $('.singleitem').removeClass("selected");
-                $('.sizeBtn').removeClass("SizeSelected");
-                $('.Extraitem').removeClass('selectedTopping');
-            }
+        if (isFree === 1) {
+            $('#dialog-message').dialog("open");
+            $('.singleitem').removeClass("selected");
+            $('.Extraitem').removeClass('selectedTopping');
+        }
+        else {
+
+            $('.singleitem').removeClass("selected");
+            $('.sizeBtn').removeClass("SizeSelected");
+            $('.Extraitem').removeClass('selectedTopping');
         }
     }
 });
