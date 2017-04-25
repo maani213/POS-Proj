@@ -34,7 +34,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpGet]
-        public ActionResult TakeAway(int categoryId=1)
+        public ActionResult TakeAway(int categoryId = 1)
         {
             ViewBag.CategoryID = categoryId;
             return View();
@@ -61,7 +61,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult ClearCash(List<OrderViewModel> orders, string CustomerName="Test" , int totalpaid = 0, int balance = 0 )
+        public JsonResult ClearCash(List<OrderViewModel> orders, string CustomerName = "Test", int totalpaid = 0, int balance = 0)
         {
             AddOrderModel orderModel = new AddOrderModel();
             orderModel.order.CustomerName = CustomerName;
@@ -79,8 +79,8 @@ namespace ProjectMy.Controllers
         public PartialViewResult TakeAwayItems(int categoryId = 1)
         {
             List<Item> model = new List<Item>();
-            model= DAC.GetItemsByCategoryId(categoryId);
-            
+            model = DAC.GetItemsByCategoryId(categoryId);
+
             return PartialView("_TakeAwayItems", model);
         }
         [HttpGet]
@@ -98,7 +98,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetSizes( int categoryId)
+        public PartialViewResult GetSizes(int categoryId)
         {
             return PartialView("_GetSizes", DAC.GetSizesByCategoryId(categoryId));
         }
@@ -125,9 +125,9 @@ namespace ProjectMy.Controllers
         public ActionResult TakeAwayHome()
         {
             var result = DAC.GetAllCategories();
-            if(result!=null)
-            { 
-            return View(result);
+            if (result != null)
+            {
+                return View(result);
             }
             else
             {

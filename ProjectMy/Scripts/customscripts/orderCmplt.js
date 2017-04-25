@@ -6,8 +6,8 @@ $(document).ready(function () {
     $('.tableBody tr').each(function () {
         if (!this.rowIndex) return; // skip first row
 
-        totalAmount = parseFloat(parseFloat(totalAmount) + parseFloat(this.cells[2].innerHTML));
-
+        totalAmount = parseFloat(totalAmount) + parseFloat(this.cells[2].innerHTML);
+        alert(totalAmount);
     });
     $('#totalAmount').text(totalAmount.toFixed(2));
     $('#Subtotal').text(totalAmount.toFixed(2));
@@ -19,6 +19,25 @@ $(document).ready(function () {
         var balance = parseFloat($('#paidAmount').text()) - parseFloat($('#totalAmount').text());
 
         $('#balance').text(balance.toFixed(2));
+    });
+
+
+    $('#cancelOrder').on('click', function (evt) {
+        if (confirm("Are you sure to Cancel this Order ?")) {
+
+        }
+        else {
+            evt.preventDefault();
+        }
+    });
+
+    $('#exit').on('click', function (evt) {
+        if (confirm("Are you sure to Leave this Page ?")) {
+
+        }
+        else {
+            evt.preventDefault();
+        }
     });
 
     $('.CustomfBtn').on("click", function () {

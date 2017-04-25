@@ -146,11 +146,11 @@
                         <tbody class="tableBody">
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td id="qty">@item.ItemQty</td>
-                                    <td>@item.ItemName</td>
-                                    <td id="price">@item.ItemTotalPrice</td>
-                                </tr>
+                            <tr>
+                                <td id="qty">@item.ItemQty</td>
+                                <td>@item.ItemName</td>
+                                <td id="price">@item.ItemTotalPrice</td>
+                            </tr>
                             }
 
                             @*<tr>
@@ -240,30 +240,7 @@
 
 
         </div>
-        
+    </div>
 </body>
 
 </html>
-<script>
-    window.stop();
-    $(document).ready(function () {
-        $('#cancelOrder').on('click', function (evt) {
-            if (confirm("Are you sure to Cancel this Order ?")) {
-
-            }
-            else {
-                evt.preventDefault();
-            }
-        });
-
-        $('#exit').on('click', function (evt) {
-            if (confirm("Are you sure to Leave this Page ?")) {
-
-            }
-            else {
-                evt.preventDefault();
-            }
-        });
-    });
-    
-</script>
