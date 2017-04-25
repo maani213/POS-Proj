@@ -96,6 +96,21 @@ $(document).ready(function () {
         }
     });
 
+    $('#print').on('click', function (evt) {
+        if ($('#balance').text() == "") {
+            evt.preventDefault();
+            alert("Amount is not Paid Yet...");
+        }
+        else {
+            var prtContent = document.getElementById('operationsArea');
+            var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+        }
+    })
+
 });
 function addItem(itemList, totalpaid1, balance1, customerName1) {
     

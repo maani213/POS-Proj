@@ -19,17 +19,10 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscripts/myscript.js"></script>
     <title>Prices</title>
-    
+
 </head>
 <body style="background-color: darkblue;">
-    <div class="row">
-        <div class="col-sm-12">
-            @{ Html.RenderAction("GetPriceCategories"); }
-            <div class="col-md-2 ">@Ajax.ActionLink("Toppings / Extras", "ExtrasPrices", new { } , new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:green;color:white;" })</div>
-            <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
-           
-        </div>
-    </div>
+
     <div class="row mainDiv" style="background-color:white;">
         <div class="col-lg-12 col-md-12 col-sm-12" id="PricesitemsArea">
             @{
@@ -37,7 +30,45 @@
             }
         </div>
     </div>
+    @*<div class="row">
+            <div class="col-sm-12">
+                @{ Html.RenderAction("GetPriceCategories"); }
+                <div class="col-md-2 ">@Ajax.ActionLink("Toppings / Extras", "ExtrasPrices", new { }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn1", @style = "background-color:green;color:white;" })</div>
+                <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
 
+            </div>
+        </div>*@
+
+
+    <footer>
+        <div class="row">
+            @*<div class="col-sm-12">*@
+                @{ Html.RenderAction("GetPriceCategories"); }
+                <div class="col-md-1 ">@Ajax.ActionLink("Toppings/ Extras", "ExtrasPrices", new { }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
+                <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
+
+            @*</div>*@
+        </div>
+    </footer>
+    <style>
+        .extrasCat {
+            font-weight: bold !important;
+            font-size: 17px !important;
+            margin: 2px;
+            border: groove !important;
+            border-radius: 0px !important;
+            height: 70px !important;
+            width: 100%;
+            max-width: 100%;
+            white-space: normal !important;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 
 
 </body>
@@ -118,7 +149,7 @@
 
             });
 
-                price = { ItemId: data[0], price1: data[1], price2: data[2], price3: data[3] }
+            price = { ItemId: data[0], price1: data[1], price2: data[2], price3: data[3] }
 
             $.ajax({
 
@@ -138,22 +169,6 @@
             });
         });
 
-        //$(document).on("submit", ".form1", function (evt) {
-
-        //    //jQuery(document).on("submit", ".form1", function (evt) {
-        //    evt.preventDefault();
-        //    var data = $(this).serialize();
-        //    alert(JSON.stringify($(this)));
-        //    $.post('/ManagementSection/UpdatePrices', JSON.stringify({ price: form }), function (data) {
-        //        $('input:text').attr('readonly', true);
-        //        $('input:text').css('border', 'none');
-        //        alert(data);
-        //    })
-        //    .fail(function (data) {
-        //        alert("something went wrong");
-        //    });
-
-        //});
     });
 
 

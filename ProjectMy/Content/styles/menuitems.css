@@ -7,6 +7,15 @@ fieldset {
     margin-bottom: 10px;
 }
 
+.colorfields {
+    width: 74% !important;
+    border-width: 0px !important;
+    border-style: none !important;
+    border-color: rgb(169, 169, 169);
+    border-image: initial;
+    padding: 0px 0px !important;
+}
+
 legend {
     font-size: 14px !important;
     font-weight: bold;
@@ -41,8 +50,7 @@ textarea {
 }
 
 #itemsArea {
-    overflow: auto;
-    max-height: 474px !important;
+    max-height: 425px !important;
 }
 
 #TakeAwayitemsArea {
@@ -198,9 +206,10 @@ textarea {
     margin: 2px;
     border: groove !important;
     /*color:white !important;*/
-    border-radius:0px !important;
+    border-radius: 0px !important;
 }
-.customBttn2{
+
+.customBttn2 {
     font-weight: bold !important;
     font-size: 17px !important;
     height: 48px !important;
@@ -208,8 +217,9 @@ textarea {
     margin: 2px;
     border: groove !important;
     /*color:white !important;*/
-    border-radius:0px !important;
+    border-radius: 0px !important;
 }
+
 .ajaxcustomBttn {
     font-weight: bold;
     font-size: 17px;
@@ -247,6 +257,7 @@ textarea {
         text-decoration: none;
         color: white;
     }
+
 .customBttncat {
     font-weight: bold;
     font-size: 17px;
@@ -314,6 +325,7 @@ textarea {
 .singleSizeitem {
     width: 98%;
     margin: 1px;
+    font-size: 30px;
     font-weight: bold;
     font-size: 12px;
     height: 216px;

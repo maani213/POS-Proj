@@ -50,13 +50,14 @@ $(document).ready(function () {
                     if (isFree === 0) {
                         AddOrderItem();
                     }
-                    else {
+                    else if (isFree === 1 || isFree === 2) {
                         AddPizzas();
                     }
                     $(this).dialog("close");
                     //clearSelections
                 },
                 Cancel: function () {
+                    clearSelections();
                     $(this).dialog("close");
                 }
             },
@@ -75,11 +76,12 @@ $(document).ready(function () {
             width: 350,
             modal: true,
             buttons: {
-                "Add Selected Toppings": function () {
+                "Ok": function () {
                     //GetSetToppingsPrice();
                     $(this).dialog("close");
                 },
                 Cancel: function () {
+                    clearSelections();
                     $(this).dialog("close");
                 }
             },
@@ -348,6 +350,7 @@ $(document).ready(function () {
         $(this).toggleClass("selectedTopping");
     });
     function AddPizzas() {
+
         var name = $('.selected').text();
         name = name + "-" + $('.SizeSelected').text() + " ";
         var itemId = $('.selected').attr('id');
@@ -415,6 +418,13 @@ $(document).ready(function () {
                         }
                         //var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
                         $('.tableBody').append(item);
+                        if (isFree === 2) {
+                            isFree = 0;
+                            finalName = "";
+                            FinalPrice = 0.00;
+
+
+                        }
                         //var totalAmount = $('#totalAmount').text();
                         //var newTotal = parseFloat(totalAmount) + parseFloat(price);
 
@@ -449,6 +459,11 @@ $(document).ready(function () {
                     var item = $('<tr id="row1"><td id="qty">1</td><td>' + newName + '</td><td id="price">' + FirstPrice.toFixed(2) + '</td></tr>');
                     newTotal = parseFloat(totalAmount) + parseFloat(FirstPrice);
                 }
+                if (isFree === 2) {
+                    isFree = 0;
+                    finalName = "";
+                    FinalPrice = 0.00;
+                }
                 //var item = $('<tr id="row1"><td id="qty">1</td><td>' + name + '</td><td id="price">' + price.toFixed(2) + '</td></tr>');
                 $('.tableBody').append(item);
                 //var totalAmount = $('#totalAmount').text();
@@ -458,12 +473,15 @@ $(document).ready(function () {
                 $('#totalAmount').text(newTotal.toFixed(2));
             }
             if (isFree === 1) {
-                $('.selected').removeClass('selected');
                 $('#dialog-message').dialog("open");
+                $('.singleitem').removeClass("selected");
+                $('.Extraitem').removeClass('selectedTopping');
             }
             else {
-                $('.selected').removeClass('selected');
-                $(".SizeSelected").removeClass('SizeSelected');
+
+                $('.singleitem').removeClass("selected");
+                $('.sizeBtn').removeClass("SizeSelected");
+                $('.Extraitem').removeClass('selectedTopping');
             }
         }
     }
@@ -542,6 +560,7 @@ function GetItemPrice(name, itemId, size) {
 };
 
 function AddOrderItem() {
+
     var name = $('.selected').text();
     name = name + "-" + $('.SizeSelected').text() + " ";
     var itemId = $('.selected').attr('id');
@@ -613,6 +632,6 @@ function AddOrderItem() {
 function clearSelections() {
     $('.singleitem').removeClass("selected");
     $('.sizeBtn').removeClass("SizeSelected");
-    $('.selectedTopping').removeClass('selectedTopping');
+    $('.Extraitem').removeClass('selectedTopping');
 }
 

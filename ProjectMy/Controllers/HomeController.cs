@@ -124,7 +124,15 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public ActionResult TakeAwayHome()
         {
-            return View(DAC.GetAllCategories());
+            var result = DAC.GetAllCategories();
+            if(result!=null)
+            { 
+            return View(result);
+            }
+            else
+            {
+                return View(new List<Categories>());
+            }
         }
     }
 }

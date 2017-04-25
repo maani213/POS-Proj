@@ -87,6 +87,8 @@ $(document).ready(function () {
                     "background-color": "green",
                     "color": "white"
                 });
+                $(".selected").text(TitleText);
+                
 
                 var item = { Title: TitleText, Price1: 0.00, Price2: 0.00, Price3: 0.00, CategoryId: categoryId };
                 addExtraItem(item);
@@ -146,10 +148,10 @@ $(document).ready(function () {
             var textStyle = $('#fontstyle').val();
             var categoryId = $(".DeptSelected").siblings('input').val();
             if (TitleText !== "") {
-                //$(".selected").css({
-                //    "background-color": bgColor,
-                //    "color": textColor
-                //});
+                $(".selected").css({
+                    "background-color": bgColor,
+                    "color": textColor
+                });
                 $(".selected").text(TitleText);
                 var size = { Title: TitleText, CategoryId: categoryId };
                 addSize(size);

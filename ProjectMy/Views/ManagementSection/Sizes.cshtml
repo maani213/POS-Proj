@@ -67,7 +67,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Text color</label> </div>
                         <div class="col-md-6">
-                            <input id="textcolor" />
+                            <input id="textcolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
 
@@ -76,7 +76,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Button color</label> </div>
                         <div class="col-md-6">
-                            <input id="btncolor" />
+                            <input id="btncolor"  type="color" class="colorfields"/>
                         </div>
                         <div class="col-md-1">
                         </div>
@@ -107,13 +107,26 @@
     <div class="row">
         <div class="col-sm-12">
             @{ Html.RenderAction("GetSizeCategories"); }
-            <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
+            @*<div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>*@
         </div>
 
         
     </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9"></div>
+            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
+        </div>
 
+    </footer>
 
 </body>
 
 </html>
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>

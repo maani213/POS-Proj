@@ -38,30 +38,6 @@
                 {
                     <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" value="@cat.PositionNumber" /></div>
                 }
-                @*<div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="1" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="2" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="3" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="4" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="5" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="6" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="7" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="8" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="9" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="10" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="11" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="12" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="13" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="14" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="15" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="16" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="17" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="18" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="19" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="20" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="21" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="22" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="23" /></div>
-                <div class="col-md-2 cusotomCol"><button class="singleitem"></button><input type="hidden" value="24" /></div>*@
 
             </div>
         </div>
@@ -110,7 +86,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Text color</label> </div>
                         <div class="col-md-6">
-                            <input id="textcolor" />
+                            <input id="textcolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
 
@@ -119,7 +95,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Button color</label> </div>
                         <div class="col-md-6">
-                            <input id="btncolor" />
+                            <input id="btncolor" type="color" class="colorfields"/>
                         </div>
                         <div class="col-md-1">
                         </div>
@@ -164,11 +140,23 @@
             </fieldset>
         </div>
     </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9"></div>
+            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("DataFiles", "ManagementSection")'">Back</button></div>
+        </div>
 
+    </footer>
 </body>
 
 </html>
-
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
 <script>
 
     $(document).ready(function () {

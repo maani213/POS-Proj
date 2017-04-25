@@ -202,7 +202,18 @@ namespace DataLayer.DAC
             var result = db.Extras.Where(m => m.CategoryId == categoryId).ToList();
             return result;
         }
-
+        public static List<Extras> GetAllExtras()
+        {
+            var result = db.Extras.ToList();
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                return new List<Extras>();
+            }
+        }
         public static void AddOrder(AddOrderModel orderDetails)
         {
             db.Orders.Add(orderDetails.order);

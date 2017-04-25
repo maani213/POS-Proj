@@ -216,7 +216,7 @@ namespace ProjectMy.Controllers
         public PartialViewResult ExtrasPrices()
         {
             List<Extras> extras = new List<Extras>();
-            extras = DAC.GetExtrasByCategoryId(1);
+            extras = DAC.GetAllExtras();
             return PartialView("_ExtrasPrices", extras);
         }
 

@@ -227,13 +227,13 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-1"></div>
 
-            <div class="col-sm-1"><button class="OptionBtns redBg"><b>Cancel Order</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns redBg" onclick="location.href='@Url.Action("TakeAway", "Home")'" id="cancelOrder"><b>Cancel Order</b></button></div>
             <div class="col-sm-1"><button class="OptionBtns redBg"><b>Discount</b></button></div>
             <div class="col-sm-1"><button class="OptionBtns redBg"><b>Till</b></button></div>
             <div class="col-sm-1"><button class="OptionBtns orangeBg" id="print"><b>Print All</b></button></div>
             <div class="col-sm-1"><button class="OptionBtns BlueBg"><b>Send To Kitchen/Bar</b></button></div>
             <div class="col-sm-1"><button class="OptionBtns greenBg"><b>Back to order</b></button></div>
-            <div class="col-sm-1"><button class="OptionBtns redBg"><b>Exit</b></button></div>
+            <div class="col-sm-1"><button class="OptionBtns redBg" onclick="location.href='@Url.Action("TakeAway", "Home")'" id="exit"><b>Exit</b></button></div>
             <div class="col-sm-1"></div>
 
             <div class="col-sm-1"></div>
@@ -245,19 +245,25 @@
 
 </html>
 <script>
-    $('#print').on('click', function (evt) {
-        if ($('#balance').text() == "") {
-            evt.preventDefault();
-            alert("Amount is not Paid Yet...");
-        }
-        else {
-            var prtContent = document.getElementById('operationsArea');
-            var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
-            WinPrint.document.write(prtContent.innerHTML);
-            WinPrint.document.close();
-            WinPrint.focus();
-            WinPrint.print();
-        }
-    })
+    window.stop();
+    $(document).ready(function () {
+        $('#cancelOrder').on('click', function (evt) {
+            if (confirm("Are you sure to Cancel this Order ?")) {
 
+            }
+            else {
+                evt.preventDefault();
+            }
+        });
+
+        $('#exit').on('click', function (evt) {
+            if (confirm("Are you sure to Leave this Page ?")) {
+
+            }
+            else {
+                evt.preventDefault();
+            }
+        });
+    });
+    
 </script>

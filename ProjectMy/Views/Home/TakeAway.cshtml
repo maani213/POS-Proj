@@ -28,8 +28,17 @@
     <div class="row mainDiv">
         <div class="col-lg-8" id="TakeAwayitemsArea">
             @{
-                int catId = ViewBag.CategoryID;
-                Html.RenderAction("TakeAwayItems", catId);
+                int catId = 1;
+                string idd = Convert.ToString(ViewBag.CategoryID);
+                if (idd == null)
+                {
+                    catId = 1;
+                }
+                else
+                {
+                    catId = Convert.ToInt32(idd);
+                }
+                Html.RenderAction("TakeAwayItems", new { categoryId = catId });
             }
         </div>
         <div class="operationsArea col-sm-4 col-md-4 col-lg-4 ">
@@ -87,31 +96,19 @@
         @{
             Html.RenderAction("GetCategories");
         }
-        @*<div class="col-md-1"><button class="customBttn1 pinkBg">Pizza</button></div>
-            <div class="col-md-1"><button class="customBttn1 skyBlueBg">Antipasti</button></div>
-            <div class="col-md-1"><button class="customBttn1 skyBlueBg">Le Nostre Past and Zuppe</button></div>
-            <div class="col-md-1"><button class="customBttn1" style="background-color:darkgoldenrod;">I Nostri Secondi and Contorni</button></div>
-            <div class="col-md-1"><button class="customBttn1 orangeBg">Soft and Hot Drinks</button></div>
-            <div class="col-md-1"><button class="customBttn1 pinkBg">Sheris Vermouths</button></div>
-            <div class="col-md-1"><button class="customBttn1 redBg">Lista dei vini and champane</button></div>
-            <div class="col-md-1"><button class="customBttn1 greenBg">Liqours Menu</button></div>
-            <div class="col-md-1"><button class="customBttn1 redBg">Larger Menu</button></div>
-            <div class="col-md-1"><button class="customBttn1 BlueBg">Desserts ice Cream</button></div>
-            <div class="col-md-1"><button class="customBttn1 aquaBg">Spirite and Whisky Menu</button></div>
-            <div class="col-md-1"><button class="customBttn1 greenBg">Extra Lunch and Special Menu</button></div>*@
 
     </div>
     <div id="sizesDialog" title="Size">
         @{
-            Html.RenderAction("GetSizesPartial", new { categoryId = 1 });
+            Html.RenderAction("GetSizesPartial", new { categoryId = catId });
         }
     </div>
     <div id="dialog" title="Toppings">
         @{
-            Html.RenderAction("GetExtrasPartial", new { categoryId = 1 });
+            Html.RenderAction("GetExtrasPartial", new { categoryId = catId });
         }
     </div>
-    <div id="dialog-message" title="Download complete">
+    <div id="dialog-message" title="Buy One Get One Free">
         <p>
             <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
             <b>Please Select Free Pizza ...</b>
