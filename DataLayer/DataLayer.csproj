@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="DAC\DAC.cs" />
     <Compile Include="Entities\Categories.cs" />
-    <Compile Include="Entities\Extras.cs" />
+    <Compile Include="Entities\ExtrasAndToppings.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\OrderDetails.cs" />
     <Compile Include="Entities\Orders.cs" />

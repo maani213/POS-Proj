@@ -10,6 +10,6 @@ namespace ProjectMy.Models
     {
         public string CategoryName { get; set; }
         public List<Sizes> sizes { get; set; }
-        public List<Extras> Items { get; set; }
+        public List<ExtrasAndToppings> Items { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    public class Extras
+    public class ExtrasAndToppings
     {
         [Key]
         public int Id { get; set; }

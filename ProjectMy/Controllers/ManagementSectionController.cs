@@ -180,7 +180,7 @@ namespace ProjectMy.Controllers
         {
             if (prices != null)
             {
-                Extras item = new Extras()
+                ExtrasAndToppings item = new ExtrasAndToppings()
                 {
                     Id = prices.ItemId,
                     Price1 = prices.price1,
@@ -207,7 +207,7 @@ namespace ProjectMy.Controllers
             }
             else
             {
-                return PartialView("_CategoryExtras",new List<Extras>());
+                return PartialView("_CategoryExtras",new List<ExtrasAndToppings>());
             }
            
         }
@@ -215,7 +215,7 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public PartialViewResult ExtrasPrices()
         {
-            List<Extras> extras = new List<Extras>();
+            List<ExtrasAndToppings> extras = new List<ExtrasAndToppings>();
             extras = DAC.GetAllExtras();
             return PartialView("_ExtrasPrices", extras);
         }
@@ -230,7 +230,7 @@ namespace ProjectMy.Controllers
             }
             else
             {
-                return PartialView("_CategoryExtras", new List<Extras>());
+                return PartialView("_CategoryExtras", new List<ExtrasAndToppings>());
             }
         }
 
@@ -241,7 +241,7 @@ namespace ProjectMy.Controllers
         }
         
         [HttpPost]
-        public JsonResult AddExrtaItem(Extras extra)
+        public JsonResult AddExrtaItem(ExtrasAndToppings extra)
         {
             if(extra==null)
             {

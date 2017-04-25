@@ -156,9 +156,9 @@ namespace DataLayer.DAC
             db.SaveChanges();
         }
 
-        public static void UpdateExtrasPrices(Extras itemPrices)
+        public static void UpdateExtrasPrices(ExtrasAndToppings itemPrices)
         {
-            Extras Updated = db.Extras.Find(itemPrices.Id);
+            ExtrasAndToppings Updated = db.Extras.Find(itemPrices.Id);
             Updated.Price1 = itemPrices.Price1;
             Updated.Price2 = itemPrices.Price2;
             Updated.Price3 = itemPrices.Price3;
@@ -197,12 +197,12 @@ namespace DataLayer.DAC
         //        return new List<Pizza>();
         //    }
         //}
-        public static List<Extras> GetExtrasByCategoryId(int categoryId)
+        public static List<ExtrasAndToppings> GetExtrasByCategoryId(int categoryId)
         {
             var result = db.Extras.Where(m => m.CategoryId == categoryId).ToList();
             return result;
         }
-        public static List<Extras> GetAllExtras()
+        public static List<ExtrasAndToppings> GetAllExtras()
         {
             var result = db.Extras.ToList();
             if (result != null)
@@ -211,7 +211,7 @@ namespace DataLayer.DAC
             }
             else
             {
-                return new List<Extras>();
+                return new List<ExtrasAndToppings>();
             }
         }
         public static void AddOrder(AddOrderModel orderDetails)
@@ -220,7 +220,7 @@ namespace DataLayer.DAC
             db.OrderDetails.Add(orderDetails.orderDetail);
             db.SaveChanges();
         }
-        public static void AddExtra(Extras extra)
+        public static void AddExtra(ExtrasAndToppings extra)
         {
             db.Extras.Add(extra);
             db.SaveChanges();

@@ -12,7 +12,7 @@ namespace ProjectMy.Models
         
         public List<Item> items { get; set; }
 
-        public List<Extras> Extras { get; set; }
+        public List<ExtrasAndToppings> Extras { get; set; }
 
     }
 }
