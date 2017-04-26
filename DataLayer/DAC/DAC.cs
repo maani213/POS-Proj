@@ -37,16 +37,16 @@ namespace DataLayer.DAC
             decimal price = 0;
             if (sizeId == 1)
             {
-                price = db.Extras.Where(m => id.Contains(m.Id)).Sum(m => m.Price1);
+                price = db.ExtrasAndToppings.Where(m => id.Contains(m.Id)).Sum(m => m.Price1);
                 //price = db.Items.SingleOrDefault(m => m.Id == id).Price1;
             }
             else if (sizeId == 2)
             {
-                price = db.Extras.Where(m => id.Contains(m.Id)).Sum(m => m.Price2);
+                price = db.ExtrasAndToppings.Where(m => id.Contains(m.Id)).Sum(m => m.Price2);
             }
             else if (sizeId == 3)
             {
-                price = db.Extras.Where(m => id.Contains(m.Id)).Sum(m => m.Price3);
+                price = db.ExtrasAndToppings.Where(m => id.Contains(m.Id)).Sum(m => m.Price3);
             }
 
             return price;
@@ -91,6 +91,7 @@ namespace DataLayer.DAC
         public static List<Item> GetItemsByCategoryId(int? id)
         {
             var result = db.Items.Where(m => m.CategoryId == id).ToList();
+            
             if (result != null)
             {
                 return result;
@@ -158,7 +159,7 @@ namespace DataLayer.DAC
 
         public static void UpdateExtrasPrices(ExtrasAndToppings itemPrices)
         {
-            ExtrasAndToppings Updated = db.Extras.Find(itemPrices.Id);
+            ExtrasAndToppings Updated = db.ExtrasAndToppings.Find(itemPrices.Id);
             Updated.Price1 = itemPrices.Price1;
             Updated.Price2 = itemPrices.Price2;
             Updated.Price3 = itemPrices.Price3;
@@ -199,12 +200,12 @@ namespace DataLayer.DAC
         //}
         public static List<ExtrasAndToppings> GetExtrasByCategoryId(int categoryId)
         {
-            var result = db.Extras.Where(m => m.CategoryId == categoryId).ToList();
+            var result = db.ExtrasAndToppings.Where(m => m.CategoryId == categoryId).ToList();
             return result;
         }
         public static List<ExtrasAndToppings> GetAllExtras()
         {
-            var result = db.Extras.ToList();
+            var result = db.ExtrasAndToppings.ToList();
             if (result != null)
             {
                 return result;
@@ -222,7 +223,7 @@ namespace DataLayer.DAC
         }
         public static void AddExtra(ExtrasAndToppings extra)
         {
-            db.Extras.Add(extra);
+            db.ExtrasAndToppings.Add(extra);
             db.SaveChanges();
         }
     }

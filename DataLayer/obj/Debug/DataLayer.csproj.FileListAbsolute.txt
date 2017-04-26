@@ -7,4 +7,3 @@ D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\EntityFramework.xml
 D:\myProjects\ProjectMy\FriendCode\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
 D:\myProjects\ProjectMy\FriendCode\DataLayer\obj\Debug\DataLayer.dll
 D:\myProjects\ProjectMy\FriendCode\DataLayer\obj\Debug\DataLayer.pdb
-D:\myProjects\ProjectMy\FriendCode\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache

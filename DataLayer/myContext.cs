@@ -21,13 +21,13 @@ namespace DataLayer
         public DbSet<Item> Items { get; set; }
 
         public DbSet<Sizes> Sizes { get; set; }
-        public DbSet<ExtrasAndToppings> Extras { get; set; }
+        public DbSet<ExtrasAndToppings> ExtrasAndToppings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Sizes>().ToTable("Sizes");
             modelBuilder.Entity<Item>().ToTable("Items");
-            modelBuilder.Entity<ExtrasAndToppings>().ToTable("Extras");
+            modelBuilder.Entity<ExtrasAndToppings>().ToTable("ExtrasAndToppings");
             modelBuilder.Entity<Categories>().ToTable("Categories");
             modelBuilder.Entity<OrderDetails>().ToTable("OrderDetails");
             modelBuilder.Entity<Orders>().ToTable("Order");

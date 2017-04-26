@@ -81,7 +81,7 @@ $(document).ready(function () {
                     $(this).dialog("close");
                 },
                 Cancel: function () {
-                    clearSelections();
+                    //clearSelections();
                     $(this).dialog("close");
                 }
             },
@@ -275,19 +275,20 @@ $(document).ready(function () {
         var itemsList = [];
 
         $('.tableBody tr').each(function () {
-            if (!this.rowIndex) return; // skip first row
+            if (!this.rowIndex) { return };
+            
             Quantity = this.cells[0].innerHTML;
             productName = this.cells[1].innerHTML;
             totalAmount = this.cells[2].innerHTML;
 
             var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
-
+            
             itemsList.push(item);
         });
 
         if (itemsList.length === 0) {
             alert("Please Select at least 1 item to place an order.");
-            ev.preventDefault();
+            evt.preventDefault();
         }
         addItem(itemsList);
     });
@@ -328,7 +329,7 @@ $(document).ready(function () {
         if (newQty === 0) {
 
             if (confirm("Are you sure to Delete this Item ?")) {
-                $('.rowSelected').empty();
+                $('.rowSelected').remove();
             }
             else {
                 evt.preventDefault();
