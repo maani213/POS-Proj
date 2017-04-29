@@ -253,5 +253,11 @@ namespace ProjectMy.Controllers
                 return Json("Added", JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpGet]
+        public ActionResult CookingInsrtuctions()
+        {
+            return View();
+        }
     }
 }

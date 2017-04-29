@@ -21,12 +21,12 @@
 </head>
 <body style="background-color: darkblue;">
     <div class="row mainDiv">
-        <div class="col-lg-8" id="itemsArea">
+        <div class="col-lg-8 col-sm-8 col-md-8" id="itemsArea">
             @{
                 Html.RenderAction("GetCategorySizes");
             }
         </div>
-        <div class="formArea col-lg-4" style="height: 437px !important;">
+        <div class="formArea col-sm-4 col-md-4 col-lg-4" style="height: 437px !important;">
             <div class="title">Pizza</div>
 
             <div class="row" style="margin-top:22px !important;">
@@ -105,7 +105,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 col-md-12 col-lg-12">
             @{ Html.RenderAction("GetSizeCategories"); }
             @*<div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>*@
         </div>
@@ -114,8 +114,8 @@
     </div>
     <footer>
         <div class="row">
-            <div class="col-sm-9 col-md-9"></div>
-            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
+            <div class="col-sm-9 col-md-9 col-lg-9"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2"> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
         </div>
 
     </footer>

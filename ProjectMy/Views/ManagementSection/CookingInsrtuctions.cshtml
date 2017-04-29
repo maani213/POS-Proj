@@ -15,25 +15,38 @@
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/customscripts/myscript.js"></script>
-    <title>MenuItem</title>
+    <title>Cooking Instructions</title>
     <style>
-        #itemsArea{
-            max-height: 425px !important;
-            overflow:auto !important;
-        }
     </style>
 </head>
 <body style="background-color: darkblue;">
-    <div class="row mainDiv">
-        <div class="col-lg-8 col-sm-8 col-md-8" id="itemsArea">
-            @{
-                Html.RenderAction("MenuItems");
-            }
+    <div class="row" style="text-align:center;color:white">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <h3>
+                Cooking and Other Instructions
+            </h3>
         </div>
-        <div class="formArea col-sm-4 col-md-4 col-lg-4 " style="height: 425px;">
-            <div class="title">Pizza</div>
-            <div class="subtitle">Verieties</div>
-            <div class="row" style="margin:2px !important;">
+    </div>
+    <div class="row mainDiv">
+        <div class="col-lg-8" id="itemsArea">
+            <div class="row">
+                @*@foreach (var item in Model)
+                {
+                    <div class="col-md-4 cusotomCol"><button class="singleSizeitem" style="background-color:aqua;color:black">@item.Title</button><input type="hidden" value="" /></div>
+                }*@
+                <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="2" /></div>
+                <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="3" /></div>
+                <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="4" /></div>
+                <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="3" /></div>
+                <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="4" /></div>
+                <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="4" /></div>
+
+            </div>
+        </div>
+        <div class="formArea col-lg-4" style="height: 432px;">
+            <div class="title"></div>
+            
+            <div class="row" style="margin-top:22px !important;">
                 <div class="col-md-2">
                     <label>Text</label>
                 </div>
@@ -41,15 +54,15 @@
                     <input type="text" id="text" style="width: 84%;" />
                 </div>
             </div>
-            <div class="row" style="margin:2px !important;">
+            <div class="row" style="margin-top: 10px !important;margin-bottom: 10px !important;">
                 <div class="col-md-2">
-                    <label>Toppings</label>
+                    <label>Price</label>
                 </div>
                 <div class="col-md-10">
                     <textarea id="toppings"></textarea>
                 </div>
             </div>
-            
+
             <fieldset>
                 <legend>Fonts</legend>
                 <div>
@@ -85,7 +98,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Text color</label> </div>
                         <div class="col-md-6">
-                            <input id="textcolor"  type="color" class="colorfields"/>
+                            <input id="textcolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
 
@@ -94,32 +107,12 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Button color</label> </div>
                         <div class="col-md-6">
-                            <input id="btncolor" type="color" class="colorfields"/>
+                            <input id="btncolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
                         </div>
                     </div>
-                    @*<div class="row rowcustom">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <input type="checkbox" /><span>Vatable</span>
-                        </div>
-                        <div class="col-md-3">
-                            VAT Rate
-                        </div>
-
-                        <div class="col-md-2">
-                            <select id="fontstyle">
-                                <option value="0"></option>
-                                <option value="Times-New-Roman">Times New Roman</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="Comic-Sans-MS">Comic Sans MS</option>
-
-                            </select>
-                        </div>
-
-                        <div class="col-md-1"></div>
-                    </div>*@
+                   
                 </div>
 
             </fieldset>
@@ -139,35 +132,29 @@
             </fieldset>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-8 col-md-8 col-lg-8">
-            
+    <footer>
+        <div class="row">
+            <div class="col-sm-7 col-md-7"></div>
+            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
+        
+                <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 greenBg" onclick="location.href='@Url.Action("#", "#")'">Save & Exit</button></div>
         </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4">
-            <div class="row">
-                
-                <div class="col-sm-4 col-md-4 col-lg-4"><button class="sizeVerBtn greenBg" onclick="location.href='@Url.Action("Sizes", "ManagementSection")'">Sizes()</button></div>
-                <div class="col-sm-4 col-md-4 col-lg-4"><button class="sizeVerBtn pinkBg">Verieties()</button></div>
-                <div class="col-sm-4 col-md-4 col-lg-4"><button class="sizeVerBtn pinkBg" onclick="location.href='@Url.Action("Extras", "ManagementSection")'">Extras</button></div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            @{ Html.RenderAction("GetCategories"); }
-        </div>
+    </footer>
 
-    </div>
-    <div class="row othersArea">
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Meal Deals</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Cooking Instructions</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Freebies</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Special Pizza</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection")'">Prices</button></div>
-        <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg">Cancel</button></div>
-        <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Exit</button></div>
-    </div>
 </body>
 
 </html>
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    
+</style>
+<script>
+    //$('.cusotomCol').on("click", function () {
+    //    $(this).css("border", "double thick");
+    //});
+</script>

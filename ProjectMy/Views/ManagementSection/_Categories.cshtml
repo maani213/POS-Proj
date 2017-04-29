@@ -12,7 +12,7 @@
 
 @foreach (var item in Model)
 {
-    <div class="col-md-1 cusotomCol">
+    <div class="col-md-1 col-lg-1  col-sm-1 cusotomCol">
         @Ajax.ActionLink(item.Title, "MenuItems", new { categoryId = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "itemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:" + item.BackgroundColor + ";color:" + item.TextColor + ";" })
         <input type="hidden" value="@item.Id" />
     </div>

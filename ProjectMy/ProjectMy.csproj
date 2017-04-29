@@ -223,6 +223,7 @@
     <Content Include="Views\Home\_GetExtras.cshtml" />
     <Content Include="Views\Home\TakeAwayHome.cshtml" />
     <Content Include="Views\ManagementSection\_CategoriesForExtras.cshtml" />
+    <Content Include="Views\ManagementSection\CookingInsrtuctions.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
