@@ -36,7 +36,7 @@
             <div class="row" id="catArea">
                 @foreach (var cat in Model)
                 {
-                    <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" value="@cat.PositionNumber" /></div>
+                    <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" id="@cat.Id" value="@cat.PositionNumber" /></div>
                 }
 
             </div>
@@ -128,14 +128,16 @@
             <fieldset>
                 <legend>Menu Buttons</legend>
                 <div class="row">
-                    <div class="col-md-2"></div>
+                   
                     <div class="col-md-4">
                         <button class="menuBtn greenBg" id="addCategory">Add Category</button>
                     </div>
                     <div class="col-md-4">
                         <button class="menuBtn redBg" id="deleteCategory">Delete Category</button>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button class="menuBtn skyBlueBg" id="editCategory">Update Category</button>
+                    </div>
                 </div>
             </fieldset>
         </div>

@@ -30,15 +30,16 @@
             }
         </div>
     </div>
-   
+
     <footer>
         <div class="row">
-            
-                @{ Html.RenderAction("GetPriceCategories"); }
-                <div class="col-md-1 ">@Ajax.ActionLink("Toppings/ Extras", "ExtrasPrices", new { }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
-                <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
 
-            
+            @{ Html.RenderAction("GetPriceCategories"); }
+            <div class="col-md-1 ">@Ajax.ActionLink("Toppings", "ExtrasPrices", new { cat = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
+            <div class="col-md-1 ">@Ajax.ActionLink("Extras", "ExtrasPrices", new { cat = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
+            <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
+
+
         </div>
     </footer>
     <style>

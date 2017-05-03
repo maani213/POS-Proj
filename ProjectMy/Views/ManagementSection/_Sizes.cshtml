@@ -4,21 +4,9 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4 cusotomCol"><button class="singleSizeitem" style="background-color:aqua;color:black">@item.Title</button><input type="hidden" value="" /></div>
+        <div class="col-md-4 cusotomCol"><button class="singleSizeitem" style="background-color:aqua;color:black">@item.Title</button><input id="@item.Id" type="hidden" value="" /></div>
     }
     <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="2" /></div>
     <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="3" /></div>
-    <div class="col-md-4 cusotomCol"><button class="singleSizeitem"></button><input type="hidden" value="4" /></div>
-    
 </div>
-@*<script src="~/Scripts/customscripts/myscript.js"></script>*@
-<script>
 
-    $(document).ready(function () {
-        $('.singleSizeitem').on("click", function () {
-            $('.singleSizeitem').removeClass("selected");
-
-            $(this).addClass("selected");
-        });
-    });
-</script>

@@ -94,7 +94,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Button color</label> </div>
                         <div class="col-md-6">
-                            <input id="btncolor" type="color" class="colorfields"/>
+                            <input id="btncolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
                         </div>
@@ -127,14 +127,16 @@
             <fieldset>
                 <legend>Menu Buttons</legend>
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
-                        <button class="menuBtn" id="addItem">Add Item</button>
+                    
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <button class="menuBtn btn-success" id="addItem">Add Item</button>
                     </div>
-                    <div class="col-md-4">
-                        <button class="menuBtn" id="deleteItem">Delete Item</button>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <button class="menuBtn btn-danger" id="deleteItem">Delete Item</button>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <button class="menuBtn btn-info" id="editItem">Update Item</button>
+                    </div>
                 </div>
             </fieldset>
         </div>
@@ -165,9 +167,14 @@
         <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Freebies</button></div>
         <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Special Pizza</button></div>
         <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection")'">Prices</button></div>
-        <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg">Cancel</button></div>
+        <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg" onclick="location.href='@Url.Action("DataFiles", "ManagementSection")'" >Back</button></div>
         <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Exit</button></div>
     </div>
 </body>
 
 </html>
+<script>
+    $('.Extraitem').on("click", function () {
+        $(this).toggleClass("selectedTopping");
+    });
+</script>

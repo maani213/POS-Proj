@@ -5,35 +5,6 @@
 
 $(document).ready(function () {
 
-    //$.ajax({
-    //    url: '/Home/GetSizes',
-    //    type: 'GET',
-    //    data: { categoryId: 1 },
-    //    traditional: true,
-    //    success: function (data) {
-    //        $('#sizesDialog').html(data);
-    //    },
-    //    error: function (request, error) {
-    //        alert("request:" + error);
-    //    }
-
-    //});
-
-    //$.ajax({
-    //    async: false,
-    //    url: '/Home/GetExtras',
-    //    type: 'GET',
-    //    data: { categoryId: 1 },
-    //    traditional: true,
-    //    success: function (data) {
-    //        $('#dialog').html(data);
-    //    },
-    //    error: function (request, error) {
-    //        alert("request:" + error);
-    //    }
-
-    //});
-
     var isFree = 0;
     var finalName = "";
     var FinalPrice = 0.00;
@@ -293,18 +264,7 @@ $(document).ready(function () {
         addItem(itemsList);
     });
 
-    //$(document).on("click", '#editPrice', function () {
-    //    var price1 = $('.rowSelected').find('#price').text();
-    //    $('#price').html('<input class="thVal" maxlength="4" type="text" width="2" value="" />');
-    //    //$(".thVal").val(price1);
-    //    $(".thVal").focus();
-    //    $(".thVal").keyup(function (event) {
-    //        if (event.keyCode == 13) {
-    //            $(currentEle).html($(".thVal").val().trim());
-    //            //$(currentEle).html($(".thVal").val().trim());
-    //        }
-    //    });
-    //});
+   
     $(document).on("click", '#plus', function () {
         var price = $('.rowSelected').find('#price').text();
         var qty = $('.rowSelected').find('#qty').text();

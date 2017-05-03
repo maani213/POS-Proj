@@ -3,10 +3,7 @@
 @foreach (var item in Model)
 {
     <div class="col-md-1 col-lg-1 col-sm-1 cusotomCol">
-        @*@Ajax.ActionLink(item.Title, "TakeAwayItems", new { categoryId = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "TakeAwayitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "ajaxcustomBttn", @style = "background-color:" + item.BackgroundColor + ";color:" + item.TextColor })
-            <input type="hidden" value="@item.Id" />*@
-
-        @*<button class="customBttncat" style="background-color:@item.BackgroundColor;color:@item.TextColor">@item.Title</button><input class="hidd" type="hidden" value="@item.Id" />*@
+       
         @Ajax.ActionLink(item.Title, "CategoryExtras", new { categoryId = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:" + item.BackgroundColor + ";color:" + item.TextColor + ";" })
         <input type="hidden" value="@item.Id" />
     </div>

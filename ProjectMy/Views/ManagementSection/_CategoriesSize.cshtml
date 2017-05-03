@@ -1,12 +1,5 @@
 ﻿@model IEnumerable<DataLayer.Entities.Categories>
 
-@*@foreach (var item in Model)
-    {
-        <div class="col-md-2 ">
-            @Ajax.ActionLink(item.Title, "GetCategorySizes", new { categoryId = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "itemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:" + item.BackgroundColor + ";color:" + item.TextColor })
-        <input type="hidden" value="@item.Id" />
-    </div>
-    }*@
 
 @foreach (var item in Model)
 {

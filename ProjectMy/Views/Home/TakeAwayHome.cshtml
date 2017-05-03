@@ -21,52 +21,58 @@
     <script src="~/Scripts/customscripts/TakeawayHome.js"></script>
     <style>
         footer {
-  position: fixed;
-  bottom: 0;
-  width:100%;
-}
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body style="background-color:darkblue">
     <div class="row" style="color:white;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:20px;">
-        <div class="col-sm-4">
+        <div class="col-md-4 col-sm-4 col-lg-4">
             @DateTime.Now.ToString("dd/MM/yyyy")
         </div>
-        <div class="col-sm-4" style="text-align:center">
-            TakeAway Home
+        <div class="col-md-4 col-sm-4 col-lg-4" style="text-align:center">
+            
         </div>
-        <div class="col-sm-4" style="text-align:right">
+        <div class="col-md-4 col-sm-4 col-lg-4" style="text-align:right">
             @DateTime.Now.ToString("HH:mm:ss")
         </div>
     </div>
 
     <div class="row" style="margin-top:30px;">
-        <div class="col-md-4 ">
+        <div class="col-md-1 col-sm-1 col-lg-1">
 
         </div>
-        <div class="col-md-4 ">
+        <div class="col-md-10 col-sm-10 col-lg-10">
+
 
             <div class="row">
                 @foreach (var cat in Model)
             {
-                    <div class="col-md-6 " style="margin-bottom:2px;">
-                        @*<button class="customBttn1" style="background-color:@cat.BackgroundColor;color:@cat.TextColor"> @Html.ActionLink(@cat.Title, "TakeAway", new { categoryId = cat.Id }, null) </button>*@
-                        @Html.ActionLink(@cat.Title, "TakeAway", new { categoryId = cat.Id }, new { @class = "btn customBttn1", @style = "background-color:"+cat.BackgroundColor+";color:"+cat.TextColor+";" })
+                    <div class="col-md-4 col-sm-4 col-lg-4 " style="margin-bottom:2px;">
+
+                        @Html.ActionLink(@cat.Title, "TakeAway", new { categoryId = cat.Id }, new { @class = "btn landingBtns", @style = "background-color:" + cat.BackgroundColor + ";color:" + cat.TextColor + ";" })
                     </div>
 
                 }
             </div>
         </div>
-        <div class="col-md-4 ">
+        <div class="col-md-1 col-sm-1 col-lg-1">
+
 
         </div>
     </div>
     <footer>
         <div class="row">
-            <div class="col-sm-9 col-md-9"></div>
-            <div class="col-sm-2 col-md-2 "> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Back</button></div>
+            <div class="col-sm-9 col-md-9 col-lg-9"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2 "> <button class="btn customBttn1 redBg" style="height:48px !important;" onclick="location.href='@Url.Action("MainMenu", "Home")'">Back</button></div>
         </div>
 
-        </footer>
+    </footer>
 </body>
 </html>
+
+<style>
+    
+</style>

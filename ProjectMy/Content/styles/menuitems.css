@@ -197,7 +197,17 @@ textarea {
     background-color: green;
     color: white;
 }
-
+.landingBtns{
+    padding: 32px 12px !important;
+    font-weight: bold !important;
+    font-size: 32px !important;
+    height: 128px !important;
+    width: 100%;
+    margin: 2px;
+    border: groove !important;
+    white-space:normal;
+    border-radius: 0px !important;
+    }
 .customBttn1 {
     font-weight: bold !important;
     font-size: 17px !important;
@@ -233,7 +243,7 @@ textarea {
     padding: 10px 12px;
     margin-bottom: 0;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
     vertical-align: middle;
     -ms-touch-action: manipulation;
     touch-action: manipulation;
@@ -297,9 +307,10 @@ textarea {
     width: 98%;
     margin: 1px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 20px;
     height: 93px;
     border: groove;
+    white-space: normal;
     /*background-color: aqua;*/
 }
 
@@ -307,7 +318,7 @@ textarea {
     width: 98%;
     margin: 1px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 21px;
     height: 93px;
     border: groove;
     /*background-color: aqua;*/
@@ -317,9 +328,10 @@ textarea {
     width: 98%;
     margin: 1px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 20px;
     height: 108px;
     border: groove;
+    white-space: normal;
 }
 
 .singleSizeitem {
@@ -327,9 +339,12 @@ textarea {
     margin: 1px;
     font-size: 30px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 22px;
+    text-wrap: normal;
     height: 216px;
     border: groove;
+    white-space: normal;
+
     /*background-color: aqua;*/
 }
 

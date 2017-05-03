@@ -51,10 +51,11 @@ namespace DataLayer.DAC
 
             return price;
         }
-        public static void AddItem(Item item)
+        public static Item AddItem(Item item)
         {
-            db.Items.Add(item);
+            var Newitem = db.Items.Add(item);
             db.SaveChanges();
+            return Newitem;
         }
 
         public static List<Categories> GetAllCategories()
@@ -91,7 +92,7 @@ namespace DataLayer.DAC
         public static List<Item> GetItemsByCategoryId(int? id)
         {
             var result = db.Items.Where(m => m.CategoryId == id).ToList();
-            
+
             if (result != null)
             {
                 return result;
@@ -135,16 +136,51 @@ namespace DataLayer.DAC
         //    db.SaveChanges();
         //}
 
-        public static void AddSize(Sizes item)
+        public static Sizes AddSize(Sizes item)
         {
-            db.Sizes.Add(item);
+            var result = db.Sizes.Add(item);
             db.SaveChanges();
+            return result;
         }
         public static void DeleteItemById(int? id)
         {
             var item = db.Items.First(m => m.Id == id);
-            db.Items.Remove(item);
-            db.SaveChanges();
+            if (item != null)
+            {
+                db.Items.Remove(item);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteSizeById(int? id)
+        {
+            var item = db.Sizes.First(m => m.Id == id);
+            if (item != null)
+            {
+                db.Sizes.Remove(item);
+                db.SaveChanges();
+            }
+        }
+
+
+        public static void DeleteExtraById(int? id)
+        {
+            var item = db.ExtrasAndToppings.First(m => m.Id == id);
+            if (item != null)
+            {
+                db.ExtrasAndToppings.Remove(item);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteCategoryItemById(int? id)
+        {
+            var item = db.Categories.First(m => m.Id == id);
+            if (item != null)
+            {
+                db.Categories.Remove(item);
+                db.SaveChanges();
+            }
         }
         public static void UpdatedPrices(Item itemPrices)
         {
@@ -205,7 +241,10 @@ namespace DataLayer.DAC
         }
         public static List<ExtrasAndToppings> GetAllExtras()
         {
-            var result = db.ExtrasAndToppings.ToList();
+            int catId = (from c in db.Categories
+                         where c.Title.ToLower().Contains("pizza")
+                         select c.Id).Single();
+            var result = db.ExtrasAndToppings.Where(m => m.CategoryId != catId).ToList();
             if (result != null)
             {
                 return result;
@@ -215,16 +254,92 @@ namespace DataLayer.DAC
                 return new List<ExtrasAndToppings>();
             }
         }
+
+        public static List<ExtrasAndToppings> GetAllToppings()
+        {
+            int catId = (from c in db.Categories
+                         where c.Title.ToLower().Contains("pizza")
+                         select c.Id).Single();
+            var result = db.ExtrasAndToppings.Where(m => m.CategoryId == catId).ToList();
+            
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                return new List<ExtrasAndToppings>();
+            }
+        }
+        
         public static void AddOrder(AddOrderModel orderDetails)
         {
             db.Orders.Add(orderDetails.order);
             db.OrderDetails.Add(orderDetails.orderDetail);
             db.SaveChanges();
         }
-        public static void AddExtra(ExtrasAndToppings extra)
+        public static ExtrasAndToppings AddExtra(ExtrasAndToppings extra)
         {
-            db.ExtrasAndToppings.Add(extra);
+            var result = db.ExtrasAndToppings.Add(extra);
             db.SaveChanges();
+            return result;
+        }
+
+        public static void UpdateItem(Item UpdatedItem)
+        {
+            var item = db.Items.FirstOrDefault(m => m.Id == UpdatedItem.Id);
+            
+            if (item != null)
+            {
+                item.Title = UpdatedItem.Title;
+                item.BackgroundColor = UpdatedItem.BackgroundColor;
+                item.TextColor = UpdatedItem.TextColor;
+                item.Toppings = UpdatedItem.Toppings;
+
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateSize(Sizes UpdatedItem)
+        {
+            var item = db.Sizes.FirstOrDefault(m => m.Id == UpdatedItem.Id);
+
+            if (item != null)
+            {
+                item.Title = UpdatedItem.Title;
+                
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateExtrasItem(ExtrasAndToppings UpdatedItem)
+        {
+            var item = db.ExtrasAndToppings.FirstOrDefault(m => m.Id == UpdatedItem.Id);
+
+            if (item != null)
+            {
+                item.Title = UpdatedItem.Title;
+                
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public static void UpdateCategory(Categories UpdatedItem)
+        {
+            var item = db.Categories.FirstOrDefault(m => m.Id == UpdatedItem.Id);
+
+            if (item != null)
+            {
+                item.Title = UpdatedItem.Title;
+                item.BackgroundColor = UpdatedItem.BackgroundColor;
+                item.TextColor = UpdatedItem.TextColor;
+                
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
     }
 }

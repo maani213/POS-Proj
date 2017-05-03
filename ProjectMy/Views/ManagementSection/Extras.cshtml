@@ -47,14 +47,16 @@
             <fieldset>
                 <legend>Menu Buttons</legend>
                 <div class="row">
-                    <div class="col-md-2"></div>
+                    
                     <div class="col-md-4">
                         <button class="menuBtn" id="addExtraItem">Add Item</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="menuBtn" id="deleteItem">Delete Item</button>
+                        <button class="menuBtn" id="deleteExtrasItem">Delete Item</button>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button class="menuBtn" id="EditExtrasItem">Update Item</button>
+                    </div>
                 </div>
             </fieldset>
         </div>
@@ -72,18 +74,6 @@
         </div>
 
     </footer>
-
-    @*<div class="col-md-3 ">
-            @Ajax.ActionLink("PIZZA", "CategoryExtras", new { categoryId = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:pink;" })
-        </div>
-        <div class="col-md-3 ">
-            @Ajax.ActionLink("BURGERS", "CategoryExtras", new { categoryId = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "ExtraitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "customBttn", @style = "background-color:green;color:white;" })
-        </div>
-        <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>
-        }*@
-
-
-
 </body>
 
 </html>
@@ -94,3 +84,11 @@
         width: 100%;
     }
 </style>
+<script>
+    $(document).on("click", ".Extraitem", function () {
+        $('.Extraitem').removeClass('selectedTopping');
+        $(this).addClass("selectedTopping");
+        var text = $(".selectedTopping").text();
+        $('#text').val(text)
+    });
+</script>

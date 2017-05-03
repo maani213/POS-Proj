@@ -53,8 +53,8 @@ namespace ProjectMy.Controllers
         {
             if (model != null)
             {
-                DAC.AddItem(model);
-                return Json("item added", JsonRequestBehavior.AllowGet);
+                var item = DAC.AddItem(model);
+                return Json(item, JsonRequestBehavior.AllowGet);
             }
             else
                 return Json("Please add Information", JsonRequestBehavior.AllowGet);
@@ -86,11 +86,117 @@ namespace ProjectMy.Controllers
             return PartialView("_Categories", DAC.GetAllCategories());
         }
 
-        [HttpDelete]
+        [HttpPost]
         public JsonResult DeleteItem(int? id)
         {
-            DAC.DeleteItemById(id);
-            return Json("Item Deleted", JsonRequestBehavior.AllowGet);
+            if (id != null)
+            {
+                DAC.DeleteItemById(id);
+                return Json("Item Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteExtra(int? id)
+        {
+            if (id != null)
+            {
+                DAC.DeleteExtraById(id);
+                return Json("Item Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteSize(int? id)
+        {
+            if (id != null)
+            {
+                DAC.DeleteSizeById(id);
+                return Json("Item Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteCategory(int? id)
+        {
+            if (id != null)
+            {
+                DAC.DeleteCategoryItemById(id);
+                return Json("Item Deleted", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult EditItem(Item item)
+        {
+            if (item != null)
+            {
+                DAC.UpdateItem(item);
+                return Json("Item Updated", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult EditExtra(ExtrasAndToppings extraItem)
+        {
+            if (extraItem != null)
+            {
+                DAC.UpdateExtrasItem(extraItem);
+                return Json("Item Updated", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult EditSize(Sizes sizeItem)
+        {
+            if (sizeItem != null)
+            {
+                DAC.UpdateSize(sizeItem);
+                return Json("Item Updated", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult EditCategory(Categories category)
+        {
+            if (category != null)
+            {
+                DAC.UpdateCategory(category);
+                return Json("Item Updated", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("No Value Passed", JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpGet]
@@ -104,8 +210,8 @@ namespace ProjectMy.Controllers
         {
             if (size != null)
             {
-                DAC.AddSize(size);
-                return Json("Item added", JsonRequestBehavior.AllowGet);
+                var Item = DAC.AddSize(size);
+                return Json(Item, JsonRequestBehavior.AllowGet);
             }
             else
                 return Json("Operation Failed because no inofrmation added.", JsonRequestBehavior.AllowGet);
@@ -195,33 +301,44 @@ namespace ProjectMy.Controllers
         }
 
         [HttpGet]
-        public ActionResult Extras() {
+        public ActionResult Extras()
+        {
             return View();
         }
         [ChildActionOnly]
         public PartialViewResult CategoryExtras()
         {
             var extras = DAC.GetExtrasByCategoryId(1);
-            if (extras != null) {
-                return PartialView("_CategoryExtras",extras);
+            if (extras != null)
+            {
+                return PartialView("_CategoryExtras", extras);
             }
             else
             {
-                return PartialView("_CategoryExtras",new List<ExtrasAndToppings>());
+                return PartialView("_CategoryExtras", new List<ExtrasAndToppings>());
             }
-           
+
         }
 
         [HttpGet]
-        public PartialViewResult ExtrasPrices()
+        public PartialViewResult ExtrasPrices(int cat)
         {
             List<ExtrasAndToppings> extras = new List<ExtrasAndToppings>();
-            extras = DAC.GetAllExtras();
-            return PartialView("_ExtrasPrices", extras);
+            if (cat == 1)
+            {
+                extras = DAC.GetAllToppings();
+                return PartialView("_ToppingsPrices", extras);
+            }
+            else
+            {
+                extras = DAC.GetAllExtras();
+                return PartialView("_ExtrasPrices", extras);
+            }
+            
         }
 
         [HttpGet]
-        public PartialViewResult CategoryExtras(int categoryId=1)
+        public PartialViewResult CategoryExtras(int categoryId = 1)
         {
             var extras = DAC.GetExtrasByCategoryId(categoryId);
             if (extras != null)
@@ -239,18 +356,18 @@ namespace ProjectMy.Controllers
         {
             return PartialView("_CategoriesForExtras", DAC.GetAllCategories());
         }
-        
+
         [HttpPost]
         public JsonResult AddExrtaItem(ExtrasAndToppings extra)
         {
-            if(extra==null)
+            if (extra == null)
             {
                 return Json("Erro : Invalid Data Added", JsonRequestBehavior.AllowGet);
             }
             else
             {
-                DAC.AddExtra(extra);
-                return Json("Added", JsonRequestBehavior.AllowGet);
+                var Item = DAC.AddExtra(extra);
+                return Json(Item, JsonRequestBehavior.AllowGet);
             }
         }
 
