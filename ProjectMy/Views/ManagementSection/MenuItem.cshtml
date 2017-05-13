@@ -1,4 +1,4 @@
-﻿
+﻿@model DataLayer.Entities.Item
 @{
     Layout = null;
 }
@@ -17,11 +17,12 @@
     <script src="~/Scripts/customscripts/myscript.js"></script>
     <title>MenuItem</title>
     <style>
-        #itemsArea{
+        #itemsArea {
             max-height: 425px !important;
-            overflow:auto !important;
+            overflow: auto !important;
         }
     </style>
+
 </head>
 <body style="background-color: darkblue;">
     <div class="row mainDiv">
@@ -30,128 +31,155 @@
                 Html.RenderAction("MenuItems");
             }
         </div>
+
         <div class="formArea col-sm-4 col-md-4 col-lg-4 " style="height: 425px;">
             <div class="title">Pizza</div>
-            <div class="subtitle">Verieties</div>
-            <div class="row" style="margin:2px !important;">
-                <div class="col-md-2">
-                    <label>Text</label>
+
+            @using (Ajax.BeginForm("AddItem", new { }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "NewItem" }, new { id = "myForm" }))
+            {
+                @Html.HiddenFor(m => m.CategoryId, new { id = "categoryId" })
+                @Html.HiddenFor(m => m.Id, new { id = "ItemId" })
+                <div class="row" style="margin:2px !important;">
+                    <div class="col-md-2">
+                        <label>Text</label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Title, new { id = "text", @style = "width: 84%;" })
+                        @*<input type="text" id="text" style="width: 84%;" />*@
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <input type="text" id="text" style="width: 84%;" />
+                <div class="row" style="margin:2px !important;">
+                    <div class="col-md-2">
+                        <label>Toppings</label>
+                    </div>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => m.Toppings, new { id = "toppings" })
+                        @*<textarea id="toppings"></textarea>*@
+                    </div>
                 </div>
-            </div>
-            <div class="row" style="margin:2px !important;">
-                <div class="col-md-2">
-                    <label>Toppings</label>
-                </div>
-                <div class="col-md-10">
-                    <textarea id="toppings"></textarea>
-                </div>
-            </div>
-            
-            <fieldset>
-                <legend>Fonts</legend>
-                <div>
+
+                <fieldset>
+                    <legend>Fonts</legend>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="btnsWrapper"><b>Size</b>(<span id="sizecount">5</span>)</div>
+                                <div>
+                                    <div><button class="btn btn-success customBtn" value="">+</button></div>
+                                    <div><button class="btn btn-danger customBtn" value="">-</button></div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div>
+                                    @Html.DropDownListFor(m => m.TextStyle, new List<SelectListItem>
+                                    {
+                                    new SelectListItem{  Text="Times New Roman" , Value="Times-New-Roman" },
+                                    new SelectListItem{ Text="Verdana", Value = "Verdana" },
+                                    new SelectListItem{ Text="Comic-Sans-MS", Value = "Comic-Sans-MS" },
+                                    new SelectListItem{ Text="WildWest", Value = "WildWest" },
+                                    new SelectListItem{ Text="Bedrock", Value = "Bedrock" },
+                                    new SelectListItem{ Text="Arial", Value = "Arial" },
+                                    new SelectListItem{ Text="Courier", Value = "Courier" },
+                                    new SelectListItem{ Text="Tahoma", Value = "Tahoma" },
+                                    new SelectListItem{ Text="Comic-Sans-MS", Value = "Comic-Sans-MS" },
+                                    new SelectListItem{ Text="sans-serif", Value = "sans-serif" },
+                                    }, new { id = "fontstyle" })
+                                    @*<select id="fontstyle">
+                                            <option value="Times-New-Roman">Times New Roman</option>
+                                            <option value="Verdana">Verdana</option>
+                                            <option value="Comic-Sans-MS">Comic Sans MS</option>
+                                            <option value="WildWest">WildWest</option>
+                                            <option value="Bedrock">Bedrock</option>
+                                            <option value="Arial"> Arial</option>
+                                            <option value="Courier"> Courier </option>
+                                            <option value="Tahoma"> Tahoma</option>
+                                            <option value="Times New Roman">Times New Roman</option>
+                                            <option value="sans-serif">sans-serif</option>
+                                        </select>*@<br />
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">@Html.CheckBoxFor(m => m.IsBold, new { id = "isBold" })<span>Bold</span>  @*<input type="checkbox" id="isBold" /><span>Bold</span>*@</div>
+                                    <div class="col-md-4">@Html.CheckBoxFor(m => m.IsItalic, new { id = "isitalic" })<span>italic</span>  @*<input type="checkbox" id="isitalic" /><span>italic</span>*@ </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row rowcustom">
+                            <div class="col-md-5"><label>Text color</label> </div>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.TextColor, new { id = "textcolor", type = "color", @class = "colorfields" })
+                                @*<input id="textcolor" type="color" class="colorfields" />*@
+                            </div>
+                            <div class="col-md-1">
+
+                            </div>
+                        </div>
+                        <div class="row rowcustom">
+                            <div class="col-md-5"><label>Button color</label> </div>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.BackgroundColor, new { id = "btncolor", type = "color", @class = "colorfields" })
+                                @*<input id="btncolor" type="color" class="colorfields" />*@
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+                        @*<div class="row rowcustom">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-3">
+                                    <input type="checkbox" /><span>Vatable</span>
+                                </div>
+                                <div class="col-md-3">
+                                    VAT Rate
+                                </div>
+
+
+                            </div>*@
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Menu Buttons</legend>
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="btnsWrapper"><b>Size</b>(<span id="sizecount">5</span>)</div>
-                            <div>
-                                <div><button class="btn btn-success customBtn" value="">+</button></div>
-                                <div><button class="btn btn-danger customBtn" value="">-</button></div>
-                            </div>
+
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <button class="menuBtn btn-success" id="addItem" type="submit">Add Item</button>
                         </div>
-                        <div class="col-md-7">
-                            <div>
-                                <select id="fontstyle">
-                                    <option value="Times-New-Roman">Times New Roman</option>
-                                    <option value="Verdana">Verdana</option>
-                                    <option value="Comic-Sans-MS">Comic Sans MS</option>
-                                    <option value="WildWest">WildWest</option>
-                                    <option value="Bedrock">Bedrock</option>
-                                    <option value="Arial"> Arial</option>
-                                    <option value="Courier"> Courier </option>
-                                    <option value="Tahoma"> Tahoma</option>
-                                    <option value="Times New Roman">Times New Roman</option>
-                                    <option value="sans-serif">sans-serif</option>
-                                </select><br />
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4"><input type="checkbox" id="isBold" /><span>Bold</span></div>
-                                <div class="col-md-4"><input type="checkbox" id="isitalic" /><span>italic</span> </div>
-                            </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <button class="menuBtn btn-danger" id="deleteItem" type="button">Delete Item</button>
+                        </div>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <button class="menuBtn btn-info" id="editItem" type="button" disabled>Update Item</button>
                         </div>
                     </div>
-                    <div class="row rowcustom">
-                        <div class="col-md-5"><label>Text color</label> </div>
-                        <div class="col-md-6">
-                            <input id="textcolor"  type="color" class="colorfields"/>
-                        </div>
-                        <div class="col-md-1">
 
-                        </div>
-                    </div>
-                    <div class="row rowcustom">
-                        <div class="col-md-5"><label>Button color</label> </div>
-                        <div class="col-md-6">
-                            <input id="btncolor" type="color" class="colorfields" />
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                    </div>
-                    @*<div class="row rowcustom">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-3">
-                            <input type="checkbox" /><span>Vatable</span>
-                        </div>
-                        <div class="col-md-3">
-                            VAT Rate
-                        </div>
+                </fieldset>
+            }
 
-                        <div class="col-md-2">
-                            <select id="fontstyle">
-                                <option value="0"></option>
-                                <option value="Times-New-Roman">Times New Roman</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="Comic-Sans-MS">Comic Sans MS</option>
+            <div class="row" style="margin-top:5px;">
 
-                            </select>
-                        </div>
-
-                        <div class="col-md-1"></div>
-                    </div>*@
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    @using (Ajax.BeginForm("DeleteAllItems", new AjaxOptions { HttpMethod = "POST", OnSuccess = "DeleteAllSuccess" }))
+                    {
+                        @Html.Hidden("CategoryId", null, new { id = "deleteAllCatId" })
+                        <button class="menuBtn btn-danger" id="deleteAll" type="submit">Delete All </button>
+                    }
                 </div>
-
-            </fieldset>
-
-            <fieldset>
-                <legend>Menu Buttons</legend>
-                <div class="row">
-                    
-                    <div class="col-sm-4 col-md-4 col-lg-4">
-                        <button class="menuBtn btn-success" id="addItem">Add Item</button>
-                    </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4">
-                        <button class="menuBtn btn-danger" id="deleteItem">Delete Item</button>
-                    </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4">
-                        <button class="menuBtn btn-info" id="editItem">Update Item</button>
-                    </div>
-                </div>
-            </fieldset>
+            </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-8 col-md-8 col-lg-8">
-            
+
         </div>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
             <div class="row">
-                
-                <div class="col-sm-4 col-md-4 col-lg-4"><button class="sizeVerBtn greenBg" onclick="location.href='@Url.Action("Sizes", "ManagementSection")'">Sizes()</button></div>
-                <div class="col-sm-4 col-md-4 col-lg-4"><button class="sizeVerBtn pinkBg">Verieties()</button></div>
-                <div class="col-sm-4 col-md-4 col-lg-4"><button class="sizeVerBtn pinkBg" onclick="location.href='@Url.Action("Extras", "ManagementSection")'">Extras</button></div>
+
+                <div class="col-sm-4 col-md-4 col-lg-4"><button type="button" class="sizeVerBtn greenBg" onclick="location.href='@Url.Action("Sizes","ManagementSection")'">Sizes()</button></div>
+                <div class="col-sm-4 col-md-4 col-lg-4"><button type="button" class="sizeVerBtn pinkBg">Verieties()</button></div>
+                <div class="col-sm-4 col-md-4 col-lg-4"><button type="button" class="sizeVerBtn pinkBg" onclick="location.href='@Url.Action("Extras","ManagementSection")'">Extras</button></div>
             </div>
         </div>
     </div>
@@ -162,13 +190,13 @@
 
     </div>
     <div class="row othersArea">
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Meal Deals</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Cooking Instructions</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Freebies</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 skyBlueBg">Special Pizza</button></div>
-        <div class="col-sm-2 col-md-2 col-lg-2"><button class="customBttn2 greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection")'">Prices</button></div>
-        <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg" onclick="location.href='@Url.Action("DataFiles", "ManagementSection")'" >Back</button></div>
-        <div class="col-sm-1 col-md-1 col-lg-1"><button class="customBttn2 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Exit</button></div>
+        <div class="col-sm-2 col-md-2 col-lg-2"><button type="button" class="customBttn2 skyBlueBg">Meal Deals</button></div>
+        <div class="col-sm-2 col-md-2 col-lg-2"><button type="button" class="customBttn2 skyBlueBg">Cooking Instructions</button></div>
+        <div class="col-sm-2 col-md-2 col-lg-2"><button type="button" class="customBttn2 skyBlueBg">Freebies</button></div>
+        <div class="col-sm-2 col-md-2 col-lg-2"><button type="button" class="customBttn2 skyBlueBg">Special Pizza</button></div>
+        <div class="col-sm-2 col-md-2 col-lg-2"><button type="button" class="customBttn2 greenBg" onclick="location.href='@Url.Action("Prices", "ManagementSection" )'">Prices</button></div>
+        <div class="col-sm-1 col-md-1 col-lg-1"><button type="button" class="customBttn2 redBg" onclick="location.href='@Url.Action("DataFiles", "ManagementSection" )'">Back</button></div>
+        <div class="col-sm-1 col-md-1 col-lg-1"><button type="button" class="customBttn2 redBg" onclick="location.href='@Url.Action("MainMenu", "Home" )'">Exit</button></div>
     </div>
 </body>
 

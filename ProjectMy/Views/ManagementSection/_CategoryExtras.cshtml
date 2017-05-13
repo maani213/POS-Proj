@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<DataLayer.Entities.ExtrasAndToppings>
 
 
-<div class="row">
+<div class="row" id="extrasDiv">
     @foreach (var item in Model)
     {
         <div class="col-md-2 cusotomCol"><button class="Extraitem" style="background-color:hotpink;color:white">@item.Title </button><input type="hidden" id="@item.Id" value="@item.Id" /> </div>
     }
-    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="2" /></div>
-    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="3" /></div>
-    <div class="col-md-2 cusotomCol"><button class="Extraitem"></button><input type="hidden" value="4" /></div>
-   
 </div>
 
 <style>
@@ -20,5 +16,5 @@
     }
 </style>
 <script>
-    
+
 </script>

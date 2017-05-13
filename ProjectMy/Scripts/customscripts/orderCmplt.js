@@ -116,34 +116,88 @@ $(document).ready(function () {
     });
 
     $('#print').on('click', function (evt) {
+
         if ($('#balance').text() == "") {
             evt.preventDefault();
-            alert("Amount is not Paid Yet...");
+            alert("Amount is not Cleared Yet...");
         }
         else {
-            var prtContent = document.getElementById('operationsArea');
-            var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
-            WinPrint.document.write(prtContent.innerHTML);
-            WinPrint.document.close();
-            WinPrint.focus();
-            WinPrint.print();
+            var itemsList = [];
+
+            $('.tableBody tr').each(function () {
+                if (!this.rowIndex) return; // skip first row
+                Quantity = this.cells[0].innerHTML;
+                productName = this.cells[1].innerHTML;
+                totalAmount = this.cells[2].innerHTML;
+
+                var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
+
+                itemsList.push(item);
+            });
+            var customerName = $('#CustomerName').val();
+            var totalAmount1 = $('#totalAmount').text();
+            var totalpaid = $('#paidAmount').text();
+            var balance = $('#balance').text();
+            var model1 = {
+                ordersItems: itemsList,
+                CustomerName: customerName,
+                TotalAmount: parseFloat(totalAmount1),
+                totalpaid: parseFloat(totalpaid),
+                balance: parseFloat(balance)
+            };
+            PrintReciept(model1);
         }
-    })
+
+        //if ($('#balance').text() == "") {
+        //    evt.preventDefault();
+        //    alert("Amount is not Paid Yet...");
+        //}
+        //else {
+        //    var prtContent = document.getElementById('operationsArea');
+        //    var WinPrint = window.open('', '', 'letf=100,top=100,width=600,height=600');
+        //    WinPrint.document.write(prtContent.innerHTML);
+        //    WinPrint.document.close();
+        //    WinPrint.focus();
+        //    WinPrint.print();
+        //}
+    });
 
 });
-function addItem(itemList, totalpaid1, balance1, customerName1) {
-    
+
+function PrintReciept(model1) {
+   
     $.ajax({
-        url: '/Home/ClearCash',
+        url: '/Home/PrintOrder',
         type: 'POST',
-        data: JSON.stringify({ 'orders': itemList, 'CustomerName': customerName1, 'totalpaid': totalpaid1, 'balance': balance1 }),
+        data: JSON.stringify({ model: model1 }),
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            window.location.href = "/Home/TakeAway";
+            alert(data);
         },
         error: function (request, error) {
             alert("request: " + error);
         }
     });
+};
+function addItem(itemList, totalpaid1, balance1, customerName1) {
+    
+    $.ajax({
+        url: '/Home/ClearCash',
+        type: 'POST',
+        //data: JSON.stringify({ 'orders': itemList, 'CustomerName': customerName1, 'totalpaid': totalpaid1, 'balance': balance1 }),
+        data: {  
+            'orders' : JSON.stringify(itemList),     
+            'CustomerName': customerName1, 
+            'totalpaid': totalpaid1, 
+            'balance': balance1 },
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+    success: function (data) {
+        window.location.href = "/Home/TakeAway";
+    },
+    error: function (request, error) {
+        alert("request: " + error);
+    }
+});
 };

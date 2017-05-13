@@ -45,7 +45,38 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public PartialViewResult MenuItems(int? categoryId = 1)
         {
-            return PartialView("_MenuItems", DAC.GetItemsByCategoryId(categoryId));
+            List<Item> Items = DAC.GetItemsByCategoryId(categoryId);
+            List<ItemViewModel> ViewItems = new List<ItemViewModel>();
+            foreach (var item in Items)
+            {
+                ItemViewModel viewitem = new ItemViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+                viewitem.Toppings = item.Toppings;
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                ViewItems.Add(viewitem);
+            }
+
+            return PartialView("_MenuItems", ViewItems);
         }
 
         [HttpPost]
@@ -54,7 +85,32 @@ namespace ProjectMy.Controllers
             if (model != null)
             {
                 var item = DAC.AddItem(model);
-                return Json(item, JsonRequestBehavior.AllowGet);
+
+                ItemViewModel viewitem = new ItemViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+                viewitem.Toppings = item.Toppings;
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                return Json(viewitem, JsonRequestBehavior.AllowGet);
             }
             else
                 return Json("Please add Information", JsonRequestBehavior.AllowGet);
@@ -142,14 +198,52 @@ namespace ProjectMy.Controllers
             }
         }
 
+        public JsonResult DeleteMultipleItemsItem(int[] ids)
+        {
+            string message = Convert.ToString(ids.Count()) + " Deleted";
+            if (ids.Count() > 0)
+            {
+                DAC.DeleteMultipleItems(ids);
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("Invalid data passed.", JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [HttpPost]
-        public JsonResult EditItem(Item item)
+        public JsonResult EditItem(Item Newitem)
         {
-            if (item != null)
+            if (Newitem != null)
             {
-                DAC.UpdateItem(item);
-                return Json("Item Updated", JsonRequestBehavior.AllowGet);
+                Item item = DAC.UpdateItem(Newitem);
+
+                ItemViewModel viewitem = new ItemViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+                viewitem.Toppings = item.Toppings;
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                return Json(viewitem, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -334,7 +428,7 @@ namespace ProjectMy.Controllers
                 extras = DAC.GetAllExtras();
                 return PartialView("_ExtrasPrices", extras);
             }
-            
+
         }
 
         [HttpGet]
@@ -376,5 +470,11 @@ namespace ProjectMy.Controllers
         {
             return View();
         }
+
+        public JsonResult DeleteAllItems(int CategoryId = -1)
+        {
+            return Json("All Items are Deleted.", JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

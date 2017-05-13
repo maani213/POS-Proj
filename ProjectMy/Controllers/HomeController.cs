@@ -61,10 +61,17 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
+        public JsonResult PrintOrder(PrintModel model)
+        {
+            model.PrintReceiptForTransaction();
+            return Json("Order Printed", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult ClearCash(List<OrderViewModel> orders, string CustomerName = "Test", int totalpaid = 0, int balance = 0)
         {
-            AddOrderModel orderModel = new AddOrderModel();
-            orderModel.order.CustomerName = CustomerName;
+            //AddOrderModel orderModel = new AddOrderModel();
+            //orderModel.order.CustomerName = CustomerName;
             //orderModel.orderDetail.ItemName = orders.ItemName;
             return Json("Order Completed", JsonRequestBehavior.AllowGet);
         }

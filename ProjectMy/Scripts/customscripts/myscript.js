@@ -7,7 +7,7 @@ $(document).ready(function () {
         var a = rgb.split("(")[1].split(")")[0].split(",");
         return "#" + a.map(function (x) {
             x = parseInt(x).toString(16);
-            return (x.length == 1) ? "0" + x : x;
+            return (x.length === 1) ? "0" + x : x;
         }).join("");
     }
 
@@ -23,13 +23,59 @@ $(document).ready(function () {
 
 
     });
+    $(document).on('click', "#deleteAll", function (evt) {
+
+        if ($('.DeptSelected').length === 0) {
+            alert('Please Select any Category.');
+            evt.preventDefault();
+        }
+
+        else if (confirm("You are attemting to Delete All Items , OK ? ")) {
+            if (confirm("Are you sure to Delete All Items ? ")) {
+
+            }
+            else {
+                evt.preventDefault();
+            }
+        }
+        else {
+            evt.preventDefault();
+        }
+    });
 
     $(document).on("click", '.singleitem', function () {
-        $('.singleitem').removeClass("selected");
-        $(this).addClass("selected");
+
+        $(this).toggleClass("selected");
+
+        if ($('.selected').length === 0) {
+            $('#editItem').attr('disabled', true);
+        }
+        else {
+            $('#editItem').attr('disabled', false);
+        }
         if ($('#text').length > 0) {
             var bgColor = $(this).css('backgroundColor');
             var txtColor = $(this).css('Color');
+
+            var IsBold = $(this).css('font-weight');
+
+            var IsItalic = $(this).css('font-style');
+
+            if (IsBold === "normal") {
+                $('#isBold').prop('checked', false);
+            }
+            else if (IsBold === "400" || IsBold === "bold") {
+                $('#isBold').prop('checked', true);
+            }
+
+            if (IsItalic === "italic") {
+                $('#isitalic').prop('checked', true);
+            }
+            else if (IsItalic === "none") {
+                $('#isitalic').prop('checked', false);
+            }
+            var ItemId = $(this).siblings('input').attr("id");
+            $('#ItemId').val(ItemId);
 
             $('#btncolor').val(rgbToHex(bgColor));
             $('#textcolor').val(rgbToHex(txtColor));
@@ -51,55 +97,30 @@ $(document).ready(function () {
     });
 
     $('.extrasCat').on("click", function () {
+        $("#categoryId").val($(this).siblings('input').val());
         $('.extrasCat').removeClass("DeptSelected");
         $(this).addClass("DeptSelected");
         var dept = $('.DeptSelected').text();
-
+        var CateId = $(this).siblings('input[type=hidden]').val();
+        $('#deleteAllCatId').val(CateId);
         $('.title').text(dept);
     });
 
     $('#addItem').on("click", function (evt) {
 
-        if ($(".selected").length === 0) {
-            evt.preventDefault();
-            alert("Please Select a button to add Item.");
-        }
-        else if ($(".DeptSelected").length === 0) {
+        if ($(".DeptSelected").length === 0) {
             evt.preventDefault();
             alert("Please Select a Category.");
         }
-        else {
-            var textColor = $('#textcolor').val();
-            var bgColor = $('#btncolor').val();
-            var price = $('#price').val();
-            var isBold = $('#isBold').is(':checked');
-            var isItalic = $('#isitalic').is(':checked');
 
-            var TitleText = $('#text').val();
-            var toppings = $('#toppings').val();
-            var textStyle = $('#fontstyle').val();
-            var categoryId = $(".DeptSelected").siblings('input').val();
-            var positionNumb = $(".selected").siblings('input').val();
-            if (TitleText !== "" && bgColor !== "") {
-
-                var item = { Title: TitleText, Toppings: toppings, BackgroundColor: bgColor, TextColor: textColor, PositionNumber: positionNumb, CategoryId: categoryId };
-                addItem(item);
-
-                var textColor = $('#textcolor').val("");
-                var bgColor = $('#btncolor').val("");
-                var price = $('#price').val();
-
-                var TitleText = $('#text').val("");
-                var toppings = $('#toppings').val("");
-                var textStyle = $('#fontstyle').val("");
-
-
-            }
-            else {
-                alert("enter information");
-            }
+        else if ($('#text').val() === "" && $('#toppings').val() === "") {
+            evt.preventDefault();
+            alert("enter information");
         }
-
+        else if ($('.singleitem').length > 30) {
+            evt.preventDefault();
+            alert('Sorry ! you can not add more Items (max=30).');
+        }
     });
 
     $(document).on("click", '#addExtraItem', function (evt) {
@@ -153,11 +174,9 @@ $(document).ready(function () {
 
     $('#addSize').on("click", function (evt) {
 
-        if ($(".selected").length === 0) {
-            evt.preventDefault();
-            alert("Please Select a button to add Item.");
+        if ($(".DeptSelected").length === 0) {
+            alert('Select Departement .');
         }
-
         else {
             var textColor = $('#textcolor').val();
             var bgColor = $('#btncolor').val();
@@ -171,21 +190,19 @@ $(document).ready(function () {
                 addSize(size);
             }
             else {
-                alert("enter information");
+                alert("Enter Title");
             }
         }
-
     });
 
     $('#deleteItem').on("click", function (evt) {
-        //$('div').remove(".selected");
+
         if ($(".selected").length === 0) {
             evt.preventDefault();
-            alert("Please Select a button to Delete Item.");
+            alert("Please Select button(s) to Delete Item.");
         }
-        else {
+        else if ($(".selected").length === 1) {
             var id = $(".selected").siblings("input").attr("id");
-            var t = $(".selected").text();
 
             if ($(".selected").text() === "") {
                 alert("Please Select a valid Item.");
@@ -197,8 +214,24 @@ $(document).ready(function () {
             else {
                 evt.preventDefault();
             }
+        }
+        else if ($(".selected").length > 1) {
 
+            var itemsIds = [];
 
+            $('.selected').each(function () {
+                var Id = $(this).siblings("input").attr("id");
+
+                itemsIds.push(Id);
+            });
+            var count = itemsIds.length;
+            if (confirm("Are you sure to delete " + count + " item ?")) {
+                DeleteMultipleItemsItem(itemsIds);
+            }
+
+            else {
+                evt.preventDefault();
+            }
         }
     });
     $('#deleteCategory').on("click", function (evt) {
@@ -267,40 +300,38 @@ $(document).ready(function () {
         }
     });
     $(document).on("click", '#editItem', function (evt) {
-        //getting Updated Values
-        var ItemId = $('.selected').siblings('input').attr("id");
-        var NewtextColor = $('#textcolor').val();
-        var NewbgColor = $('#btncolor').val();
 
-        var NewTitleText = $('#text').val();
-        var Newtoppings = $('#toppings').val();
-        var NewtextStyle = $('#fontstyle').val();
+        if ($('.selected').length > 1) {
+            evt.preventDefault();
+            alert('You have selected more than 1 item , Please unselect other items.');
+        }
+        else {
+            var ItemId = $('.selected').siblings('input').attr("id");
+            var NewbgColor = $('#btncolor').val();
+            var NewTitleText = $('#text').val();
+            if (NewTitleText !== "" && NewbgColor !== "") {
+                if (confirm('Are you sure to update settings ?')) {
+                    $.post("/ManagementSection/EditItem", $("#myForm").serialize(), function (data) {
+                        $('.selected').css({
+                            "background-color": data.BackgroundColor,
+                            'color': data.TextColor,
+                            'font-family': data.TextStyle,
+                            'font-style': data.fontStyle,
+                            'font-weight': data.fontWeight
+                        });
 
-        if (NewTitleText !== "" && NewbgColor !== "") {
-
-            var item = { Id: ItemId, Title: NewTitleText, Toppings: Newtoppings, BackgroundColor: NewbgColor, TextColor: NewtextColor };
-            if (confirm("Are you sure to Update Settings ?")) {
-                EditItem(item);
-                var textColor = $('#textcolor').val("");
-                var bgColor = $('#btncolor').val("");
-
-                var TitleText = $('#text').val("");
-                var toppings = $('#toppings').val("");
-                var textStyle = $('#fontstyle').val("");
-
-                $(".selected").css({
-                    "background-color": NewbgColor,
-                    "color": NewtextColor
-                });
-
-                $(".selected").text(NewTitleText);
-                $(".selected").siblings('.topppings').text(Newtoppings);
-                $('.singleitem').removeClass("selected");
+                        $('.selected').text(data.Title);
+                        $("#myForm")[0].reset();
+                        $('.selected').removeClass("selected");
+                    });
+                }
+                else {
+                    evt.preventDefault();
+                }
             }
             else {
-                evt.preventDefault();
+                alert('Some Information missing.');
             }
-
         }
     });
 
@@ -452,6 +483,12 @@ function addItem(data1) {
     });
 }
 
+function NewItem(data) {
+    var $html = '<div class="col-md-2 col-sm-2 col-lg-2 cusotomCol"><button class="singleitem" style="background-color:' + data.BackgroundColor + ';color:' + data.TextColor + ';font-family:' + data.TextStyle + ';font-style:' + data.fontStyle + ';font-weight:' + data.fontWeight + ';" >' + data.Title + '</button><input type="hidden" id="' + data.Id + '" value="' + data.PositionNumber + '" /><p hidden class="topppings">' + data.Toppings + ' </p></div>';
+    $('#itemRow').append($html);
+    $("#myForm")[0].reset();
+};
+
 function DeleteSize(value) {
     $.ajax({
 
@@ -464,11 +501,13 @@ function DeleteSize(value) {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             $(".selected").closest("div").hide();
+            $("form").reset();
         },
         error: function (request, error) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
 function DeleteExtra(value) {
@@ -488,6 +527,7 @@ function DeleteExtra(value) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
 function DeleteItem(value) {
@@ -508,6 +548,30 @@ function DeleteItem(value) {
         }
     });
 }
+function DeleteMultipleItemsItem(Ids) {
+    $.ajax({
+
+        url: '/ManagementSection/DeleteMultipleItemsItem',
+        type: 'POST',
+        data: JSON.stringify({
+            ids: Ids
+        }),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+
+            $('.selected').each(function () {
+                $(this).closest("div").hide();
+            });
+            alert(data);
+        },
+        error: function (request, error) {
+            alert("Request: " + JSON.stringify(request));
+        }
+    });
+
+}
+
 
 function DeleteCategory(value) {
     $.ajax({
@@ -527,6 +591,7 @@ function DeleteCategory(value) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
 function EditSize(value) {
@@ -547,6 +612,7 @@ function EditSize(value) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
 function EditExtra(value) {
@@ -567,26 +633,27 @@ function EditExtra(value) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
-function EditItem(value) {
-    $.ajax({
+//function EditItem(value) {
 
-        url: '/ManagementSection/EditItem',
-        type: 'POST',
-        data: JSON.stringify({
-            item: value
-        }),
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            alert(data);
-        },
-        error: function (request, error) {
-            alert("Request: " + JSON.stringify(request));
-        }
-    });
-}
+//    $.ajax({
+//        url: '/ManagementSection/EditItem',
+//        type: 'POST',
+//        data: JSON.stringify({
+//            item: value
+//        }),
+//        dataType: "json",
+//        contentType: "application/json; charset=utf-8",
+//        success: function (data) {
+//            alert(data);
+//        },
+//        error: function (request, error) {
+//            alert("Request: " + JSON.stringify(request));
+//        }
+//    });
+//}
 
 function EditCategory(value) {
     $.ajax({
@@ -607,6 +674,7 @@ function EditCategory(value) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
 
@@ -621,13 +689,9 @@ function addExtraItem(data1) {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            $(".selectedTopping").css({
-                "background-color": "pink",
-                "color": "white"
-            });
-            $(".selectedTopping").text(data.Title);
-            $(".selectedTopping").siblings("input").attr("id", data.Id);
 
+            var html = '<div class="col-md-2 cusotomCol"><button class="Extraitem" style="background-color:hotpink;color:white">' + data.Title + ' </button><input type="hidden" id="' + data.Id + '" value="' + data.Id + '" /> </div>'
+            $('#extrasDiv').append(html);
         },
         error: function (request, error) {
             alert("Request: " + JSON.stringify(request));
@@ -658,6 +722,7 @@ function addCategory(category) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }
 
 function addSize(item) {
@@ -671,16 +736,14 @@ function addSize(item) {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            //$(".selected").css({
-            //    "background-color": data.BackgroundColor,
-            //    "color": data.TextColor
-            //});
             $(".selected").text(data.Title);
             $(".selected").siblings("input").attr("id", data.Id);
-            //alert('Data: ' + "Item Added");
+            var html = '<div class="col-md-4 cusotomCol"><button class="singleSizeitem" style="background-color:aqua;color:black">' + data.Title + '</button><input id="' + data.Id + '" type="hidden" value="" /></div>'
+            $('#sizeDiv').append(html);
         },
         error: function (request, error) {
             alert("Request: " + JSON.stringify(request));
         }
     });
+
 }

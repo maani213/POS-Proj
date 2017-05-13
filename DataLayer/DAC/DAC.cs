@@ -60,7 +60,12 @@ namespace DataLayer.DAC
 
         public static List<Categories> GetAllCategories()
         {
-            var categories = db.Categories.ToList();
+            List<Categories> categories = new List<Categories>();
+
+            using (myContext db1 = new myContext())
+            {
+                categories = db1.Categories.ToList();
+            }
             if (categories != null)
                 return categories;
             else
@@ -150,6 +155,19 @@ namespace DataLayer.DAC
                 db.Items.Remove(item);
                 db.SaveChanges();
             }
+        }
+
+        public static void DeleteMultipleItems(int[] ids)
+        {
+            foreach (var id in ids)
+            {
+                var item = db.Items.First(m => m.Id == id);
+                if (item != null)
+                {
+                    db.Items.Remove(item);
+                }
+            }
+            db.SaveChanges();
         }
 
         public static void DeleteSizeById(int? id)
@@ -261,7 +279,7 @@ namespace DataLayer.DAC
                          where c.Title.ToLower().Contains("pizza")
                          select c.Id).Single();
             var result = db.ExtrasAndToppings.Where(m => m.CategoryId == catId).ToList();
-            
+
             if (result != null)
             {
                 return result;
@@ -271,7 +289,7 @@ namespace DataLayer.DAC
                 return new List<ExtrasAndToppings>();
             }
         }
-        
+
         public static void AddOrder(AddOrderModel orderDetails)
         {
             db.Orders.Add(orderDetails.order);
@@ -285,20 +303,24 @@ namespace DataLayer.DAC
             return result;
         }
 
-        public static void UpdateItem(Item UpdatedItem)
+        public static Item UpdateItem(Item UpdatedItem)
         {
             var item = db.Items.FirstOrDefault(m => m.Id == UpdatedItem.Id);
-            
+
             if (item != null)
             {
                 item.Title = UpdatedItem.Title;
                 item.BackgroundColor = UpdatedItem.BackgroundColor;
                 item.TextColor = UpdatedItem.TextColor;
                 item.Toppings = UpdatedItem.Toppings;
-
+                item.IsBold = UpdatedItem.IsBold;
+                item.IsItalic = UpdatedItem.IsItalic;
+                item.FontSize = UpdatedItem.FontSize;
+                item.TextStyle = UpdatedItem.TextStyle;
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
             }
+            return item;
         }
 
         public static void UpdateSize(Sizes UpdatedItem)
@@ -308,7 +330,7 @@ namespace DataLayer.DAC
             if (item != null)
             {
                 item.Title = UpdatedItem.Title;
-                
+
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
             }
@@ -321,7 +343,7 @@ namespace DataLayer.DAC
             if (item != null)
             {
                 item.Title = UpdatedItem.Title;
-                
+
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
             }
@@ -336,7 +358,7 @@ namespace DataLayer.DAC
                 item.Title = UpdatedItem.Title;
                 item.BackgroundColor = UpdatedItem.BackgroundColor;
                 item.TextColor = UpdatedItem.TextColor;
-                
+
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
             }
