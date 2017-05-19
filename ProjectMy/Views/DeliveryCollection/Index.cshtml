@@ -1,0 +1,350 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <style>
+        .lable {
+            padding-top: 5px;
+            font-size: 25px !important;
+            color: white;
+        }
+
+        label {
+            color: white;
+        }
+
+        hr {
+            margin-top: 5px !important;
+            margin-bottom: 10px !important;
+        }
+
+        .form-group {
+            margin-bottom: 6px !important;
+        }
+
+        .KeyBoardBtn {
+            font-size: 30px;
+            font-weight: bold;
+            height: 47px;
+            width: 100%;
+            margin-top: 0px;
+            border: groove;
+            background-color: white;
+        }
+
+        .cutomclasskeys {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
+        #searchtext {
+            width: 100%;
+            height: 42px !important;
+            font-size: 32px !important;
+        }
+
+        .Buttons {
+            font-weight: bold !important;
+            font-size: 17px !important;
+            height: 43px !important;
+            width: 100%;
+            margin: 2px;
+            border: groove !important;
+            border-radius: 0px !important;
+            background-color: #628fe0;
+            color: white;
+        }
+
+        #enter {
+            font-weight: bold !important;
+            font-size: 26px !important;
+            height: 94px !important;
+            width: 72%;
+            border: groove !important;
+            border-radius: 0px !important;
+            background-color: #69e246;
+        }
+
+        #crossBtn {
+            font-weight: bold !important;
+            font-size: 34px !important;
+            height: 47px !important;
+            width: 72%;
+            border: groove !important;
+            border-radius: 0px !important;
+            background-color: red;
+        }
+
+        #deleteBtn {
+            font-weight: bold !important;
+            font-size: 22px !important;
+            height: 47px !important;
+            width: 72%;
+            border: groove !important;
+            border-radius: 0px !important;
+            background-color: #f75151;
+        }
+
+        .selectedType {
+            background-color: #99e84b;
+            color: white;
+        }
+        .form-control {
+            font-size: 17px !important;
+        }
+         .typerow {
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+            padding-top: 5px;
+            font-size: 25px !important;
+        }
+
+        .offmargin {
+            margin-right: 0px !important;
+            margin-left: 0px !important;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div>
+            <div class="row offmargin">
+                <div class="col-lg-2 col-md-2 col-sm-2 lable">
+                    Search by :
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons type selectedType" type="button">Telephone</button>
+                    <input type="hidden" value="1" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons type" type="button">Name</button>
+                    <input type="hidden" value="2" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons type" type="button">Post Code</button>
+                    <input type="hidden" value="3" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons type" type="button">Address</button>
+                    <input type="hidden" value="4" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons type" type="button">Loyal Card</button>
+                    <input type="hidden" value="5" />
+                </div>
+
+            </div>
+            <div class="row typerow">
+                <div class="col-lg-2 col-md-2 col-sm-2 lable">
+                    <p>Telephone</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    @using (Ajax.BeginForm("FindCustomer", new { }, new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "CustomerDetails" }, new { id = "searchform" }))
+                    {
+                        <input type="hidden" name="type" value="1" id="searchType" />
+                        <input type="text" name="value" style="" id="searchtext" />
+                    }
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons" type="button"><< >></button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="Buttons greenBg" type="button">New Customer</button>
+                </div>
+
+            </div>
+        </div>
+        <div id="CustomerDetails">
+            @{
+                Html.RenderAction("GetCustomer");
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">1</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">2</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">3</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">4</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">5</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">6</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">7</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">8</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">9</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">0</button></div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">Q</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">W</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">E</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">R</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">T</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">Y</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">U</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">I</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">O</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">P</button></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">A</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">S</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">D</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">F</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">G</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">H</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">J</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">K</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">L</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">&#64;</button></div>
+                    @*<div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">X</button></div>*@
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">Z</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">X</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">C</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">V</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclasskeys"><button class="KeyBoardBtn" type="button">space</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">B</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">N</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">M</button></div>
+                    <div class="col-sm-1 col-md-1 col-lg-1 cutomclasskeys"><button class="KeyBoardBtn" type="button">.</button></div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 cutomclasskeys">
+                        <button id="crossBtn" type="button">X</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 cutomclasskeys">
+                        <button id="deleteBtn">Delete</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 cutomclasskeys">
+                        <button type="button" id="enter">Enter</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-2">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="Buttons" id="repeatOrder" type="button">Repeat Order</button>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="Buttons" type="button" id="collection">Collection</button>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="Buttons" id="delivery" type="button">Delivery</button>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="Buttons greenBg" type="button" id="exitBtn">Exit</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+
+        $('#enter').on('click', function () {
+            if ($('#searchtext').val() == "") {
+                alert('Please enter a value');
+            }
+            else {
+                $('#searchform').submit();
+            }
+        });
+
+        $('#delivery').on('click', function () {
+            $('#customerForm').attr('action', "@Url.Action("Delivery", "DeliveryCollection")");
+            $('#customerForm').submit();
+        });
+
+        $('#collection').on('click', function () {
+            $('#customerForm').attr('action', "@Url.Action("Collection", "DeliveryCollection")");
+            $('#customerForm').submit();
+        });
+
+        
+        $('#repeatOrder').on('click', function (evt) {
+
+            if ($('#Id').val() == 0) {
+                alert('This Customer does not have any Previous order.')
+            }
+            else {
+                $('#customerForm').attr('action', "@Url.Action("RepeatOrder", "DeliveryCollection")");
+                $('#customerForm').submit();
+            }
+        });
+        $('#exitBtn').on('click', function () {
+            window.location = '@Url.Action("MainMenu","Home")';
+        });
+
+        $('input').on('click', function () {
+            $('input').removeClass('inputselected');
+            $(this).addClass('inputselected');
+        });
+
+        $('.KeyBoardBtn').on('click', function () {
+            var text = $('.inputselected').val();
+            //var text = $('#searchtext').val();
+            var NewValue = text + $(this).text();
+            //$('#searchtext').val(NewValue);
+            $('.inputselected').val(NewValue);
+        });
+
+        $('.type').on('click', function () {
+            //$('.type').removeClass('selectedType');
+            //$(this).addClass('selectedType');
+            //var type = $(this).sibblings('input').val();
+            //$('#searchType').val(type);
+        });
+
+        $('#deleteBtn').on('click', function () {
+            var inputString = $('.inputselected').val();
+            var shortenedString = inputString.substr(0, (inputString.length - 1));
+            $('.inputselected').val(shortenedString);
+        });
+
+    });
+</script>

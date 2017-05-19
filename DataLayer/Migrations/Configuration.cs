@@ -1,5 +1,6 @@
 namespace DataLayer.Migrations
 {
+    using Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -16,18 +17,29 @@ namespace DataLayer.Migrations
 
         protected override void Seed(DataLayer.myContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            Item item = new Item();
+            item.BackgroundColor = "black";
+            item.FontSize = 15;
+            item.TextColor = "white";
+            item.TextStyle = "verdana";
+            item.Title = "Test";
+            item.IsBold = true;
+            item.IsItalic = true;
+            item.Toppings = "Test";
+            item.Price1 = 1;
+            item.Price2 = 2;
+            item.Price3 = 3;
+            item.CategoryId = 1;
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            Category category = new Category()
+            {
+                Title = "Pizza",
+                BackgroundColor = "green",
+                TextColor = "white",
+            };
+
+            context.Categories.AddOrUpdate(category);
+            context.Items.AddOrUpdate(item);
         }
     }
 }

@@ -125,7 +125,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public ActionResult DefineCategories(Categories category)
+        public ActionResult DefineCategories(Category category)
         {
             if (category != null)
             {
@@ -252,7 +252,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditExtra(ExtrasAndToppings extraItem)
+        public JsonResult EditExtra(ExtrasAndTopping extraItem)
         {
             if (extraItem != null)
             {
@@ -266,7 +266,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditSize(Sizes sizeItem)
+        public JsonResult EditSize(Size sizeItem)
         {
             if (sizeItem != null)
             {
@@ -280,7 +280,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditCategory(Categories category)
+        public JsonResult EditCategory(Category category)
         {
             if (category != null)
             {
@@ -300,7 +300,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult Sizes(Sizes size = null)
+        public JsonResult Sizes(Size size = null)
         {
             if (size != null)
             {
@@ -380,7 +380,7 @@ namespace ProjectMy.Controllers
         {
             if (prices != null)
             {
-                ExtrasAndToppings item = new ExtrasAndToppings()
+                ExtrasAndTopping item = new ExtrasAndTopping()
                 {
                     Id = prices.ItemId,
                     Price1 = prices.price1,
@@ -409,7 +409,7 @@ namespace ProjectMy.Controllers
             }
             else
             {
-                return PartialView("_CategoryExtras", new List<ExtrasAndToppings>());
+                return PartialView("_CategoryExtras", new List<ExtrasAndTopping>());
             }
 
         }
@@ -417,7 +417,7 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public PartialViewResult ExtrasPrices(int cat)
         {
-            List<ExtrasAndToppings> extras = new List<ExtrasAndToppings>();
+            List<ExtrasAndTopping> extras = new List<ExtrasAndTopping>();
             if (cat == 1)
             {
                 extras = DAC.GetAllToppings();
@@ -441,7 +441,7 @@ namespace ProjectMy.Controllers
             }
             else
             {
-                return PartialView("_CategoryExtras", new List<ExtrasAndToppings>());
+                return PartialView("_CategoryExtras", new List<ExtrasAndTopping>());
             }
         }
 
@@ -452,7 +452,7 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddExrtaItem(ExtrasAndToppings extra)
+        public JsonResult AddExrtaItem(ExtrasAndTopping extra)
         {
             if (extra == null)
             {

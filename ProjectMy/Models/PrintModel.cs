@@ -10,7 +10,7 @@ namespace ProjectMy.Models
 {
     public class PrintModel
     {
-        public List<OrderViewModel> ordersItems { get; set; }
+        public List<OrderDetailViewModel> ordersItems { get; set; }
         public string CustomerName { get; set; }
         public float TotalAmount { get; set; }
         public float totalpaid { get; set; }
@@ -21,7 +21,7 @@ namespace ProjectMy.Models
 
         }
 
-        public PrintModel(List<OrderViewModel> orders, string CustomerName = "Test", int totalpaid = 0, int balance = 0)
+        public PrintModel(List<OrderDetailViewModel> orders, string CustomerName = "Test", int totalpaid = 0, int balance = 0)
         {
             this.balance = balance;
             this.CustomerName = CustomerName;

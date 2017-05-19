@@ -44,11 +44,13 @@ $(document).ready(function () {
     });
 
     $(document).on("click", '.singleitem', function () {
-
+        //$("#myForm")[0].reset();
         $(this).toggleClass("selected");
 
         if ($('.selected').length === 0) {
+            $("#myForm")[0].reset();
             $('#editItem').attr('disabled', true);
+            return
         }
         else {
             $('#editItem').attr('disabled', false);
@@ -87,6 +89,53 @@ $(document).ready(function () {
         }
 
     });
+    
+    $(document).on("click", '.singleCatitem', function () {
+        //$("#myForm")[0].reset();
+        $(this).toggleClass("selected");
+
+        if ($('.selected').length === 0) {
+            $('#editCategory').attr('disabled', true);
+            return
+        }
+        else {
+            $('#editCategory').attr('disabled', false);
+        }
+        if ($('#text').length > 0) {
+            var bgColor = $(this).css('backgroundColor');
+            var txtColor = $(this).css('Color');
+
+            var IsBold = $(this).css('font-weight');
+
+            var IsItalic = $(this).css('font-style');
+
+            if (IsBold === "normal") {
+                $('#isBold').prop('checked', false);
+            }
+            else if (IsBold === "400" || IsBold === "bold") {
+                $('#isBold').prop('checked', true);
+            }
+
+            if (IsItalic === "italic") {
+                $('#isitalic').prop('checked', true);
+            }
+            else if (IsItalic === "none") {
+                $('#isitalic').prop('checked', false);
+            }
+            var ItemId = $(this).siblings('input').attr("id");
+            $('#ItemId').val(ItemId);
+
+            $('#btncolor').val(rgbToHex(bgColor));
+            $('#textcolor').val(rgbToHex(txtColor));
+
+            var TitleText = $(this).text();
+           
+            $('#text').val(TitleText);
+            
+        }
+
+    });
+
 
     $('.customBttn').on("click", function () {
         $('.customBttn').removeClass("DeptSelected");

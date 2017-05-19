@@ -9,7 +9,7 @@ namespace DataLayer.Models
 {
     public class AddOrderModel
     {
-        public Orders order { get; set; }
-        public OrderDetails orderDetail { get; set; }
+        public Order order { get; set; }
+        public OrderDetail orderDetail { get; set; }
     }
 }

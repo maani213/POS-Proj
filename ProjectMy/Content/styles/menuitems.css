@@ -114,8 +114,9 @@ textarea {
     background-color: yellow;
     padding: 3px;
     margin-top: 5px;
-    margin-right: -4px !important;
     font-size: 15px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
 }
 
 .cutomclass {
@@ -197,7 +198,8 @@ textarea {
     background-color: green;
     color: white;
 }
-.landingBtns{
+
+.landingBtns {
     padding: 32px 12px !important;
     font-weight: bold !important;
     font-size: 32px !important;
@@ -205,9 +207,10 @@ textarea {
     width: 100%;
     margin: 2px;
     border: groove !important;
-    white-space:normal;
+    white-space: normal;
     border-radius: 0px !important;
-    }
+}
+
 .customBttn1 {
     font-weight: bold !important;
     font-size: 17px !important;
@@ -344,7 +347,6 @@ textarea {
     height: 216px;
     border: groove;
     white-space: normal;
-
     /*background-color: aqua;*/
 }
 

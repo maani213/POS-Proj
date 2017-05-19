@@ -50,14 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\DAC.cs" />
-    <Compile Include="Entities\Categories.cs" />
-    <Compile Include="Entities\ExtrasAndToppings.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\ExtrasAndTopping.cs" />
     <Compile Include="Entities\Item.cs" />
-    <Compile Include="Entities\OrderDetails.cs" />
-    <Compile Include="Entities\Orders.cs" />
-    <Compile Include="Entities\Sizes.cs" />
+    <Compile Include="Entities\OrderDetail.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderType.cs" />
+    <Compile Include="Entities\PaymentType.cs" />
+    <Compile Include="Entities\Size.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddOrderModel.cs" />
+    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Properties.cs" />
     <Compile Include="myContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

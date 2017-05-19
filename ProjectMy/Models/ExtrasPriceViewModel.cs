@@ -9,7 +9,7 @@ namespace ProjectMy.Models
     public class ExtrasPriceViewModel
     {
         public string CategoryName { get; set; }
-        public List<Sizes> sizes { get; set; }
-        public List<ExtrasAndToppings> Items { get; set; }
+        public List<Size> sizes { get; set; }
+        public List<ExtrasAndTopping> Items { get; set; }
     }
 }

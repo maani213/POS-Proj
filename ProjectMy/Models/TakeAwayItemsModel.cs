@@ -8,11 +8,11 @@ namespace ProjectMy.Models
 {
     public class TakeAwayItemsModel
     {
-        public List<Sizes> sizes { get; set; }
+        public List<Size> sizes { get; set; }
         
         public List<Item> items { get; set; }
 
-        public List<ExtrasAndToppings> Extras { get; set; }
+        public List<ExtrasAndTopping> Extras { get; set; }
 
     }
 }

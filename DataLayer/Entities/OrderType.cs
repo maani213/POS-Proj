@@ -7,13 +7,10 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    public class Orders
+    public class OrderType
     {
         [Key]
-        public int OrderId { get; set; }
-
-        public string CustomerName { get; set; }
-
-        public int OrderDetailsId { get; set; }
+        public int OrderTypeId { get; set; }
+        public string OrderTypeName { get; set; }
     }
 }

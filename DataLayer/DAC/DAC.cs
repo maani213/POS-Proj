@@ -58,20 +58,20 @@ namespace DataLayer.DAC
             return Newitem;
         }
 
-        public static List<Categories> GetAllCategories()
+        public static List<Category> GetAllCategories()
         {
-            List<Categories> categories = new List<Categories>();
+            List<Category> Category = new List<Category>();
 
             using (myContext db1 = new myContext())
             {
-                categories = db1.Categories.ToList();
+                Category = db1.Categories.ToList();
             }
-            if (categories != null)
-                return categories;
+            if (Category != null)
+                return Category;
             else
-                return new List<Categories>();
+                return new List<Category>();
         }
-        public static void AddCategory(Categories category)
+        public static void AddCategory(Category category)
         {
             db.Categories.Add(category);
             db.SaveChanges();
@@ -83,7 +83,7 @@ namespace DataLayer.DAC
             }
         }
 
-        public static Categories GetCategoryById(int? id)
+        public static Category GetCategoryById(int? id)
         {
             var result = db.Categories.FirstOrDefault(m => m.Id == id);
             if (result != null)
@@ -91,7 +91,7 @@ namespace DataLayer.DAC
                 return result;
             }
             else
-                return new Categories();
+                return new Category();
         }
 
         public static List<Item> GetItemsByCategoryId(int? id)
@@ -106,7 +106,7 @@ namespace DataLayer.DAC
                 return new List<Item>();
         }
 
-        public static List<Sizes> GetSizesByCategoryId(int id)
+        public static List<Size> GetSizesByCategoryId(int id)
         {
             var result = (from pr in db.Sizes
                           where pr.CategoryId == id
@@ -118,15 +118,15 @@ namespace DataLayer.DAC
                 return result;
             }
             else
-                return new List<Sizes>();
+                return new List<Size>();
         }
-        public static List<string> GetSizesNameByCatId(int id)
+        public static List<string> GetSizeNameByCatId(int id)
         {
             var result = (from s in db.Sizes
                           where s.CategoryId == id
                           orderby s.Id
                           select s.Title).ToList();
-            //db.Sizes.Where(m => m.CategoryId == id).ToList();
+            //db.Size.Where(m => m.CategoryId == id).ToList();
             if (result != null)
             {
                 return result;
@@ -141,7 +141,7 @@ namespace DataLayer.DAC
         //    db.SaveChanges();
         //}
 
-        public static Sizes AddSize(Sizes item)
+        public static Size AddSize(Size item)
         {
             var result = db.Sizes.Add(item);
             db.SaveChanges();
@@ -211,9 +211,9 @@ namespace DataLayer.DAC
             db.SaveChanges();
         }
 
-        public static void UpdateExtrasPrices(ExtrasAndToppings itemPrices)
+        public static void UpdateExtrasPrices(ExtrasAndTopping itemPrices)
         {
-            ExtrasAndToppings Updated = db.ExtrasAndToppings.Find(itemPrices.Id);
+            ExtrasAndTopping Updated = db.ExtrasAndToppings.Find(itemPrices.Id);
             Updated.Price1 = itemPrices.Price1;
             Updated.Price2 = itemPrices.Price2;
             Updated.Price3 = itemPrices.Price3;
@@ -252,12 +252,12 @@ namespace DataLayer.DAC
         //        return new List<Pizza>();
         //    }
         //}
-        public static List<ExtrasAndToppings> GetExtrasByCategoryId(int categoryId)
+        public static List<ExtrasAndTopping> GetExtrasByCategoryId(int categoryId)
         {
             var result = db.ExtrasAndToppings.Where(m => m.CategoryId == categoryId).ToList();
             return result;
         }
-        public static List<ExtrasAndToppings> GetAllExtras()
+        public static List<ExtrasAndTopping> GetAllExtras()
         {
             int catId = (from c in db.Categories
                          where c.Title.ToLower().Contains("pizza")
@@ -269,11 +269,11 @@ namespace DataLayer.DAC
             }
             else
             {
-                return new List<ExtrasAndToppings>();
+                return new List<ExtrasAndTopping>();
             }
         }
 
-        public static List<ExtrasAndToppings> GetAllToppings()
+        public static List<ExtrasAndTopping> GetAllToppings()
         {
             int catId = (from c in db.Categories
                          where c.Title.ToLower().Contains("pizza")
@@ -286,17 +286,24 @@ namespace DataLayer.DAC
             }
             else
             {
-                return new List<ExtrasAndToppings>();
+                return new List<ExtrasAndTopping>();
             }
         }
 
-        public static void AddOrder(AddOrderModel orderDetails)
+        public static Order AddOrder(Order NewOrder)
         {
-            db.Orders.Add(orderDetails.order);
-            db.OrderDetails.Add(orderDetails.orderDetail);
+            Order order = db.Orders.Add(NewOrder);
+            db.SaveChanges();
+            return order;
+        }
+
+        public static void AddOrderDetails(OrderDetail NewOrder)
+        {
+            var order = db.OrderDetails.Add(NewOrder);
             db.SaveChanges();
         }
-        public static ExtrasAndToppings AddExtra(ExtrasAndToppings extra)
+
+        public static ExtrasAndTopping AddExtra(ExtrasAndTopping extra)
         {
             var result = db.ExtrasAndToppings.Add(extra);
             db.SaveChanges();
@@ -323,7 +330,7 @@ namespace DataLayer.DAC
             return item;
         }
 
-        public static void UpdateSize(Sizes UpdatedItem)
+        public static void UpdateSize(Size UpdatedItem)
         {
             var item = db.Sizes.FirstOrDefault(m => m.Id == UpdatedItem.Id);
 
@@ -336,7 +343,7 @@ namespace DataLayer.DAC
             }
         }
 
-        public static void UpdateExtrasItem(ExtrasAndToppings UpdatedItem)
+        public static void UpdateExtrasItem(ExtrasAndTopping UpdatedItem)
         {
             var item = db.ExtrasAndToppings.FirstOrDefault(m => m.Id == UpdatedItem.Id);
 
@@ -349,7 +356,7 @@ namespace DataLayer.DAC
             }
         }
 
-        public static void UpdateCategory(Categories UpdatedItem)
+        public static void UpdateCategory(Category UpdatedItem)
         {
             var item = db.Categories.FirstOrDefault(m => m.Id == UpdatedItem.Id);
 
@@ -361,6 +368,57 @@ namespace DataLayer.DAC
 
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
+            }
+        }
+
+        public static int AddCustomerIfNotExist(Customer customer)
+        {
+            var cust = db.Customers.FirstOrDefault(m => m.Phone == customer.Phone || m.Mobile == customer.Mobile);
+            if (cust == null)
+            {
+                using (myContext db1 = new DataLayer.myContext())
+                {
+                    var NewCustomer = db1.Customers.Add(customer);
+                    db1.SaveChanges();
+                    return NewCustomer.Id;
+                }
+            }
+            else
+            {
+                return cust.Id;
+            }
+        }
+
+        public static Customer FindCustomer(string type, string value)
+        {
+            using (myContext db = new myContext())
+            {
+                var customer = db.Customers.FirstOrDefault(m => m.Phone == value);
+                return customer;
+            }
+        }
+
+        public static List<Order> GetCustomerOrders(int CustomerId)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var CustomerOrder = (from order in db1.Orders
+                                     where order.CustomerId == CustomerId
+                                     orderby order.Date
+                                     select order).ToList();
+                return CustomerOrder;
+            }
+        }
+
+        public static List<OrderDetail> GetOrderDetails(int OrderId)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var OrderDetails = (from orderdetail in db1.OrderDetails
+                                    where orderdetail.OrderId == OrderId
+                                    select orderdetail
+                                    ).ToList();
+                return OrderDetails;
             }
         }
     }

@@ -36,6 +36,10 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public ActionResult TakeAway(int categoryId = 1)
         {
+            if(CustomerViewModel.OrderType == null)
+            {
+                CustomerViewModel.OrderType = "Take Away";
+            }
             ViewBag.CategoryID = categoryId;
             return View();
         }
@@ -47,17 +51,21 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult CompleteOrder(List<OrderDetails> orders)
+        public JsonResult CompleteOrder(List<OrderDetail> orders)
         {
             TempData["ordersList"] = orders;
             return Json("ok", JsonRequestBehavior.AllowGet);
         }
 
-
-        public ActionResult OrderComplete(List<OrderDetails> orders)
+        [HttpPost]
+        public ActionResult OrderComplete(List<OrderDetail> orders)
         {
-            List<OrderDetails> orders1 = TempData["ordersList"] as List<OrderDetails>;
-            return View(orders1);
+            if (CustomerViewModel.customer != null)
+            {
+                ViewData["CustomerName"] = CustomerViewModel.customer.Name;
+                ViewData["CustomerAddress"] = CustomerViewModel.customer.Address;
+            }
+            return View(orders);
         }
 
         [HttpPost]
@@ -68,12 +76,40 @@ namespace ProjectMy.Controllers
         }
 
         [HttpPost]
-        public JsonResult ClearCash(List<OrderViewModel> orders, string CustomerName = "Test", int totalpaid = 0, int balance = 0)
+        public JsonResult ClearCash(List<OrderDetail> ordersDetails, Order order)
         {
-            //AddOrderModel orderModel = new AddOrderModel();
-            //orderModel.order.CustomerName = CustomerName;
-            //orderModel.orderDetail.ItemName = orders.ItemName;
-            return Json("Order Completed", JsonRequestBehavior.AllowGet);
+            order.OrderTypeName = CustomerViewModel.OrderType;
+            int NewCustomerId = 0;
+            order.Date = DateTime.Now.Date;
+            if(CustomerViewModel.customer!=null)
+            {
+                NewCustomerId = DAC.AddCustomerIfNotExist(CustomerViewModel.customer);
+                var NewOrder = DAC.AddOrder(order);
+                NewOrder.CustomerId = NewCustomerId;
+                foreach (var item in ordersDetails)
+                {
+                    item.OrderId = NewOrder.OrderId;
+                    DAC.AddOrderDetails(item);
+                }
+                CustomerViewModel.customer = null;
+                CustomerViewModel.OrderType = null;
+                return Json("Order Completed", JsonRequestBehavior.AllowGet);
+            }
+
+            else
+            {
+                var NewOrder1 = DAC.AddOrder(order);
+                foreach (var item in ordersDetails)
+                {
+                    item.OrderId = NewOrder1.OrderId;
+                    DAC.AddOrderDetails(item);
+                }
+                CustomerViewModel.customer = null;
+                CustomerViewModel.OrderType = null;
+
+                return Json("Order Completed", JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         [ChildActionOnly]
@@ -85,10 +121,45 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public PartialViewResult TakeAwayItems(int categoryId = 1)
         {
-            List<Item> model = new List<Item>();
-            model = DAC.GetItemsByCategoryId(categoryId);
+            List<Item> Items = DAC.GetItemsByCategoryId(categoryId);
+            List<ItemViewModel> ViewItems = new List<ItemViewModel>();
+            foreach (var item in Items)
+            {
+                ItemViewModel viewitem = new ItemViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+                viewitem.CategoryId = item.CategoryId;
 
-            return PartialView("_TakeAwayItems", model);
+                viewitem.Toppings = item.Toppings;
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                ViewItems.Add(viewitem);
+            }
+
+            return PartialView("_TakeAwayItems", ViewItems);
+
+            //List<Item> model = new List<Item>();
+            //model = DAC.GetItemsByCategoryId(categoryId);
+
+            //return PartialView("_TakeAwayItems", model);
         }
         [HttpGet]
         public JsonResult GetItemPrice(int itemID, int sizeId)
@@ -138,7 +209,7 @@ namespace ProjectMy.Controllers
             }
             else
             {
-                return View(new List<Categories>());
+                return View(new List<Category>());
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataLayer.Entities.Categories>
+﻿@model IEnumerable<DataLayer.Entities.Category>
 
 @{
     Layout = null;
@@ -28,6 +28,17 @@
             padding-bottom: 52px !important;
             margin-right: 0px !important;
         }
+
+        .singleCatitem {
+            width: 98%;
+            margin: 1px;
+            font-weight: bold;
+            font-size: 20px;
+            height: 93px;
+            border: groove;
+            white-space: normal;
+            /*background-color: aqua;*/
+        }
     </style>
 </head>
 <body style="background-color: darkblue;">
@@ -36,7 +47,7 @@
             <div class="row" id="catArea">
                 @foreach (var cat in Model)
                 {
-                    <div class="col-md-2 cusotomCol"><button class="singleitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" id="@cat.Id" value="@cat.PositionNumber" /></div>
+                    <div class="col-md-2 cusotomCol"><button class="singleCatitem" style="background-color:@cat.BackgroundColor;color:@cat.TextColor">@cat.Title</button><input type="hidden" id="@cat.Id" value="@cat.PositionNumber" /></div>
                 }
 
             </div>
@@ -44,9 +55,9 @@
         <div class="formArea col-lg-4">
             <div class="title">Categories</div>
             <div class="row" style="margin:2px !important;">
-                @using (Ajax.BeginForm("abc",new AjaxOptions { }))
+                @using (Ajax.BeginForm("abc", new AjaxOptions { }))
                 {
-                    
+
                 }
                 <div class="col-md-2">
                     <label>Text</label>
@@ -99,7 +110,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Button color</label> </div>
                         <div class="col-md-6">
-                            <input id="btncolor" type="color" class="colorfields"/>
+                            <input id="btncolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
                         </div>
@@ -132,7 +143,7 @@
             <fieldset>
                 <legend>Menu Buttons</legend>
                 <div class="row">
-                   
+
                     <div class="col-md-4">
                         <button class="menuBtn greenBg" id="addCategory">Add Category</button>
                     </div>

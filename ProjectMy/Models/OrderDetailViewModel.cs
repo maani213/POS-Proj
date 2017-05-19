@@ -5,8 +5,10 @@ using System.Web;
 
 namespace ProjectMy.Models
 {
-    public class OrderViewModel
+    public class OrderDetailViewModel
     {
+        public bool OrderDetailsId { get; set; }
+
         public string ItemName { get; set; }
 
         public decimal ItemQty { get; set; }

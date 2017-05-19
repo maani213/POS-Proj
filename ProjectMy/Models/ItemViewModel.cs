@@ -16,5 +16,6 @@ namespace ProjectMy.Models
         public string fontWeight { get; set; }
         public string fontStyle { get; set; }
         public int PositionNumber { get; set; }
+        public int CategoryId { get; set; }
     }
 }

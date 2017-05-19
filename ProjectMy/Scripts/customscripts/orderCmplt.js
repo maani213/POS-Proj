@@ -7,7 +7,7 @@ $(document).ready(function () {
         if (!this.rowIndex) return; // skip first row
 
         totalAmount = parseFloat(totalAmount) + parseFloat(this.cells[2].innerHTML);
-        
+
     });
     $('#totalAmount').text(totalAmount.toFixed(2));
     $('#Subtotal').text(totalAmount.toFixed(2));
@@ -23,12 +23,12 @@ $(document).ready(function () {
 
 
     $('#cancelOrder').on('click', function (evt) {
-        if (confirm("Are you sure to Cancel this Order ?")) {
-
-        }
-        else {
+        if (!confirm("Are you sure to Cancel this Order ?")) {
             evt.preventDefault();
         }
+        //else {
+
+        //}
     });
 
     $('#exit').on('click', function (evt) {
@@ -89,35 +89,40 @@ $(document).ready(function () {
     })
 
     $('#clearCash').on("click", function (evt) {
-        if ($('#balance').text()=="")
-        {
+        
+        if ($('#balance').text() === "") {
             evt.preventDefault();
             alert("Amount is not Cleared Yet...");
         }
         else {
-            var itemsList = [];
+            var ordersDetails = [];
 
             $('.tableBody tr').each(function () {
-                if (!this.rowIndex) return; // skip first row
+                if (!this.rowIndex) { return; }
                 Quantity = this.cells[0].innerHTML;
                 productName = this.cells[1].innerHTML;
-                totalAmount = this.cells[2].innerHTML;
+                amount = this.cells[2].innerHTML;
+                
+                var item = { ItemName: productName, ItemQty: parseInt(Quantity), Amount: parseFloat(amount) };
 
-                var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
-
-                itemsList.push(item);
+                ordersDetails.push(item);
             });
-            var customerName = $('#CustomerName').val();
-            var totalpaid = $('#paidAmount').text();
-            var balance = $('#balance').text();
             
-            addItem(itemsList, totalpaid, balance, customerName);
+            var totalpaid = $('#paidAmount').text();
+            var totalAmount = $('#totalAmount').text();
+            var balance = $('#balance').text();
+            var discount = 0;
+            var order = {
+                OrderTypeName: 'Take Away', TotalAmount: parseFloat(totalAmount), TotalPaid: parseFloat(totalpaid), Discount: parseFloat(discount), Balance: parseFloat(balance), PaymentTypeId: 1
+            }
+
+            addOrder(ordersDetails, order);
         }
     });
 
     $('#print').on('click', function (evt) {
 
-        if ($('#balance').text() == "") {
+        if ($('#balance').text() === "") {
             evt.preventDefault();
             alert("Amount is not Cleared Yet...");
         }
@@ -165,7 +170,7 @@ $(document).ready(function () {
 });
 
 function PrintReciept(model1) {
-   
+
     $.ajax({
         url: '/Home/PrintOrder',
         type: 'POST',
@@ -180,24 +185,19 @@ function PrintReciept(model1) {
         }
     });
 };
-function addItem(itemList, totalpaid1, balance1, customerName1) {
-    
+function addOrder(ordersDetails, order) {
+   
     $.ajax({
         url: '/Home/ClearCash',
         type: 'POST',
-        //data: JSON.stringify({ 'orders': itemList, 'CustomerName': customerName1, 'totalpaid': totalpaid1, 'balance': balance1 }),
-        data: {  
-            'orders' : JSON.stringify(itemList),     
-            'CustomerName': customerName1, 
-            'totalpaid': totalpaid1, 
-            'balance': balance1 },
-    dataType: "json",
-    contentType: "application/json; charset=utf-8",
-    success: function (data) {
-        window.location.href = "/Home/TakeAway";
-    },
-    error: function (request, error) {
-        alert("request: " + error);
-    }
-});
+        data: JSON.stringify({ 'ordersDetails': ordersDetails, 'order': order }),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            window.location.href = "/Home/TakeAway";
+        },
+        error: function (request, error) {
+            alert("request: " + error);
+        }
+    });
 };

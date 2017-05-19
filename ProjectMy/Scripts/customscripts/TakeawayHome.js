@@ -247,24 +247,40 @@ $(document).ready(function () {
 
         $('.tableBody tr').each(function () {
             if (!this.rowIndex) { return };
-            
+
             Quantity = this.cells[0].innerHTML;
             productName = this.cells[1].innerHTML;
             totalAmount = this.cells[2].innerHTML;
 
-            var item = { ItemName: productName, ItemQty: Quantity, ItemTotalPrice: totalAmount };
-            
+            var item = { ItemName: productName, ItemQty: Quantity, Amount: parseFloat(totalAmount) };
+
             itemsList.push(item);
         });
+        var c = 0;
+        $(".tableBody tr").each(function () {
+            if (!this.rowIndex) { return };
+
+            Quantity = parseInt(this.cells[0].innerHTML);
+            productName = this.cells[1].innerHTML;
+            totalAmount = parseFloat(this.cells[2].innerHTML);
+
+            $("#formtable").append('<tr><td><input type="hidden" name="[' + c + '].ItemQty" value="' + Quantity + '"/></td><td><input type="hidden" name="[' + c + '].ItemName" value="' + productName + '"/></td><td><input type="hidden" name="[' + c + '].Amount" value="' + totalAmount + '"/></td></tr>');
+            c++;
+
+        });
+
 
         if (itemsList.length === 0) {
             alert("Please Select at least 1 item to place an order.");
             evt.preventDefault();
         }
-        addItem(itemsList);
+        else {
+            $('#formPost').submit();
+        }
+        //addItem(itemsList);
     });
 
-   
+
     $(document).on("click", '#plus', function () {
         var price = $('.rowSelected').find('#price').text();
         var qty = $('.rowSelected').find('#qty').text();
@@ -483,22 +499,22 @@ function GetSetToppingsPrice() {
 
 }
 
-function addItem(orders) {
-    $.ajax({
+//function addItem(orders) {
+//    $.ajax({
 
-        url: '/Home/CompleteOrder',
-        type: 'POST',
-        data: JSON.stringify(orders),
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function () {
-            window.location.href = "/Home/OrderComplete";
-        },
-        error: function (request, error) {
-            alert("request: " + json.stringify(request));
-        }
-    });
-};
+//        url: '/Home/CompleteOrder',
+//        type: 'POST',
+//        data: JSON.stringify(orders),
+//        dataType: "json",
+//        contentType: "application/json; charset=utf-8",
+//        success: function () {
+//            window.location.href = "/Home/OrderComplete";
+//        },
+//        error: function (request, error) {
+//            alert("request: " + json.stringify(request));
+//        }
+//    });
+//};
 function GetItemPrice(name, itemId, size) {
     $.get('/Home/GetItemPrice/?' + "itemID=" + itemId + "&sizeId=" + size, function (data) {
 
