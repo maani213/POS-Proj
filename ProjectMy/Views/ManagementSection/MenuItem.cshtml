@@ -3,14 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Menu Item";
 }
-
-<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+
     <script src="~/Scripts/customscripts/myscript.js"></script>
-    <title></title>
+
     <style>
         #itemsArea {
             max-height: 425px !important;
@@ -19,6 +16,7 @@
     </style>
 
 </head>
+
 <body>
 
     <div class="container-fluid body-content">
@@ -34,8 +32,8 @@
             <div class="formArea col-sm-4 col-md-4 col-lg-4 " style="height: 425px;">
                 <div class="title">Pizza</div>
 
-                @using (Ajax.BeginForm("AddItem", new { }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "NewItem" }, new { id = "myForm" }))
-            {
+                @using (Ajax.BeginForm("AddItem", new { val = 1 }, new AjaxOptions { HttpMethod = "POST", OnSuccess = "NewItem" }, new { id = "myForm" }))
+                {
                     @Html.HiddenFor(m => m.CategoryId, new { id = "categoryId" })
                     @Html.HiddenFor(m => m.Id, new { id = "ItemId" })
                     <div class="row" style="margin:2px !important;">
@@ -48,10 +46,10 @@
                         </div>
                     </div>
                     <div class="row" style="margin:2px !important;">
-                        <div class="col-md-2">
+                        <div class="col-md-2" id="toppingslableRow">
                             <label>Toppings</label>
                         </div>
-                        <div class="col-md-10">
+                        <div class="col-md-10" id="toppingsRow">
                             @Html.TextAreaFor(m => m.Toppings, new { id = "toppings" })
                             @*<textarea id="toppings"></textarea>*@
                         </div>
@@ -62,15 +60,31 @@
                         <div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <div class="btnsWrapper"><b>Size</b>(<span id="sizecount">5</span>)</div>
+                                    <div class="btnsWrapper"><b>Size</b></div>
                                     <div>
-                                        <div><button class="btn btn-success customBtn" value="">+</button></div>
-                                        <div><button class="btn btn-danger customBtn" value="">-</button></div>
+                                        @*<div><button class="btn btn-success customBtn" value="">+</button></div>
+                                            <div><button class="btn btn-danger customBtn" value="">-</button></div>*@
+                                        @Html.DropDownListFor(m => m.FontSize, new List<SelectListItem>
+                                    {
+                                       new SelectListItem{  Text="22px" , Value="22px" },
+                                    new SelectListItem{  Text="14px" , Value="14px" },
+                                    new SelectListItem{  Text="16px" , Value="16px" },
+                                    new SelectListItem{  Text="18px" , Value="18px" },
+                                    new SelectListItem{  Text="20px" , Value="20px" },
+                                    new SelectListItem{  Text="24px" , Value="24px" },
+                                    new SelectListItem{  Text="26px" , Value="26px" },
+                                    new SelectListItem{  Text="0px" , Value="0px" },
+                                    }, new { id = "fontsize" })
                                     </div>
                                 </div>
                                 <div class="col-md-7">
-                                    <div>
-                                        @Html.DropDownListFor(m => m.TextStyle, new List<SelectListItem>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <b>Style</b>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div>
+                                                @Html.DropDownListFor(m => m.TextStyle, new List<SelectListItem>
                                     {
                                     new SelectListItem{  Text="Times New Roman" , Value="Times-New-Roman" },
                                     new SelectListItem{ Text="Verdana", Value = "Verdana" },
@@ -83,19 +97,22 @@
                                     new SelectListItem{ Text="Comic-Sans-MS", Value = "Comic-Sans-MS" },
                                     new SelectListItem{ Text="sans-serif", Value = "sans-serif" },
                                     }, new { id = "fontstyle" })
-                                        @*<select id="fontstyle">
-                                                <option value="Times-New-Roman">Times New Roman</option>
-                                                <option value="Verdana">Verdana</option>
-                                                <option value="Comic-Sans-MS">Comic Sans MS</option>
-                                                <option value="WildWest">WildWest</option>
-                                                <option value="Bedrock">Bedrock</option>
-                                                <option value="Arial"> Arial</option>
-                                                <option value="Courier"> Courier </option>
-                                                <option value="Tahoma"> Tahoma</option>
-                                                <option value="Times New Roman">Times New Roman</option>
-                                                <option value="sans-serif">sans-serif</option>
-                                            </select>*@<br />
+                                                @*<select id="fontstyle">
+                <option value="Times-New-Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Comic-Sans-MS">Comic Sans MS</option>
+                <option value="WildWest">WildWest</option>
+                <option value="Bedrock">Bedrock</option>
+                <option value="Arial"> Arial</option>
+                <option value="Courier"> Courier </option>
+                <option value="Tahoma"> Tahoma</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="sans-serif">sans-serif</option>
+            </select>*@<br />
+                                            </div>
+                                        </div>
                                     </div>
+                                    
 
                                     <div class="row">
                                         <div class="col-md-4">@Html.CheckBoxFor(m => m.IsBold, new { id = "isBold" })<span>Bold</span>  @*<input type="checkbox" id="isBold" /><span>Bold</span>*@</div>
@@ -106,8 +123,8 @@
                             <div class="row rowcustom">
                                 <div class="col-md-5"><label>Text color</label> </div>
                                 <div class="col-md-6">
-                                  @*  @Html.TextBoxFor(m => m.TextColor, new { id = "textcolor", type = "color", @class = "colorfields" })*@
-                                    <input id="textcolor" type="color" class="colorfields" value="#ffffff"/>
+                                    @*  @Html.TextBoxFor(m => m.TextColor, new { id = "textcolor", type = "color", @class = "colorfields" })*@
+                                    <input id="textcolor" type="color" class="colorfields" value="#ffffff" name="TextColor" />
                                 </div>
                                 <div class="col-md-1">
 
@@ -116,8 +133,8 @@
                             <div class="row rowcustom">
                                 <div class="col-md-5"><label>Button color</label> </div>
                                 <div class="col-md-6">
-                                  @*  @Html.TextBoxFor(m => m.BackgroundColor, new { id = "btncolor", type = "color", @class = "colorfields" })*@
-                                    <input id="btncolor" type="color" class="colorfields" value="#ffffff"/>
+                                    @*  @Html.TextBoxFor(m => m.BackgroundColor, new { id = "btncolor", type = "color", @class = "colorfields" })*@
+                                    <input id="btncolor" type="color" name="BackgroundColor" class="colorfields" value="#ffffff" />
                                 </div>
                                 <div class="col-md-1">
                                 </div>

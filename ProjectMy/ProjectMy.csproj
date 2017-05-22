@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\styles\deliveryCollection.css" />
     <Content Include="Content\styles\loginview.css" />
     <Content Include="Content\styles\menuitems.css" />
     <Content Include="Content\styles\ordercmplt.css" />
@@ -159,6 +160,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\customscripts\deliveryCollection.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -199,6 +201,7 @@
     <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\PrintModel.cs" />
+    <Compile Include="Models\RepeatOrderViewModel.cs" />
     <Compile Include="Models\TakeAwayItemsModel.cs" />
     <Compile Include="Models\PizzaModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
@@ -245,6 +248,7 @@
     <Content Include="Views\DeliveryCollection\_GetCustomer.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\_Discounts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,8 @@ namespace DataLayer.Models
         public string TextColor { get; set; }
         public bool IsBold { get; set; }
         public bool IsItalic { get; set; }
-        public int FontSize { get; set; }
+        [MaxLength(5)]
+        public string FontSize { get; set; }
         public int PositionNumber { get; set; }
     }
 }

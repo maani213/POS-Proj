@@ -7,7 +7,7 @@
         if (item.CategoryId == 1)
         {
             <div class="col-md-2 cusotomCol">
-                <button class="pizzItem" id="@item.Id" style="font-style:@item.fontStyle;font-weight:@item.fontWeight;font-family:@item.TextStyle; background-color:@item.BackgroundColor;color:@item.TextColor;">@item.Title</button>
+                <button class="pizzItem" id="@item.Id" style="font-style:@item.fontStyle;font-weight:@item.fontWeight;font-family:@item.TextStyle; background-color:@item.BackgroundColor;color:@item.TextColor;font-size:@item.FontSize;">@item.Title</button>
                 <input type="hidden" value="@item.PositionNumber" />
                 <input type="hidden" value="@item.Id" class="itemId" />
 
@@ -18,7 +18,7 @@
         else
         {
             <div class="col-md-2 cusotomCol">
-                <button class="singleitem" id="@item.Id" style="font-style:@item.fontStyle;font-weight:@item.fontWeight;font-family:@item.TextStyle; background-color:@item.BackgroundColor;color:@item.TextColor;">@item.Title</button>
+                <button class="singleitem" id="@item.Id" style="font-style:@item.fontStyle;font-weight:@item.fontWeight;font-family:@item.TextStyle; background-color:@item.BackgroundColor;color:@item.TextColor;font-size:@item.FontSize;">@item.Title</button>
                 <input type="hidden" value="@item.PositionNumber" />
                 <input type="hidden" value="@item.Id" class="itemId" />
 

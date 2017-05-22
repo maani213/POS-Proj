@@ -44,11 +44,11 @@ $(document).ready(function () {
     });
 
     $(document).on("click", '.singleitem', function () {
-        //$("#myForm")[0].reset();
+        $("#myForm")[0].reset();
         $(this).toggleClass("selected");
 
         if ($('.selected').length === 0) {
-            $("#myForm")[0].reset();
+            //$("#myForm")[0].reset();
             $('#editItem').attr('disabled', true);
             return
         }
@@ -83,13 +83,17 @@ $(document).ready(function () {
             $('#textcolor').val(rgbToHex(txtColor));
 
             var TitleText = $(this).text();
+            var TextStyle = $(this).css('font-family');
+            var fontsize = $(this).css('font-size');
             var topping = $(this).siblings('.topppings').text();
             $('#text').val(TitleText);
             $('#toppings').val(topping);
+            $('#fontstyle').val(TextStyle);
+            $('#fontsize').val(fontsize);
         }
 
     });
-    
+
     $(document).on("click", '.singleCatitem', function () {
         //$("#myForm")[0].reset();
         $(this).toggleClass("selected");
@@ -129,13 +133,24 @@ $(document).ready(function () {
             $('#textcolor').val(rgbToHex(txtColor));
 
             var TitleText = $(this).text();
-           
+
             $('#text').val(TitleText);
-            
+
         }
 
     });
+    //$(document).on('click', '.extrasCat', function () {
+    //    var category = $(this).text;
+    //    if (category == "Pizza") {
+    //        $('#toppingsRow').removeAttr("style");
+    //        $('#toppingslableRow').css("display", "block");
+    //    }
+    //    else {
+    //        $('#toppingsRow').fadeOut();
+    //        $('#toppingslableRow').fadeOut();
+    //    }
 
+    //});
 
     $('.customBttn').on("click", function () {
         $('.customBttn').removeClass("DeptSelected");
@@ -146,6 +161,7 @@ $(document).ready(function () {
     });
 
     $('.extrasCat').on("click", function () {
+
         $("#categoryId").val($(this).siblings('input').val());
         $('.extrasCat').removeClass("DeptSelected");
         $(this).addClass("DeptSelected");
@@ -155,14 +171,14 @@ $(document).ready(function () {
         $('.title').text(dept);
     });
 
-    $('#addItem').on("click", function (evt) {
+    $(document).on("click", '#addItem', function (evt) {
 
-        if ($(".DeptSelected").length === 0) {
+        if ($(".DeptSelected").length == 0) {
             evt.preventDefault();
             alert("Please Select a Category.");
         }
 
-        else if ($('#text').val() === "" && $('#toppings').val() === "") {
+        else if ($('#text').val() == "" && $('#toppings').val() == "") {
             evt.preventDefault();
             alert("enter information");
         }
@@ -366,7 +382,9 @@ $(document).ready(function () {
                             'color': data.TextColor,
                             'font-family': data.TextStyle,
                             'font-style': data.fontStyle,
-                            'font-weight': data.fontWeight
+                            'font-weight': data.fontWeight,
+                            'font-size': data.FontSize
+
                         });
 
                         $('.selected').text(data.Title);
@@ -533,11 +551,17 @@ function addItem(data1) {
 }
 
 function NewItem(data) {
-    var $html = '<div class="col-md-2 col-sm-2 col-lg-2 cusotomCol"><button class="singleitem" style="background-color:' + data.BackgroundColor + ';color:' + data.TextColor + ';font-family:' + data.TextStyle + ';font-style:' + data.fontStyle + ';font-weight:' + data.fontWeight + ';" >' + data.Title + '</button><input type="hidden" id="' + data.Id + '" value="' + data.PositionNumber + '" /><p hidden class="topppings">' + data.Toppings + ' </p></div>';
+    var $html = '<div class="col-md-2 col-sm-2 col-lg-2 cusotomCol"><button class="singleitem" style="background-color:' + data.BackgroundColor + ';color:' + data.TextColor + ';font-family:' + data.TextStyle + ';font-style:' + data.fontStyle + ';font-weight:' + data.fontWeight + ';" >' + data.Title + ';font-size:' + data.FontSize + '; </button><input type="hidden" id="' + data.Id + '" value="' + data.PositionNumber + '" /><p hidden class="topppings">' + data.Toppings + ' </p></div>';
     $('#itemRow').append($html);
     $("#myForm")[0].reset();
 };
 
+function DeleteAllSuccess(data) {
+    $('#itemRow div').each(function () {
+        $(this).hide();
+    });
+    alert(data);
+}
 function DeleteSize(value) {
     $.ajax({
 

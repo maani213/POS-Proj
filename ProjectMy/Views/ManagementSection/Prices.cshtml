@@ -1,47 +1,33 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Prices";
 }
-
-<!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-
-    <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
-    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/customscripts/myscript.js"></script>
-    <title>Prices</title>
 
 </head>
 <body style="background-color: darkblue;">
-
-    <div class="row mainDiv" style="background-color:white;">
-        <div class="col-lg-12 col-md-12 col-sm-12" id="PricesitemsArea">
-            @{
-                Html.RenderAction("GetCategoryPrices");
-            }
+    <div class="container-fluid">
+        <div class="row mainDiv" style="background-color:white;">
+            <div class="col-lg-12 col-md-12 col-sm-12" id="PricesitemsArea">
+                @{
+                    Html.RenderAction("GetCategoryPrices");
+                }
+            </div>
         </div>
+
+        <footer>
+            <div class="row">
+
+                @{ Html.RenderAction("GetPriceCategories"); }
+                <div class="col-md-1 ">@Ajax.ActionLink("Toppings", "ExtrasPrices", new { cat = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
+                <div class="col-md-1 ">@Ajax.ActionLink("Extras", "ExtrasPrices", new { cat = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
+                <div class="col-md-2 "><button class="redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
+
+
+            </div>
+        </footer>
     </div>
-
-    <footer>
-        <div class="row">
-
-            @{ Html.RenderAction("GetPriceCategories"); }
-            <div class="col-md-1 ">@Ajax.ActionLink("Toppings", "ExtrasPrices", new { cat = 1 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
-            <div class="col-md-1 ">@Ajax.ActionLink("Extras", "ExtrasPrices", new { cat = 2 }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "PricesitemsArea", InsertionMode = InsertionMode.Replace }, new { @class = "btn extrasCat", @style = "background-color:green;color:white;" })</div>
-            <div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
-
-
-        </div>
-    </footer>
     <style>
         .extrasCat {
             font-weight: bold !important;
@@ -118,6 +104,7 @@
                 success: function (data) {
                     $('input:text').attr('readonly', true);
                     $('input:text').css('border', 'none');
+                    $('button[type=submit]').attr('disabled', true);
 
                 },
                 error: function (request, error) {

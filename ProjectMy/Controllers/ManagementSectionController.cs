@@ -21,9 +21,10 @@ namespace ProjectMy.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult MenuItem()
         {
-            return View();
+            return View(new Item());
         }
 
         public ActionResult MenuItem2(string category = "Pizza")
@@ -55,6 +56,8 @@ namespace ProjectMy.Controllers
                 viewitem.TextStyle = item.TextStyle;
                 viewitem.Id = item.Id;
                 viewitem.Title = item.Title;
+                viewitem.FontSize= item.FontSize;
+
                 viewitem.Toppings = item.Toppings;
                 if (item.IsBold)
                 {
@@ -93,6 +96,8 @@ namespace ProjectMy.Controllers
                 viewitem.Id = item.Id;
                 viewitem.Title = item.Title;
                 viewitem.Toppings = item.Toppings;
+                viewitem.FontSize = item.FontSize;
+
                 if (item.IsBold)
                 {
                     viewitem.fontWeight = "Bold";
@@ -226,6 +231,8 @@ namespace ProjectMy.Controllers
                 viewitem.Id = item.Id;
                 viewitem.Title = item.Title;
                 viewitem.Toppings = item.Toppings;
+                viewitem.FontSize = item.FontSize;
+
                 if (item.IsBold)
                 {
                     viewitem.fontWeight = "Bold";
@@ -473,7 +480,15 @@ namespace ProjectMy.Controllers
 
         public JsonResult DeleteAllItems(int CategoryId = -1)
         {
-            return Json("All Items are Deleted.", JsonRequestBehavior.AllowGet);
+            var responce = DAC.DeleteAllItemsByCategory(CategoryId);
+            if(responce)
+            {
+                return Json("All Items are Deleted.", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("Error : something went wrong.", JsonRequestBehavior.AllowGet);
+            }
         }
 
     }

@@ -5,7 +5,7 @@
     @foreach (var item in Model)
     {
         <div class="col-md-2 col-sm-2 col-lg-2 cusotomCol">
-            <button class="singleitem" style="background-color:@item.BackgroundColor;color:@item.TextColor;font-family:@item.TextStyle;font-style:@item.fontStyle;font-weight:@item.fontWeight">@item.Title</button><input type="hidden" id="@item.Id" value="@item.PositionNumber" />
+            <button class="singleitem" style="background-color:@item.BackgroundColor;color:@item.TextColor;font-family:@item.TextStyle;font-style:@item.fontStyle;font-weight:@item.fontWeight;font-size:@item.FontSize;">@item.Title</button><input type="hidden" id="@item.Id" value="@item.PositionNumber" />
             <p hidden class="topppings">@item.Toppings </p>
         </div>
     }

@@ -158,7 +158,6 @@ textarea {
 
 .btnsWrapper {
     float: left;
-    margin-top: 20px;
     margin-right: 10px;
 }
 
@@ -310,7 +309,7 @@ textarea {
     width: 98%;
     margin: 1px;
     font-weight: bold;
-    font-size: 20px;
+    /*font-size: 20px;*/
     height: 93px;
     border: groove;
     white-space: normal;

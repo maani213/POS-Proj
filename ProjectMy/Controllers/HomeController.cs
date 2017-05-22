@@ -36,11 +36,29 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public ActionResult TakeAway(int categoryId = 1)
         {
-            if(CustomerViewModel.OrderType == null)
+            if (CustomerViewModel.OrderType == null)
             {
                 CustomerViewModel.OrderType = "Take Away";
             }
-            ViewBag.CategoryID = categoryId;
+            ViewData["CategoryID"] = categoryId;
+            var orderdetails = (List<OrderDetail>)TempData["orderlist"];
+            RepeatOrderViewModel list = new RepeatOrderViewModel()
+            {
+                OrderDetails = new List<OrderDetail>(),
+                Total = 0
+            };
+            if (orderdetails != null)
+            {
+                RepeatOrderViewModel order = new RepeatOrderViewModel();
+                order.OrderDetails = orderdetails;
+                order.Total = orderdetails.Sum(m => m.Amount);
+                ViewData["OrderDetailsList"] = order;
+            }
+            else
+            {
+                ViewData["OrderDetailsList"] = list;
+            }
+
             return View();
         }
 
@@ -62,8 +80,8 @@ namespace ProjectMy.Controllers
         {
             if (CustomerViewModel.customer != null)
             {
-                ViewData["CustomerName"] = CustomerViewModel.customer.Name;
-                ViewData["CustomerAddress"] = CustomerViewModel.customer.Address;
+                ViewData["CustomerName"] = CustomerViewModel.customer.FirstName;
+                ViewData["CustomerAddress"] = CustomerViewModel.customer.Address1;
             }
             return View(orders);
         }
@@ -81,9 +99,9 @@ namespace ProjectMy.Controllers
             order.OrderTypeName = CustomerViewModel.OrderType;
             int NewCustomerId = 0;
             order.Date = DateTime.Now.Date;
-            if(CustomerViewModel.customer!=null)
+            if (CustomerViewModel.customer != null)
             {
-                NewCustomerId = DAC.AddCustomerIfNotExist(CustomerViewModel.customer);
+                NewCustomerId = DAC.AddOrUpdateCustomer(CustomerViewModel.customer);
                 var NewOrder = DAC.AddOrder(order);
                 NewOrder.CustomerId = NewCustomerId;
                 foreach (var item in ordersDetails)
@@ -132,7 +150,7 @@ namespace ProjectMy.Controllers
                 viewitem.Id = item.Id;
                 viewitem.Title = item.Title;
                 viewitem.CategoryId = item.CategoryId;
-
+                viewitem.FontSize = item.FontSize;
                 viewitem.Toppings = item.Toppings;
                 if (item.IsBold)
                 {
@@ -211,6 +229,12 @@ namespace ProjectMy.Controllers
             {
                 return View(new List<Category>());
             }
+        }
+
+        [HttpGet]
+        public ActionResult Discounts()
+        {
+            return PartialView("_Discounts");
         }
     }
 }

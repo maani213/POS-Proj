@@ -18,19 +18,35 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.SurName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.SurName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SurName, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Address1, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.PostCode, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
                     <div class="col-md-10">
@@ -38,6 +54,7 @@
                         @Html.ValidationMessageFor(model => model.PostCode, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                
             </div>
 
             <div class="col-md-6">
@@ -56,21 +73,14 @@
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
-
-                @Html.HiddenFor(model => model.Id)
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.AZ_Sector, htmlAttributes: new { @class = "control-label col-md-4" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.AZ_Sector, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AZ_Sector, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DriverInstructions, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DriverInstructions, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DriverInstructions, "", new { @class = "text-danger" })
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Distance, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -82,47 +92,7 @@
                     </div>
 
 
-                </div>
-
-
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ConfidentialComments, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ConfidentialComments, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ConfidentialComments, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CustomerComments, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CustomerComments, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CustomerComments, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DriverInstructions, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DriverInstructions, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DriverInstructions, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.LoyaltyCardNo, htmlAttributes: new { @class = "control-label col-md-4", @style = "padding-top: 0px !important" })
-                            <div class="col-md-8">
-                                @Html.EditorFor(model => model.LoyaltyCardNo, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.LoyaltyCardNo, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
+                    @Html.HiddenFor(model => model.Id)
                     <div class="col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.LoyaltyPoints, htmlAttributes: new { @class = "control-label col-md-4", @style = "padding-top: 0px !important" })
@@ -132,16 +102,68 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
+        @*<div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AZ_Sector, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.AZ_Sector, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AZ_Sector, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+
+
+
+
+
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ConfidentialComments, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConfidentialComments, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfidentialComments, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomerComments, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-top: 0px !important" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CustomerComments, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CustomerComments, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+
+
+
+
+        @*<div class="row">
+            @*<div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LoyaltyCardNo, htmlAttributes: new { @class = "control-label col-md-4", @style = "padding-top: 0px !important" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.LoyaltyCardNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LoyaltyCardNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>*@
+
+
+
+
+
     </div>
+
 }
 
 <style>
-    .text-danger{
-        color:white !important;
+    .text-danger {
+        color: white !important;
     }
 </style>

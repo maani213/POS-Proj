@@ -11,15 +11,24 @@ namespace ProjectMy.Controllers
 {
     public class DeliveryCollectionController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string number = null)
         {
+            ViewData["number"] = number;
             return View();
         }
 
         [HttpGet]
-        public PartialViewResult GetCustomer()
+        public PartialViewResult GetCustomer(string number = null)
         {
-            return PartialView("_GetCustomer", new Customer());
+            if (number != null)
+            {
+                var customer = DAC.FindCustomer("1", number);
+                return PartialView("_GetCustomer", customer);
+            }
+            else
+            {
+                return PartialView("_GetCustomer", new Customer());
+            }
         }
 
         [HttpGet]
@@ -65,21 +74,28 @@ namespace ProjectMy.Controllers
             if (ModelState.IsValid)
             {
                 CustomerViewModel.customer = c;
-                if (CustomerViewModel.customer != null)
-                {
-                    ViewData["CustomerName"] = CustomerViewModel.customer.Name;
-                    ViewData["CustomerAddress"] = CustomerViewModel.customer.Address;
-                }
-
+                List<OrderDetail> OrderDetails = new List<OrderDetail>();
                 var orders = DAC.GetCustomerOrders(CustomerViewModel.customer.Id);
-                var OrderDetails = DAC.GetOrderDetails(orders[0].OrderId);
-                return View("~/Views/Home/OrderComplete.cshtml", OrderDetails);
-                //return RedirectToAction("OrderComplete","Home", OrderDetails);
+                if (orders !=null)
+                {
+                    OrderDetails = DAC.GetOrderDetails(orders.OrderId);
+                }
+                TempData["orderlist"] = OrderDetails;
+                //return View("~/Views/Home/TakeAway.cshtml", OrderDetails);
+                return RedirectToAction("TakeAway", "Home");
             }
-            else {
+            else
+            {
                 return View("Index");
             }
 
         }
+
+        [HttpGet]
+        public ActionResult AwaitCollections()
+        {
+            return View();
+        }
+
     }
 }

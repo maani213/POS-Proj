@@ -371,7 +371,7 @@ namespace DataLayer.DAC
             }
         }
 
-        public static int AddCustomerIfNotExist(Customer customer)
+        public static int AddOrUpdateCustomer(Customer customer)
         {
             var cust = db.Customers.FirstOrDefault(m => m.Phone == customer.Phone || m.Mobile == customer.Mobile);
             if (cust == null)
@@ -385,6 +385,18 @@ namespace DataLayer.DAC
             }
             else
             {
+                cust.Address1 = customer.Address1;
+                cust.Address2 = customer.Address2;
+                cust.FirstName = customer.FirstName;
+                cust.SurName= customer.SurName;
+                cust.Mobile = customer.Mobile;
+                cust.Phone= customer.Phone;
+                cust.PostCode = customer.PostCode;
+                cust.LoyaltyPoints = customer.LoyaltyPoints;
+                cust.Distance= customer.Distance;
+                cust.Email= customer.Email;
+                cust.DriverInstructions= customer.DriverInstructions;
+                db.Entry(cust).State = EntityState.Modified;
                 return cust.Id;
             }
         }
@@ -398,14 +410,14 @@ namespace DataLayer.DAC
             }
         }
 
-        public static List<Order> GetCustomerOrders(int CustomerId)
+        public static Order GetCustomerOrders(int CustomerId)
         {
             using (myContext db1 = new myContext())
             {
                 var CustomerOrder = (from order in db1.Orders
                                      where order.CustomerId == CustomerId
-                                     orderby order.Date
-                                     select order).ToList();
+                                     orderby order.OrderId descending
+                                     select order).FirstOrDefault();// ToList();
                 return CustomerOrder;
             }
         }
@@ -421,5 +433,30 @@ namespace DataLayer.DAC
                 return OrderDetails;
             }
         }
+
+        public static bool DeleteAllItemsByCategory(int catId)
+        {
+            List<Item> items = new List<Item>();
+            using (myContext db1 = new myContext())
+            {
+                db1.Items.RemoveRange(db1.Items.Where(m => m.CategoryId == catId));
+                db1.SaveChanges();
+            }
+            return true;
+            //if (items != null)
+            //{
+            //    using (myContext db1 = new myContext())
+            //    {
+            //        db1.Items.RemoveRange(db1.Items.Where(m => m.CategoryId == catId));
+            //        db1.SaveChanges();
+            //    }
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+        }
+
     }
 }

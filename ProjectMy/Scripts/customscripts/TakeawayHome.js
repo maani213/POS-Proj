@@ -261,10 +261,13 @@ $(document).ready(function () {
             if (!this.rowIndex) { return };
 
             Quantity = parseInt(this.cells[0].innerHTML);
-            productName = this.cells[1].innerHTML;
+            productName = String(this.cells[1].innerHTML);
+            var newchara = productName.replace("\"", "inches");
+            newchara = newchara.replace("\"", "inches");
+            
             totalAmount = parseFloat(this.cells[2].innerHTML);
 
-            $("#formtable").append('<tr><td><input type="hidden" name="[' + c + '].ItemQty" value="' + Quantity + '"/></td><td><input type="hidden" name="[' + c + '].ItemName" value="' + productName + '"/></td><td><input type="hidden" name="[' + c + '].Amount" value="' + totalAmount + '"/></td></tr>');
+            $("#formtable").append('<tr><td><input type="hidden" name="[' + c + '].ItemQty" value="' + Quantity + '"/></td><td><input type="hidden" name="[' + c + '].ItemName" value="' + newchara + '"/></td><td><input type="hidden" name="[' + c + '].Amount" value="' + totalAmount.toFixed(2) + '"/></td></tr>');
             c++;
 
         });
@@ -292,6 +295,9 @@ $(document).ready(function () {
         $('.rowSelected').find('#qty').text(newQty);
         $('.rowSelected').find('#price').text(newPrice.toFixed(2));
 
+        var total = $('#totalAmount').text();
+        var NewTotal = parseFloat(total) + parseFloat(amountToAdd);
+        $('#totalAmount').text(NewTotal.toFixed(2));
     });
 
     $(document).on("click", '#minus', function (evt) {
@@ -301,7 +307,6 @@ $(document).ready(function () {
         var price = $('.rowSelected').find('#price').text();
         var amountToMinus = parseFloat(price) / qty;
         var newPrice = parseFloat(price) - amountToMinus;
-
         if (newQty === 0) {
 
             if (confirm("Are you sure to Delete this Item ?")) {
@@ -315,6 +320,12 @@ $(document).ready(function () {
             $('.rowSelected').find('#price').text(newPrice.toFixed(2));
             $('.rowSelected').find('#qty').text(newQty);
         }
+        var total = $('#totalAmount').text();
+        var NewTotal = parseFloat(total) - parseFloat(amountToMinus);
+        if (!(NewTotal < 0)) {
+            $('#totalAmount').text(NewTotal.toFixed(2));
+        }
+
         $(this).removeClass('rowSelected');
 
     });

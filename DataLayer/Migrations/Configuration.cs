@@ -15,31 +15,31 @@ namespace DataLayer.Migrations
 
         }
 
-        protected override void Seed(DataLayer.myContext context)
-        {
-            Item item = new Item();
-            item.BackgroundColor = "black";
-            item.FontSize = 15;
-            item.TextColor = "white";
-            item.TextStyle = "verdana";
-            item.Title = "Test";
-            item.IsBold = true;
-            item.IsItalic = true;
-            item.Toppings = "Test";
-            item.Price1 = 1;
-            item.Price2 = 2;
-            item.Price3 = 3;
-            item.CategoryId = 1;
+        //protected override void Seed(DataLayer.myContext context)
+        //{
+        //    Item item = new Item();
+        //    item.BackgroundColor = "black";
+        //    item.FontSize = 15;
+        //    item.TextColor = "white";
+        //    item.TextStyle = "verdana";
+        //    item.Title = "Test";
+        //    item.IsBold = true;
+        //    item.IsItalic = true;
+        //    item.Toppings = "Test";
+        //    item.Price1 = 1;
+        //    item.Price2 = 2;
+        //    item.Price3 = 3;
+        //    item.CategoryId = 1;
 
-            Category category = new Category()
-            {
-                Title = "Pizza",
-                BackgroundColor = "green",
-                TextColor = "white",
-            };
+        //    Category category = new Category()
+        //    {
+        //        Title = "Pizza",
+        //        BackgroundColor = "green",
+        //        TextColor = "white",
+        //    };
 
-            context.Categories.AddOrUpdate(category);
-            context.Items.AddOrUpdate(item);
-        }
+        //    context.Categories.AddOrUpdate(category);
+        //    context.Items.AddOrUpdate(item);
+        //}
     }
 }
