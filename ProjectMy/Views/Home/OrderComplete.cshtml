@@ -4,12 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Order Complete";
 }
-
-<html>
-<head>
-
-
-    <link href="~/Content/styles/ordercmplt.css" rel="stylesheet" />
     <script src="~/Scripts/customscripts/orderCmplt.js"></script>
     <style>
         .customBttn1 {
@@ -36,8 +30,7 @@
             padding-left: 0px;
         }
     </style>
-</head>
-<body>
+
     <div class="container-fluid">
         <div class="row mainDiv">
             <div class="row cust">
@@ -221,7 +214,7 @@
 
 
             <div class="col-lg-1 col-sm-1 col-md-1"><button class="OptionBtns redBg" onclick="location.href='@Url.Action("TakeAway", "Home")'" id="cancelOrder"><b>Cancel Order</b></button></div>
-            <div class="col-lg-1 col-sm-1 col-md-1"><button class="OptionBtns redBg"><b>Discount</b></button></div>
+            <div class="col-lg-1 col-sm-1 col-md-1"><button class="OptionBtns redBg" id="discountBtn"><b>Discount</b></button></div>
             <div class="col-lg-1 col-sm-1 col-md-1"><button class="OptionBtns redBg"><b>Till</b></button></div>
             <div class="col-lg-1 col-sm-1 col-md-1"><button class="OptionBtns orangeBg" id="print"><b>Print All</b></button></div>
             <div class="col-lg-2 col-sm-2 col-md-2"><button class="OptionBtns BlueBg"><b>Send To Kitchen/Bar</b></button></div>
@@ -232,6 +225,6 @@
 
         </div>
     </div>
-</body>
+    <div id="discountDiv" style="height:auto">
 
-</html>
+    </div>

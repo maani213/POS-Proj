@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
     });
     $('#exitBtn').on('click', function () {
-        window.location = '@Url.Action("MainMenu","Home")';
+        window.location = '/Home/MainMenu';
     });
 
     $('input').on('click', function () {

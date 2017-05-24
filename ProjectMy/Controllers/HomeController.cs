@@ -99,11 +99,18 @@ namespace ProjectMy.Controllers
             order.OrderTypeName = CustomerViewModel.OrderType;
             int NewCustomerId = 0;
             order.Date = DateTime.Now.Date;
+            order.Status = "Paid";
             if (CustomerViewModel.customer != null)
             {
                 NewCustomerId = DAC.AddOrUpdateCustomer(CustomerViewModel.customer);
                 var NewOrder = DAC.AddOrder(order);
                 NewOrder.CustomerId = NewCustomerId;
+
+                if (CustomerViewModel.OrderType.ToLower().Contains("collection"))
+                {
+                    DAC.AddCollectionOrder(NewOrder.OrderId);
+                }
+
                 foreach (var item in ordersDetails)
                 {
                     item.OrderId = NewOrder.OrderId;
@@ -234,7 +241,10 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public ActionResult Discounts()
         {
-            return PartialView("_Discounts");
+            var list = new List<Discount>();
+            list = DAC.GetAllDiscounts();
+            return PartialView("_Discounts", list);
         }
+
     }
 }

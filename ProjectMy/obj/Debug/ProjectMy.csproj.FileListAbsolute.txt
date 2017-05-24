@@ -50,7 +50,9 @@ D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\roslyn\VBCSCompiler.exe.config
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\ProjectMy.dll.config
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\ProjectMy.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\ProjectMy.pdb
+D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\DataLayer.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.dll
+D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.SqlServer.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\Microsoft.Web.Infrastructure.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Helpers.dll
@@ -59,7 +61,9 @@ D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Razor.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Webpages.Deployment.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Webpages.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Webpages.Razor.dll
+D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\DataLayer.pdb
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.xml
+D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.SqlServer.xml
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Razor.xml
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Webpages.xml
@@ -70,7 +74,3 @@ D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\System.Web.Mvc.xml
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\obj\Debug\ProjectMy.csprojResolveAssemblyReference.cache
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\obj\Debug\ProjectMy.dll
 D:\myProjects\ProjectMy\FriendCode\ProjectMy\obj\Debug\ProjectMy.pdb
-D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\DataLayer.dll
-D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\DataLayer.pdb
-D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.SqlServer.dll
-D:\myProjects\ProjectMy\FriendCode\ProjectMy\bin\EntityFramework.SqlServer.xml

@@ -22,7 +22,7 @@ namespace ProjectMy.Controllers
         {
             if (number != null)
             {
-                var customer = DAC.FindCustomer("1", number);
+                var customer = DAC.FindCustomerByPhone("1", number);
                 return PartialView("_GetCustomer", customer);
             }
             else
@@ -34,7 +34,7 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public PartialViewResult FindCustomer(string type, string value)
         {
-            var customer = DAC.FindCustomer(type, value);
+            var customer = DAC.FindCustomerByPhone(type, value);
             return PartialView("_GetCustomer", customer);
         }
 

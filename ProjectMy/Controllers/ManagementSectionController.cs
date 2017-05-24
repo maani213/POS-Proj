@@ -56,7 +56,7 @@ namespace ProjectMy.Controllers
                 viewitem.TextStyle = item.TextStyle;
                 viewitem.Id = item.Id;
                 viewitem.Title = item.Title;
-                viewitem.FontSize= item.FontSize;
+                viewitem.FontSize = item.FontSize;
 
                 viewitem.Toppings = item.Toppings;
                 if (item.IsBold)
@@ -481,7 +481,7 @@ namespace ProjectMy.Controllers
         public JsonResult DeleteAllItems(int CategoryId = -1)
         {
             var responce = DAC.DeleteAllItemsByCategory(CategoryId);
-            if(responce)
+            if (responce)
             {
                 return Json("All Items are Deleted.", JsonRequestBehavior.AllowGet);
             }
@@ -491,5 +491,132 @@ namespace ProjectMy.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult CookingInstructions()
+        {
+            return View(new CookingInstruction());
+        }
+
+        [ChildActionOnly]
+        public ActionResult CookingInstrItems()
+        {
+            List<CookingInstruction> Items = DAC.GetAllCookInst();
+            List<CookingInstrViewModel> ViewItems = new List<CookingInstrViewModel>();
+            foreach (var item in Items)
+            {
+                CookingInstrViewModel viewitem = new CookingInstrViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+                viewitem.FontSize = item.FontSize;
+
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                ViewItems.Add(viewitem);
+            }
+            return PartialView("_CookingInstrItems", ViewItems);
+        }
+
+        [HttpPost]
+        public ActionResult AddInsrtruction(CookingInstruction model)
+        {
+            if (model != null)
+            {
+                var item = DAC.AddCookInstr(model);
+
+                CookingInstrViewModel viewitem = new CookingInstrViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+
+                viewitem.FontSize = item.FontSize;
+
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                return Json(viewitem, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json("Please add Information", JsonRequestBehavior.AllowGet);
+
+        }
+
+        [HttpPost]
+        public JsonResult UpdateCookingInstr(CookingInstruction model)
+        {
+            if (model != null)
+            {
+                var item = DAC.UpdateCookingInstr(model);
+
+                CookingInstrViewModel viewitem = new CookingInstrViewModel();
+                viewitem.BackgroundColor = item.BackgroundColor;
+                viewitem.TextColor = item.TextColor;
+                viewitem.TextStyle = item.TextStyle;
+                viewitem.Id = item.Id;
+                viewitem.Title = item.Title;
+
+                viewitem.FontSize = item.FontSize;
+
+                if (item.IsBold)
+                {
+                    viewitem.fontWeight = "Bold";
+                }
+                else
+                {
+                    viewitem.fontWeight = "normal";
+                }
+                if (item.IsItalic)
+                {
+                    viewitem.fontStyle = "italic";
+                }
+                else
+                {
+                    viewitem.fontStyle = "normal";
+                }
+
+                return Json(viewitem, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json("Please add Information", JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult DeleteCookingInstr(int value)
+        {
+            return Json(DAC.DeleteCookingInstr(value),JsonRequestBehavior.AllowGet);
+        }
     }
 }

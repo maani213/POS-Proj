@@ -221,37 +221,7 @@ namespace DataLayer.DAC
             db.Entry(Updated).State = EntityState.Modified;
             db.SaveChanges();
         }
-        //public static List<Prices> GetPricesCategorywise(int categoryId)
-        //{
-        //    var result = (from itm in db.Items
-        //                  join pr in db.Prices on itm.Id equals pr.ItemId
-        //                  where itm.CategoryId == categoryId
-        //                  select pr).ToList();
-        //    return result;
-        //}
 
-        //public static List<Prices> GetPriceByItemId(int ItemId)
-        //{
-        //    var prices = (from pr in db.Prices
-        //                  where pr.ItemId == ItemId
-        //                  orderby pr.SizeId
-        //                  select pr
-        //                  ).ToList();
-        //    return prices;
-        //}
-
-        //public static List<Pizza> GetAllPizzas()
-        //{
-        //    var result = db.Pizzas.ToList();
-        //    if (result != null)
-        //    {
-        //        return result;
-        //    }
-        //    else
-        //    {
-        //        return new List<Pizza>();
-        //    }
-        //}
         public static List<ExtrasAndTopping> GetExtrasByCategoryId(int categoryId)
         {
             var result = db.ExtrasAndToppings.Where(m => m.CategoryId == categoryId).ToList();
@@ -388,24 +358,33 @@ namespace DataLayer.DAC
                 cust.Address1 = customer.Address1;
                 cust.Address2 = customer.Address2;
                 cust.FirstName = customer.FirstName;
-                cust.SurName= customer.SurName;
+                cust.SurName = customer.SurName;
                 cust.Mobile = customer.Mobile;
-                cust.Phone= customer.Phone;
+                cust.Phone = customer.Phone;
                 cust.PostCode = customer.PostCode;
                 cust.LoyaltyPoints = customer.LoyaltyPoints;
-                cust.Distance= customer.Distance;
-                cust.Email= customer.Email;
-                cust.DriverInstructions= customer.DriverInstructions;
+                cust.Distance = customer.Distance;
+                cust.Email = customer.Email;
+                cust.DriverInstructions = customer.DriverInstructions;
                 db.Entry(cust).State = EntityState.Modified;
                 return cust.Id;
             }
         }
 
-        public static Customer FindCustomer(string type, string value)
+        public static Customer FindCustomerByPhone(string type, string value)
         {
             using (myContext db = new myContext())
             {
                 var customer = db.Customers.FirstOrDefault(m => m.Phone == value);
+                return customer;
+            }
+        }
+
+        public static Customer FindCustomerById(int Id)
+        {
+            using (myContext db = new myContext())
+            {
+                var customer = db.Customers.FirstOrDefault(m => m.Id == Id);
                 return customer;
             }
         }
@@ -419,6 +398,15 @@ namespace DataLayer.DAC
                                      orderby order.OrderId descending
                                      select order).FirstOrDefault();// ToList();
                 return CustomerOrder;
+            }
+        }
+
+        public static Order GetOrder(int OrderId)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var Order = db1.Orders.FirstOrDefault(order => order.OrderId == OrderId);
+                    return Order;
             }
         }
 
@@ -456,6 +444,91 @@ namespace DataLayer.DAC
             //{
             //    return false;
             //}
+        }
+
+        public static List<Discount> GetAllDiscounts()
+        {
+            using (myContext db1 = new myContext())
+            {
+                return db1.Discounts.ToList();
+            }
+        }
+
+        public static List<CookingInstruction> GetAllCookInst()
+        {
+            using (myContext db1 = new myContext())
+            {
+                return db1.CookingInstructions.ToList();
+            }
+        }
+
+        public static CookingInstruction AddCookInstr(CookingInstruction instr)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var newItem = db1.CookingInstructions.Add(instr);
+                db1.SaveChanges();
+                return newItem;
+            }
+        }
+
+        public static CookingInstruction UpdateCookingInstr(CookingInstruction UpdatedItem)
+        {
+            var item = db.CookingInstructions.FirstOrDefault(m => m.Id == UpdatedItem.Id);
+
+            if (item != null)
+            {
+                item.Title = UpdatedItem.Title;
+                item.BackgroundColor = UpdatedItem.BackgroundColor;
+                item.TextColor = UpdatedItem.TextColor;
+                item.IsBold = UpdatedItem.IsBold;
+                item.IsItalic = UpdatedItem.IsItalic;
+                item.FontSize = UpdatedItem.FontSize;
+                item.TextStyle = UpdatedItem.TextStyle;
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return item;
+        }
+
+        public static bool DeleteCookingInstr(int? id)
+        {
+            var item = db.CookingInstructions.First(m => m.Id == id);
+            if (item != null)
+            {
+                db.CookingInstructions.Remove(item);
+                db.SaveChanges();
+            }
+            return true;
+        }
+
+        public static List<AwaitOrder> GetCollectionOrders()
+        {
+            using (myContext db1 = new myContext())
+            {
+                var orders = db1.AwaitOrders.ToList();
+                return orders;
+            }
+        }
+
+        public static void AddCollectionOrder(int orderId)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var awaitOrder = new AwaitOrder() { OrderId = orderId };
+                var result = db1.AwaitOrders.Add(awaitOrder);
+                db1.SaveChanges();
+            }
+        }
+
+        public static void RemoveCollectionOrder(int Id)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var order = db1.AwaitOrders.First(m => m.Id == Id);
+                db1.AwaitOrders.Remove(order);
+                db.SaveChanges();
+            }
         }
 
     }

@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\DAC.cs" />
+    <Compile Include="Entities\AwaitOrder.cs" />
     <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\CookingInstruction.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Discount.cs" />
     <Compile Include="Entities\ExtrasAndTopping.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\OrderDetail.cs" />

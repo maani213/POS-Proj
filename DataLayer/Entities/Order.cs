@@ -20,10 +20,14 @@ namespace DataLayer.Entities
 
         public decimal Discount { get; set; }
 
+        public string DiscountReason { get; set; }
+
         public decimal Balance { get; set; }
 
         [MaxLength(20)]
         public string OrderTypeName { get; set; }
+
+        public string Status { get; set; }
 
         public int PaymentTypeId { get; set; }
 

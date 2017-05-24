@@ -13,6 +13,38 @@ $(document).ready(function () {
     $('#Subtotal').text(totalAmount.toFixed(2));
 
 
+    $(function () {
+        $("#discountDiv").dialog({
+            autoOpen: false,
+            width: 800,
+            position: { my: 'top', at: 'top+20' },
+            modal: true,
+            buttons: {
+                Ok: function () {
+
+                    $('#discountDiv').dialog("close");
+                },
+                Cancel: function () {
+
+                    $('#discountDiv').dialog("close");
+                }
+            },
+            show: {
+                effect: "blind",
+                duration: 100
+            },
+            hide: {
+                effect: "explode",
+                duration: 100
+            }
+        });
+    });
+
+    $('#discountBtn').on('click', function () {
+        $('#discountDiv').load("/Home/Discounts");
+        $("#discountDiv").dialog("open");
+    });
+
     $('#fullAmount').on("click", function () {
 
         $('#paidAmount').text(totalAmount.toFixed(2));
