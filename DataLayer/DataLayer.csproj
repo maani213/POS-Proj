@@ -54,13 +54,15 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\CookingInstruction.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\DeliverytoDespatch.cs" />
     <Compile Include="Entities\Discount.cs" />
+    <Compile Include="Entities\PaymentType.cs" />
+    <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\ExtrasAndTopping.cs" />
     <Compile Include="Entities\Item.cs" />
     <Compile Include="Entities\OrderDetail.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderType.cs" />
-    <Compile Include="Entities\PaymentType.cs" />
     <Compile Include="Entities\Size.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddOrderModel.cs" />

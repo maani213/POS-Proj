@@ -21,7 +21,7 @@ namespace ProjectMy.Controllers
                 var customer = DAC.FindCustomerById(order.CustomerId);
                 AwaitOrderModel collectionOrder = new AwaitOrderModel()
                 {
-                    AwaitOrderId = order.OrderId,
+                    AwaitOrderId = ord.Id,
                     OrderNo = order.OrderId,
                     Date = order.Date.ToString("dd/MM/yyyy"),
                     Status = order.Status,
@@ -39,7 +39,27 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public ActionResult EditRecords()
         {
-            return View();
+            var AllOrders = DAC.GetAllOrdersDesc();
+            List<OrderViewModel> OrdersList = new List<OrderViewModel>();
+            foreach (var order in AllOrders)
+            {
+                var customer = DAC.FindCustomerById(order.CustomerId);
+                OrderViewModel listItem = new OrderViewModel()
+                {
+                    OrderId = order.OrderId,
+                    OrderNo = order.OrderId,
+                    Date = order.Date.ToString("dd/MM/yyyy"),
+                    Status = order.Status,
+                    TotalAmount = order.TotalAmount,
+                };
+                if (customer != null)
+                {
+                    listItem.Name = customer.FirstName + " " + customer.SurName;
+                    listItem.Telephone = customer.Phone;
+                }
+                OrdersList.Add(listItem);
+            }
+            return View(OrdersList);
         }
         [HttpPost]
         public ActionResult RemoveAwaitOrder(int id)

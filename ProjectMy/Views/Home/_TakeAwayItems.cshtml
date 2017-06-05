@@ -3,8 +3,8 @@
 <div class="row" id="ItemsDiv">
     @foreach (var item in Model)
     {
-
-        if (item.CategoryId == 1)
+        var name = DataLayer.DAC.DAC.GetCategoryNameById(item.CategoryId);
+        if (name.ToLower().StartsWith("pizza") && name.ToLower().EndsWith("pizza"))
         {
             <div class="col-md-2 cusotomCol">
                 <button class="pizzItem" id="@item.Id" style="font-style:@item.fontStyle;font-weight:@item.fontWeight;font-family:@item.TextStyle; background-color:@item.BackgroundColor;color:@item.TextColor;font-size:@item.FontSize;">@item.Title</button>

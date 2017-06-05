@@ -1,8 +1,9 @@
-﻿@model IEnumerable<ProjectMy.Models.AwaitOrderModel>
+﻿
+@model IEnumerable<ProjectMy.Models.OrderViewModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Await Collections";
+    ViewBag.Title = "Edit Records";
 }
 <style>
     .toprow {
@@ -15,11 +16,13 @@
     #table {
         background-color: white;
         width: auto;
-        height: 500px;
+        height: 520px;
+        overflow: auto;
     }
 
     tr td {
         text-align: center;
+        font-weight:400;
     }
 
     tr th {
@@ -28,7 +31,7 @@
 </style>
 <div class="container">
     <div class="row toprow">
-        Await Collections
+        Edit and View Orders
     </div>
     <div id="table">
         <table class="table table-bordered">
@@ -46,14 +49,15 @@
                     @Html.DisplayNameFor(model => model.Telephone)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Refund)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.TotalAmount)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Status)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Collect)
-                </th>
+
                 @*<th></th>*@
             </tr>
 
@@ -61,7 +65,7 @@
             {
                 <tbody id="tbody">
                     <tr>
-                        <input type="hidden" value="@item.AwaitOrderId" />
+                        <input type="hidden" value="@item.OrderId" />
                         <td>
                             @Html.DisplayFor(modelItem => item.OrderNo)
                         </td>
@@ -71,8 +75,12 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
+                        
                         <td>
                             @Html.DisplayFor(modelItem => item.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Refund)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.TotalAmount)
@@ -80,9 +88,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Collect)
-                        </td>
+
                         @*<td>
                                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
@@ -97,10 +103,10 @@
 
     <div class="row">
         <div class="col-md-2 col-lg-2 col-sm-2 "></div>
-        <div class="col-md-2 col-lg-2 col-sm-2 "></div>
-        <div class="col-md-2 col-lg-2 col-sm-2 "></div>
-        <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 skyBlueBg" id="customerCollected">Customer Collected</button></div>
-        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 redBg" id="toppings">Pay Order</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2"><button class="customBttn1 redBg" id="cancelOrder">Cancel Order</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg" id="refund">Refund</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 greenBg" id="editOrder">Edit</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg" id="payReprint">Pay /   Re-Print</button></div>
         <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Back</button></div>
 
     </div>

@@ -98,7 +98,7 @@ namespace ProjectMy.Controllers
         {
             order.OrderTypeName = CustomerViewModel.OrderType;
             int NewCustomerId = 0;
-            order.Date = DateTime.Now.Date;
+            order.Date = DateTime.Now;
             order.Status = "Paid";
             if (CustomerViewModel.customer != null)
             {
@@ -109,6 +109,10 @@ namespace ProjectMy.Controllers
                 if (CustomerViewModel.OrderType.ToLower().Contains("collection"))
                 {
                     DAC.AddCollectionOrder(NewOrder.OrderId);
+                }
+                if (CustomerViewModel.OrderType.ToLower().Contains("delivery"))
+                {
+                    DAC.AddDeliverytoDespatch(NewOrder.OrderId);
                 }
 
                 foreach (var item in ordersDetails)

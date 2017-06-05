@@ -27,6 +27,9 @@ namespace DataLayer
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<CookingInstruction> CookingInstructions { get; set; }
         public DbSet<AwaitOrder> AwaitOrders { get; set; }
+        public DbSet<Staff> Staff { get; set; }
+        public DbSet<DeliverytoDespatch> DeliveriestoDespatch { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Size>().ToTable("Size");
@@ -39,8 +42,11 @@ namespace DataLayer
             modelBuilder.Entity<PaymentType>().ToTable("PaymentType");
             modelBuilder.Entity<Discount>().ToTable("Discount");
             modelBuilder.Entity<CookingInstruction>().ToTable("CookingInstruction");
-
+            modelBuilder.Entity<Staff>().ToTable("Staff");
+            modelBuilder.Entity<DeliverytoDespatch>().ToTable("DeliverytoDespatch");
             modelBuilder.Entity<AwaitOrder>().ToTable("AwaitOrder");
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

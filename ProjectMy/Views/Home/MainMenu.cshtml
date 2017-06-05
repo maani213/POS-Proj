@@ -42,16 +42,16 @@
             Reservation
         </button><br />
         <button class="smallBtn">
-            Await Collection
+            Await @*(@DataLayer.DAC.DAC.GetCollectionCount())*@ Collection
         </button>
-        <button class="smallBtn">
-            Assign to Driver
+        <button class="smallBtn" @*onclick="location.href='@Url.Action("AssigntoDriver", "DeliveryManagement")'"*@ >
+            Assign to Driver@*(@DataLayer.DAC.DAC.GetUnAssignedDeliveriesCount())*@
         </button><br />
         <button class="smallBtn skyBlueBg">
             Print Last Order
         </button>
-        <button class="smallBtn skyBlueBg">
-            Payment by Driver
+        <button class="smallBtn skyBlueBg" @*onclick="location.href='@Url.Action("DriverPayments", "DeliveryManagement")'"*@ >
+            Payment by Driver@*(@DataLayer.DAC.DAC.GetDriverPaymentsCount())*@
         </button><br />
         <button class="smallBtn">
             Edit Order

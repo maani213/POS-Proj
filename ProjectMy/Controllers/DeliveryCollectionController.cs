@@ -23,7 +23,14 @@ namespace ProjectMy.Controllers
             if (number != null)
             {
                 var customer = DAC.FindCustomerByPhone("1", number);
-                return PartialView("_GetCustomer", customer);
+                if (customer != null)
+                {
+                    return PartialView("_GetCustomer", customer);
+                }
+                else
+                {
+                    return PartialView("_GetCustomer", new Customer());
+                }
             }
             else
             {
@@ -76,7 +83,7 @@ namespace ProjectMy.Controllers
                 CustomerViewModel.customer = c;
                 List<OrderDetail> OrderDetails = new List<OrderDetail>();
                 var orders = DAC.GetCustomerOrders(CustomerViewModel.customer.Id);
-                if (orders !=null)
+                if (orders != null)
                 {
                     OrderDetails = DAC.GetOrderDetails(orders.OrderId);
                 }

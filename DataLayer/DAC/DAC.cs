@@ -93,6 +93,16 @@ namespace DataLayer.DAC
             else
                 return new Category();
         }
+        public static string GetCategoryNameById(int id)
+        {
+            var result = db.Categories.FirstOrDefault(m => m.Id == id).Title;
+            if (result != null)
+            {
+                return result;
+            }
+            else
+                return "";
+        }
 
         public static List<Item> GetItemsByCategoryId(int? id)
         {
@@ -134,12 +144,6 @@ namespace DataLayer.DAC
             else
                 return new List<string>();
         }
-
-        //public static void AddPrice(Prices price)
-        //{
-        //    db.Prices.Add(price);
-        //    db.SaveChanges();
-        //}
 
         public static Size AddSize(Size item)
         {
@@ -260,19 +264,6 @@ namespace DataLayer.DAC
             }
         }
 
-        public static Order AddOrder(Order NewOrder)
-        {
-            Order order = db.Orders.Add(NewOrder);
-            db.SaveChanges();
-            return order;
-        }
-
-        public static void AddOrderDetails(OrderDetail NewOrder)
-        {
-            var order = db.OrderDetails.Add(NewOrder);
-            db.SaveChanges();
-        }
-
         public static ExtrasAndTopping AddExtra(ExtrasAndTopping extra)
         {
             var result = db.ExtrasAndToppings.Add(extra);
@@ -341,6 +332,8 @@ namespace DataLayer.DAC
             }
         }
 
+        #region Customer
+
         public static int AddOrUpdateCustomer(Customer customer)
         {
             var cust = db.Customers.FirstOrDefault(m => m.Phone == customer.Phone || m.Mobile == customer.Mobile);
@@ -388,6 +381,32 @@ namespace DataLayer.DAC
                 return customer;
             }
         }
+        #endregion
+
+
+        #region Orders
+
+        public static Order AddOrder(Order NewOrder)
+        {
+            Order order = db.Orders.Add(NewOrder);
+            db.SaveChanges();
+            return order;
+        }
+
+        public static List<Order> GetAllOrdersDesc()
+        {
+            using (myContext db1 = new myContext())
+            {
+                var Orders = db1.Orders.OrderByDescending(m => m.OrderId).ToList();
+                return Orders;
+            }
+        }
+
+        public static void AddOrderDetails(OrderDetail NewOrder)
+        {
+            var order = db.OrderDetails.Add(NewOrder);
+            db.SaveChanges();
+        }
 
         public static Order GetCustomerOrders(int CustomerId)
         {
@@ -406,7 +425,7 @@ namespace DataLayer.DAC
             using (myContext db1 = new myContext())
             {
                 var Order = db1.Orders.FirstOrDefault(order => order.OrderId == OrderId);
-                    return Order;
+                return Order;
             }
         }
 
@@ -421,6 +440,25 @@ namespace DataLayer.DAC
                 return OrderDetails;
             }
         }
+        public static decimal GetOrderTotal(int id)
+        {
+            return db.Orders.Single(m => m.OrderId == id).TotalAmount;
+        }
+
+        public static decimal GetOrderPaymentStatus(int id)
+        {
+            var order = db.Orders.First(m => m.OrderId == id);
+            if (order.Status.Contains("paid"))
+            {
+                return order.TotalAmount;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        #endregion
 
         public static bool DeleteAllItemsByCategory(int catId)
         {
@@ -453,6 +491,9 @@ namespace DataLayer.DAC
                 return db1.Discounts.ToList();
             }
         }
+
+
+        #region Cooking Instructions
 
         public static List<CookingInstruction> GetAllCookInst()
         {
@@ -501,6 +542,11 @@ namespace DataLayer.DAC
             }
             return true;
         }
+        #endregion
+
+
+
+        #region Await Collection
 
         public static List<AwaitOrder> GetCollectionOrders()
         {
@@ -526,10 +572,114 @@ namespace DataLayer.DAC
             using (myContext db1 = new myContext())
             {
                 var order = db1.AwaitOrders.First(m => m.Id == Id);
-                db1.AwaitOrders.Remove(order);
-                db.SaveChanges();
+                //db1.AwaitOrders.Remove(order);
+                db1.Entry(order).State = EntityState.Deleted;
+                db1.SaveChanges();
             }
         }
+        public static int GetCollectionCount()
+        {
+            using (myContext db1 = new myContext())
+            {
+                var count = db1.AwaitOrders.ToList().Count;
+                return count;
+            }
+        }
+        #endregion
 
+        #region Delivery To Despatch
+
+        public static List<DeliverytoDespatch> GetUnAssignedDeliveries()
+        {
+            using (myContext db1 = new myContext())
+            {
+                var deliveries = db1.DeliveriestoDespatch.Where(m => m.AssignedDriverId == 0).ToList();
+                return deliveries;
+            }
+        }
+        public static int GetUnAssignedDeliveriesCount()
+        {
+            using (myContext db1 = new myContext())
+            {
+                var count = db1.DeliveriestoDespatch.Where(m => m.AssignedDriverId == 0).ToList().Count;
+                return count;
+            }
+        }
+        public static int GetDriverPaymentsCount()
+        {
+            return db.DeliveriestoDespatch.Where(m => m.DriverPaymentStatus == false && m.AssignedDriverId != 0).Count();
+        }
+        public static void AddDeliverytoDespatch(int orderId)
+        {
+            using (myContext db1 = new myContext())
+            {
+                var deliveryOrder = new DeliverytoDespatch()
+                {
+                    OrderId = orderId,
+                    AssignedDriverId = 0
+                };
+                var result = db1.DeliveriestoDespatch.Add(deliveryOrder);
+                db1.SaveChanges();
+            }
+        }
+        public static void AssignDriver(int DeliveryOrderId, int DriverId)
+        {
+            var delivery = db.DeliveriestoDespatch.Find(DeliveryOrderId);
+            delivery.AssignedDriverId = DriverId;
+            db.Entry(delivery).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+        public static List<DeliverytoDespatch> GetUnPaidDeliveries()
+        {
+            return db.DeliveriestoDespatch.Where(m => m.DriverPaymentStatus == false && m.AssignedDriverId != 0).ToList();
+        }
+
+        public static List<DeliverytoDespatch> GetDriverDeliveries(int id)
+        {
+            return db.DeliveriestoDespatch.Where(d => d.AssignedDriverId == id && d.DriverPaymentStatus == false).ToList();
+        }
+        #endregion
+
+        #region Statff
+        public static List<Staff> GetAllDriversFromStatff()
+        {
+            using (myContext db1 = new myContext())
+            {
+                var drivers = db1.Staff.Where(m => m.Driver == true).ToList();
+                return drivers;
+            }
+        }
+        public static string GetDriverName(int id)
+        {
+            return db.Staff.Single(m => m.Id == id && m.Driver == true).Name;
+        }
+        #endregion
+
+        #region Reporting
+
+        public static decimal TodaysSale()
+        {
+            DateTime date = DateTime.Now.Date;
+            var amount = db.Orders.Where(o => o.Date == date).Select(od => od.TotalAmount - od.Discount).Sum();
+            return amount;
+        }
+
+        public static decimal WeeklySale()
+        {
+            DateTime date = DateTime.Now.Date;
+            var amount = db.Orders.Where(o=> o.Date == date).Select(od=> od.TotalAmount - od.Discount).Sum();
+            return amount;
+        }
+
+        public static decimal MonthlySale(DateTime date)
+        {
+            var amount = (from o in db.Orders
+                          where o.Date.Month == date.Month && o.Date.Year == date.Year
+                          select (o.TotalAmount - o.Discount)
+                            ).Sum();
+            return amount;
+        }
+
+        #endregion
     }
 }
