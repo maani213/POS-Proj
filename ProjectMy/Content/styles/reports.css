@@ -1,0 +1,28 @@
+﻿ footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    input[type=text] {
+        margin-top: 10px !important;
+        width: 69% !important;
+    }
+
+    label {
+        color: white !important;
+        margin-top: 10px !important;
+    }
+
+    input[type=submit] {
+        margin-left: 241px !important;
+        margin-top: 10px !important;
+    }
+
+    #ReportPreview {
+        margin-top: 10px;
+    }
+
+    table {
+        background-color: white;
+    }

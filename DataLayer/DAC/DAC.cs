@@ -657,29 +657,34 @@ namespace DataLayer.DAC
 
         #region Reporting
 
-        public static decimal TodaysSale()
+        public static List<Order> GetOrders(DateTime from, DateTime to)
         {
-            DateTime date = DateTime.Now.Date;
-            var amount = db.Orders.Where(o => o.Date == date).Select(od => od.TotalAmount - od.Discount).Sum();
-            return amount;
+            var records = db.Orders.Where(o => o.Date >= from && o.Date <= to).ToList();
+            return records;
         }
 
-        public static decimal WeeklySale()
-        {
-            DateTime date = DateTime.Now.Date;
-            var amount = db.Orders.Where(o=> o.Date == date).Select(od=> od.TotalAmount - od.Discount).Sum();
-            return amount;
-        }
+        //public static decimal WeeklySale()
+        //{
+        //    DateTime date = DateTime.Now.Date;
+        //    var amount = db.Orders.Where(o => o.Date == date).Select(od => od.TotalAmount - od.Discount).Sum();
+        //    return amount;
+        //}
 
-        public static decimal MonthlySale(DateTime date)
-        {
-            var amount = (from o in db.Orders
-                          where o.Date.Month == date.Month && o.Date.Year == date.Year
-                          select (o.TotalAmount - o.Discount)
-                            ).Sum();
-            return amount;
-        }
+        //public static decimal MonthlySale(DateTime date)
+        //{
+        //    var amount = (from o in db.Orders
+        //                  where o.Date.Month == date.Month && o.Date.Year == date.Year
+        //                  select (o.TotalAmount - o.Discount)
+        //                    ).Sum();
+        //    return amount;
+        //}
 
         #endregion
+    }
+
+    public class ReportModel
+    {
+        public DateTime date { get; set; }
+        public decimal SalesAmount { get; set; }
     }
 }

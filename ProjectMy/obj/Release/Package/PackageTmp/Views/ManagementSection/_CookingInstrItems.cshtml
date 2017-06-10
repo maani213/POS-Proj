@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ProjectMy.Models.CookingInstrViewModel>
+
+
+<div class="row" id="CookInstrItemRow">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-sm-4 col-lg-4 cusotomCol">
+            <button class="singleCookingItem" style="background-color:@item.BackgroundColor;color:@item.TextColor;font-family:@item.TextStyle;font-style:@item.fontStyle;font-weight:@item.fontWeight;font-size:@item.FontSize;">@item.Title</button>
+            <input type="hidden" value="@item.Id" />
+        </div>
+    }
+</div>
+

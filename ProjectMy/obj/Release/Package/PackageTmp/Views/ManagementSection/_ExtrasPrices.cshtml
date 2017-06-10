@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DataLayer.Entities.ExtrasAndTopping>
+<div class="row">
+    <div class="col-sm-12" style="text-align:center">
+        <h4>Extras</h4>
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Items</th>
+            <th></th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("UpdatePrices", "ManagementSection", FormMethod.Post, new { @class = "form1", @id = item.Id }))
+            {
+                <tr>
+                    <td>@item.Title <input type="hidden" name="ItemId" value="@item.Id" class="fields" /></td>
+
+                    <td style="width: 110px;">
+
+                        <input name="price1" type="text" readonly value="@item.Price1" class="fields" />
+                    </td>
+
+                    @*<td style="width: 110px;"><input name="price2" type="text" readonly value="@item.Price2" class="fields" /></td>
+
+                    <td style="width: 110px;"><input type="text" name="price3" readonly value="@item.Price3" class="fields" /></td>*@
+
+                    <td><button type="button" class="btn bttn btn-info">Edit Price</button> <input type="submit" disabled class="btn btn-success btnExtrasSubmit" value="Update Price" id="@item.Id" /></td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<style>
+    .fields {
+        border: none;
+        width: 80%;
+    }
+</style>
+
+
+
+

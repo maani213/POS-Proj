@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ProjectMy.Models.MonthlySalesViewModel>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.MonthName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalSale)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalSale)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+

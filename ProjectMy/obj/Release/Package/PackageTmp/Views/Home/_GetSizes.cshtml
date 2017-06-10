@@ -1,0 +1,15 @@
+﻿@model IEnumerable<DataLayer.Entities.Size>
+
+
+
+    @{ int c = 0; }
+    @foreach (var sizes in Model)
+    {
+        c++;
+        <div class="row">
+            <div class="col-md-11"><button class="sizeBtn">@sizes.Title</button><input class="hidd" type="hidden" value="@c" /></div>
+        </div>
+    }
+
+
+

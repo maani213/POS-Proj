@@ -21,12 +21,12 @@
 </head>
 <body style="background-color: darkblue;">
     <div class="row mainDiv">
-        <div class="col-lg-8" id="itemsArea">
+        <div class="col-lg-8 col-sm-8 col-md-8" id="itemsArea">
             @{
                 Html.RenderAction("GetCategorySizes");
             }
         </div>
-        <div class="formArea col-lg-4" style="height: 437px !important;">
+        <div class="formArea col-sm-4 col-md-4 col-lg-4" style="height: 437px !important;">
             <div class="title">Pizza</div>
 
             <div class="row" style="margin-top:22px !important;">
@@ -40,7 +40,7 @@
             <div class="row" style="margin:2px !important;">
 
             </div>
-            <fieldset style="margin-top: 73px !important;">
+            <fieldset style="margin-top: 73px !important;" hidden>
                 <legend>Fonts</legend>
                 <div>
                     <div class="row">
@@ -67,7 +67,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Text color</label> </div>
                         <div class="col-md-6">
-                            <input id="textcolor" />
+                            <input id="textcolor" type="color" class="colorfields" />
                         </div>
                         <div class="col-md-1">
 
@@ -76,7 +76,7 @@
                     <div class="row rowcustom">
                         <div class="col-md-5"><label>Button color</label> </div>
                         <div class="col-md-6">
-                            <input id="btncolor" />
+                            <input id="btncolor"  type="color" class="colorfields"/>
                         </div>
                         <div class="col-md-1">
                         </div>
@@ -88,35 +88,48 @@
                 </div>
 
             </fieldset>
-            <fieldset>
+            <fieldset style="margin-top: 100px !important;">
                 <legend></legend>
                 <div class="row">
-                    <div class="col-md-2"></div>
+                    
                     <div class="col-md-4">
-                        <button class="menuBtn" id="addSize">Add Size</button>
+                        <button class="menuBtn btn-success" id="addSize">Add Size</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="menuBtn" id="deleteSize">Delete Size</button>
+                        <button class="menuBtn btn-danger" id="deleteSize">Delete Size</button>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <button class="menuBtn btn-info" id="editSize">Update Size</button>
+                    </div>
+                    
                 </div>
             </fieldset>
 
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12 col-md-12 col-lg-12">
             @{ Html.RenderAction("GetSizeCategories"); }
+            @*<div class="col-md-2 "><button class="customBttn redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Exit</button></div>*@
         </div>
 
-        <div class="col-sm-4">
-            <div class="row">
-
-            </div>
-        </div>
+        
     </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9 col-lg-9"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2"> <button class="btn customBttn1 redBg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">Back</button></div>
+        </div>
 
+    </footer>
 
 </body>
 
 </html>
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>

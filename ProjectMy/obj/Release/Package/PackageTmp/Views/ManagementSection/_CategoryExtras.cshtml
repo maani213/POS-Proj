@@ -1,0 +1,20 @@
+﻿@model IEnumerable<DataLayer.Entities.ExtrasAndTopping>
+
+
+<div class="row" id="extrasDiv">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 cusotomCol"><button class="Extraitem" style="background-color:hotpink;color:white">@item.Title </button><input type="hidden" id="@item.Id" value="@item.Id" /> </div>
+    }
+</div>
+
+<style>
+    .selectedTopping {
+        border: 3px solid;
+        background-color: chartreuse !important;
+        /*color:white;*/
+    }
+</style>
+<script>
+
+</script>

@@ -50,10 +50,10 @@
     </header>
 
     <div class="rightpane">
-        <button class="largeButton skyBlueBackg" onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">
+        <button class="largeButton skyBlueBackg" onclick="location.href='@Url.Action("DefineCategories", "ManagementSection")'">
             Menu Items
         </button><br />
-        <button class="largeButton skyBlueBackg" onclick="location.href='@Url.Action("DefineCategories", "ManagementSection")'">
+        <button class="largeButton skyBlueBackg"  onclick="location.href='@Url.Action("MenuItem", "ManagementSection")'">
             Item Categories
         </button><br />
         <button class="smallBtn skyBlueBackg">
@@ -96,8 +96,8 @@
             Waste Reason Options
         </button><br />
 
-        <button class="largeButton redBg">
-            Exit Options
+        <button class="largeButton redBg" onclick="location.href='@Url.Action("ManagementSection", "ManagementSection")'">
+            Exit
         </button><br />
     </div>
 </body>

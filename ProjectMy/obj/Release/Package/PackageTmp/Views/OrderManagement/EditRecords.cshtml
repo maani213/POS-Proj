@@ -1,0 +1,133 @@
+﻿
+@model IEnumerable<ProjectMy.Models.OrderViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit Records";
+}
+<style>
+    .toprow {
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #table {
+        background-color: white;
+        width: auto;
+        height: 520px;
+        overflow: auto;
+    }
+
+    tr td {
+        text-align: center;
+        font-weight:400;
+    }
+
+    tr th {
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <div class="row toprow">
+        Edit and View Orders
+    </div>
+    <div id="table">
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telephone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Refund)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+
+                @*<th></th>*@
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tbody id="tbody">
+                    <tr>
+                        <input type="hidden" value="@item.OrderId" />
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Refund)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+
+                        @*<td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>*@
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 col-lg-2 col-sm-2 "></div>
+        <div class="col-md-2 col-lg-2 col-sm-2"><button class="customBttn1 redBg" id="cancelOrder">Cancel Order</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg" id="refund">Refund</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 greenBg" id="editOrder">Edit</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg" id="payReprint">Pay /   Re-Print</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Back</button></div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(document).on("click", "#tbody tr", function () {
+            $(this).toggleClass("rowSelected");
+        });
+
+        $('#customerCollected').on('click', function () {
+            if ($('.rowSelected').length > 1) {
+                alert('you have selected more than one orders , Please Select just 1 record.');
+            }
+            else {
+                var Id = parseInt($('.rowSelected').find('input').val());
+                $.post('/OrderManagement/RemoveAwaitOrder', { id: Id }, function (data) {
+                    alert(data);
+                    $('.rowSelected').remove();
+                });
+            }
+        });
+    });
+</script>

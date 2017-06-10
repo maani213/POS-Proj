@@ -1,122 +1,58 @@
 ﻿@model ProjectMy.Models.PriceViewModel
-
-<table>
+<div class="row">
+    <div class="col-sm-12" style="text-align:center">
+        <h4>@Model.CategoryName</h4>
+    </div>
+</div>
+<table class="table table-bordered" >
     <thead>
         <tr>
             <th>Items</th>
-            @foreach (var item in Model.SizeTitles)
+            @foreach (var size in Model.sizes)
             {
-                <th>@item</th>
+                <th>@size.Title</th>
             }
+            @if (Model.sizes.Count == 0)
+            {
+                <th></th>
+            }
+            <th>Actions</th>
+
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.ItemPrices)
+        @foreach (var item in Model.Items)
         {
-            <tr>
-                <td>@item.ItemName</td>
-                @foreach (var amount in item.PriceAmount)
-                {
-                    <td>@amount</td>
-                }
-                <td><button id="EditPrice">Edit Price</button></td>
-            </tr>
+            using (Html.BeginForm("UpdatePrices", "ManagementSection", FormMethod.Post, new { @class = "form1" , @id= item.Id }))
+            {
+                <tr>
+                    <td>@item.Title <input type="hidden" name="ItemId" value="@item.Id" class="fields" /></td>
+
+                    <td style="width: 110px;">
+                        
+                        <input name="price1" type="text" readonly value="@item.Price1" class="fields" />
+                    </td>
+                    @if (Model.sizes.Count > 1)
+                    {
+                        <td style="width: 110px;"><input name="price2" type="text" readonly value="@item.Price2" class="fields" /></td>
+                    }
+                    @if (Model.sizes.Count > 2)
+                    {
+                        <td style="width: 110px;"><input type="text" name="price3" readonly value="@item.Price3" class="fields" /></td>
+                    }
+                    <td><button type="button" class="btn bttn btn-info">Edit Price</button> <input type="submit" disabled class="btn btn-success btnSubmit" value="Update Price" id="@item.Id" /></td>
+
+                </tr>
+            }
         }
     </tbody>
 </table>
-<div id="DivToAppendPartialView" ></div>
+<style>
+    .fields {
+        border: none;
+        width: 80%;
+    }
+</style>
 
-<script type="text/javascript">
-    $(document).ready(function () {
 
 
-
-        $('#EditPrice').click(function (e) {
-            e.preventDefault();
-            //EditClient(this.id);
-            EditClient();
-        })
-
-        //function EditClient() {
-        //    var ph = $("#DivToAppendPartialVoew");
-        //    ph.load("/Home/EditClient/" + cid, function () {
-        //        ph.dialog({
-        //            modal: true,
-        //            width: 400,
-        //            height: 350,
-        //            title: "Edit Client",
-        //            resizable: false
-        //        });
-        //    });
-        //}
-        function EditClient() {
-            var ph = $("#DivToAppendPartialVoew");
-            ph.load("/ManagementSection/DefinePrice", function () {
-                ph.dialog({
-                    modal: true,
-                    width: 400,
-                    height: 350,
-                    title: "Edit Prices",
-                    resizable: false
-                });
-            });
-        }
-
-        $('.delete').click(function (e) {
-            e.preventDefault();
-            DeleteProduct(this.id);
-        })
-
-        function DeleteProduct(cid) {
-            if (confirm("Do you want to delete product: " + cid)) {
-                var data = { 'cid': cid }
-                $.post('/Home/DeleteClient', data,
-                function (data) {
-                    if (data == true)
-                        location = location.href;
-                    else
-                        location = location.href;
-                    //alert("Could not delete");
-                });
-            }
-        }
-
-        $('#create').click(function (e) {
-            e.preventDefault();
-            OpenCreatePopup();
-        })
-
-        function OpenCreatePopup() {
-            var div = $("#DivToAppendPartialVoew");
-            div.load("/Home/AddClient", function () {
-                div.dialog({
-                    modal: true,
-                    width: 400,
-                    height: 350,
-                    title: "Add New Client",
-                    resizable: false
-                });
-            });
-        }
-
-        function UpdateProduct() {
-            var cId = $("#ProductId").val();
-            var cname = $("#ProductName").val();
-            var cpath = $("#Price").val();
-
-            var product = {
-                "id": pId, "Name": pname,
-                "Path": cpath
-            };
-
-            $.post('/products/Edit', product,
-            function (data) { if (data == 0) { location = location.href; } }, 'json');
-
-        }
-    });
-
-</script>
-
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@

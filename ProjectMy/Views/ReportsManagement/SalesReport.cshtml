@@ -1,60 +1,63 @@
-﻿@{
+﻿
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Sales Reports";
+    ViewBag.Title = "Sale Reports";
 }
+<!DOCTYPE html>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/styles/style.css" rel="stylesheet" />
 
+
+</head>
+<body>
+
+    <header class="loginHeader">
+
+        <div class="leftHeader">
+            45 Minute Delay - @DateTime.Now.ToString("dd/MM/yyyy")
         </div>
 
-        <div class="col-md-2">
 
+        <div style="display: inline-block;">
+            Sales Reports
         </div>
-        <div class="col-md-2">
-
+        <div class="rightHeader">
+            @DateTime.Now.ToString("HH:mm:ss")
         </div>
-        <div class="col-md-2">
+    </header>
 
-        </div>
+    <div style="float:right;margin-top:35px;margin-right:50px;">
+        <button class="largeBtn whiteBg" onclick="location.href='@Url.Action("DailySales", "ReportsManagement")'">
+            Daily Sales Report
+        </button><br />
+        <button class="largeBtn skyBlueBg">
+            Weekly Sales Report
+        </button><br />
 
-        <div class="col-md-2">
-            <button onclick="location.href='@Url.Action("TodaysSale", "ReportsManagement")'">
-                Today's Sales
-            </button>
-            
-        </div>
-
-        <div class="col-md-2">
-            Weekly Sales
-        </div>
-
-        <div class="col-md-2">
-            Monthly Sales
-        </div>
-
-        <div class="col-md-2">
-
-        </div>
-
-        <div class="col-md-2">
-
-        </div>
-
-        <div class="col-md-2">
-
-        </div>
-        <div class="col-md-2">
-
-        </div>
-        <div class="col-md-2">
-
-        </div>
+        <button class="largeBtn whiteBg" onclick="location.href='@Url.Action("MonthlySales", "ReportsManagement")'">
+            Monthly Sales Report
+        </button><br />
     </div>
-    <div class="row">
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9 col-lg-9"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2 "> <button class="btn customBttn1 redBg" style="height:48px !important;" onclick="location.href='@Url.Action("ManagementSection", "ManagementSection")'">Back</button></div>
+        </div>
 
-    </div>
-</div>
-
+    </footer>
+</body>
+</html>
+<style>
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .largeBtn{
+        color:black !important;
+    }
+</style>
 

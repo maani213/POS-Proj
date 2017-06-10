@@ -1,0 +1,225 @@
+﻿
+@model IEnumerable<ProjectMy.Models.DeliveriesViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Assign to Driver";
+}
+<style>
+    .toprow {
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #table {
+        background-color: white;
+        width: auto;
+        height: 500px;
+    }
+
+    tr td {
+        text-align: center;
+    }
+
+    tr th {
+        text-align: center;
+    }
+</style>
+<div class="container">
+    <div class="row toprow">
+        Deliveries to Despatch
+    </div>
+    <div id="table">
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telephone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount)
+                </th>
+
+
+                @*<th></th>*@
+            </tr>
+            <tbody id="tbody">
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <input type="hidden" value="@item.DeliveryId" />
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Time)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostCode)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telephone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalAmount)
+                        </td>
+
+                        @*<td>
+                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>*@
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 col-lg-2 col-sm-2 "></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg" id="selectall">Select All</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 skyBlueBg" id="showmap">Show map</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg" id="selectDriver">Select Driver</button></div>
+        <div class="col-md-2 col-lg-2 col-sm-2 "> <button class="customBttn1 redBg" onclick="location.href='@Url.Action("MainMenu", "Home")'">Back</button></div>
+
+    </div>
+    <div id="drivers">
+
+    </div>
+    <div id="dialog-message" title="Order Assigned">
+        <p>
+            <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+            <b>Selected Orders are moved to Payment by Driver Section .</b>
+        </p>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $(function () {
+            $('#dialog-message').dialog({
+                autoOpen: false,
+                width: 400,
+                position: { my: 'top', at: 'top+20' },
+                modal: true,
+                buttons: {
+                    Ok: function () {
+
+                        $(this).dialog("close");
+                    }
+                },
+                show: {
+                    effect: "blind",
+                    duration: 100
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 100
+                }
+            });
+
+
+            $("#drivers").dialog({
+                autoOpen: false,
+                width: 800,
+                position: { my: 'top', at: 'top+20' },
+                modal: true,
+                title: "Select Driver",
+                buttons: {
+                    Ok: function () {
+
+                        $('#drivers').dialog("close");
+                    },
+                    Cancel: function () {
+
+                        $('#drivers').dialog("close");
+                    }
+                },
+                show: {
+                    effect: "blind",
+                    duration: 100
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 100
+                }
+            });
+        });
+
+
+        $(document).on('click', '.driver', function () {
+            var orders = [];
+            $('.rowSelected').each(function () {
+                var Id = parseInt($('.rowSelected').find('input').val());
+                orders.push(Id);
+            });
+            var driverId = parseInt($(this).siblings('input').val());
+
+            $.post('/DeliveryManagement/AddtoDriverPayment', { DeliveryOrders: orders, DriverId: driverId }, function (data) {
+                if (data)
+                {
+                    $('#drivers').dialog("close");
+                    $('.rowSelected').remove();
+                    $('#dialog-message').dialog("open");
+                }
+            });
+
+        });
+        $(document).on("click", "#tbody tr", function () {
+            $(this).toggleClass("rowSelected");
+        });
+
+        $('#customerCollected').on('click', function () {
+            if ($('.rowSelected').length > 1) {
+                alert('you have selected more than one orders , Please Select just 1 record.');
+            }
+            else {
+                var Id = parseInt($('.rowSelected').find('input').val());
+                $.post('/OrderManagement/RemoveAwaitOrder', { id: Id }, function (data) {
+                    if (data) {
+                        $('.rowSelected').remove();
+                    }
+                });
+            }
+        });
+
+        $('#selectDriver').on('click', function () {
+            if ($('.rowSelected').length > 0) {
+                $('#drivers').load('/DeliveryManagement/SelectDriver');
+                $('#drivers').dialog("open");
+            }
+
+            else {
+                alert("Please a Order firs ...! ");
+            }
+        });
+
+    });
+</script>

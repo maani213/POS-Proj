@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Monthly Sales";
+}
+
+<link href="~/Content/styles/reports.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <div class="row" style="color:white;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size:20px;">
+        <div class="col-md-4 col-sm-4 col-lg-4">
+            @DateTime.Now.ToString("dd/MM/yyyy")
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-4" style="text-align:center">
+            Monthly Sale Report
+        </div>
+        <div class="col-md-4 col-sm-4 col-lg-4" style="text-align:right">
+            @DateTime.Now.ToString("HH:mm:ss")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            @using (Ajax.BeginForm("MonthlySales", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "ReportPreview", InsertionMode = InsertionMode.Replace }))
+            {
+
+
+                <div class="row">
+                    <div class="form-group">
+                        @Html.Label("From", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="From" id="from" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        @Html.Label("To", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="To" id="to" />
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-success" />
+            }
+        </div>
+
+        <div class="col-md-4">
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div id="ReportPreview">
+
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-sm-9 col-md-9 col-lg-9"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2 "> <button class="btn customBttn1 redBg" style="height:48px !important;" onclick="location.href='@Url.Action("SalesReport", "ReportsManagement")'">Back</button></div>
+        </div>
+
+    </footer>
+</div>
+
+<script>
+    $(function () {
+        $("#from").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+        $("#to").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+
+    });
+</script>

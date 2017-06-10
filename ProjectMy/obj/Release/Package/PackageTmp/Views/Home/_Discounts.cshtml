@@ -1,0 +1,166 @@
+﻿@model IEnumerable<DataLayer.Entities.Discount>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Discounts</title>
+    <style>
+        .BtnsRow {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .DiscountcalculatorBtn {
+            font-size: 22px !important;
+            font-weight: bold;
+            height: 67px;
+            width: 96%;
+            margin-top: 4px;
+            border: groove;
+            background-color: white;
+        }
+
+        .DiscountCustomPercBtn {
+            font-size: 16px !important;
+            font-weight: bold;
+            height: 67px;
+            width: 96%;
+            margin-top: 4px;
+            border: groove;
+            color: white;
+            background-color: #0039c1;
+        }
+
+        #clearBtn {
+            background-color: red;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            height: 71px;
+            width: 98%;
+        }
+
+        #discountAmount {
+            width: 100%;
+            text-align: right;
+            font-weight: bold;
+            height: 40px;
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        #totalWraper {
+            color: white;
+            background-color: red;
+            margin-top: 7px;
+            padding-top: 5px;
+            text-align: center;
+            height: 43px;
+            font-size: 19px;
+        }
+
+        .singleDiscountitem {
+            width: 98%;
+            margin: 1px;
+            font-weight: bold;
+            font-size: 20px;
+            height: 93px;
+            border: groove;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="col-md-4 cusotomCol">
+                    <button class="singleDiscountitem" id="1" style="background-color:green;color:white;font-size:18px">Test</button>
+                    <input type="hidden" value="1" class="DiscountId" />
+                </div>
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-md-4 cusotomCol">
+                        <button class="singleDiscountitem" id="@item.Id" style="background-color:@item.BackgroundColor;color:@item.TextColor;font-size:@item.FontSize;">@item.Title</button>
+                        <input type="hidden" value="@item.Id" class="DiscountId" />
+                    </div>
+                }
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6" style="background-color:white;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="totalWraper"><b>Order Total</b><span> : </span><b id="ordertotal"></b></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" @*style="padding:0px !important"*@>
+                        <input type="text" id="discountAmount" />
+                    </div>
+                </div>
+                <div class="row BtnsRow">
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountCustomPercBtn"> <span>5</span>%</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountCustomPercBtn"><span>10</span>%</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountCustomPercBtn"><span>15</span>%</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountCustomPercBtn"><span>20</span>%</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountCustomPercBtn"><span>25</span>%</button></div>
+                </div>
+                <div class="row BtnsRow">
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">1</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">2</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">3</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">4</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">5</button></div>
+
+
+                </div>
+
+                <div class="row BtnsRow">
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">6</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">7</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">8</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">9</button></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 cutomclass"><button class="DiscountcalculatorBtn">.</button></div>
+                </div>
+                <div class="row BtnsRow">
+                    <div class="col-sm-4 col-md-4 col-lg-4 cutomclass"><button class="DiscountcalculatorBtn">0</button></div>
+
+                    <div class="col-md-6 cutomclass">
+                        <button id="clearBtn">Clear</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var numbers = $('#totalAmount').text();
+        $('#ordertotal').text(numbers);
+        $('.DiscountcalculatorBtn').on("click", function () {
+            var amount = $('#discountAmount').val();
+            var numb = $(this).text();
+            var newAmount = amount + numb;
+            $('#discountAmount').val(newAmount);
+        });
+
+
+        $('.DiscountCustomPercBtn').on("click", function () {
+            var amount = $('#ordertotal').text();
+            var numb = $(this).find("span").text();
+
+            var calculated = parseFloat((numb / 100)) * amount;
+
+            $('#discountAmount').val(calculated.toFixed(2));
+
+        });
+        $('#clearBtn').on('click', function () {
+            $('#discountAmount').val("0");
+        });
+    });
+</script>

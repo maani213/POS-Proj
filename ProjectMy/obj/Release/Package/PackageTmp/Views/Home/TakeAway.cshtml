@@ -1,103 +1,118 @@
 ﻿
-@{
-    Layout = null;
-}
+    @{
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Take Away";
+    }
+    <!DOCTYPE html>
 
-<!DOCTYPE html>
+    <html>
+    <head>
+        <script src="~/Scripts/customscripts/TakeawayHome.min.js"></script>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-
-    <link href="~/Content/styles/menuitems.css" rel="stylesheet" />
-
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/customscripts/TakeawayHome.js"></script>
-
-
-    <title>Take Away</title>
-
-</head>
-<body style="background-color:darkblue">
-
-    <div class="row mainDiv">
-        <div class="col-lg-8" id="itemsArea">
-            @{
-                Html.RenderAction("TakeAwayItems");
-            }
-        </div>
-        <div class="operationsArea col-sm-4 col-md-4 col-lg-4 ">
-            <div class="row " style="margin-left:0px !important">
-                <div class="col-sm-12 ordertableArea customRow">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Qty</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody class="tableBody" id="tbl"></tbody>
-
-                    </table>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row mainDiv">
+                <div class="col-lg-8 col-sm-8 col-md-8" id="TakeAwayitemsArea">
+                    @{
+                        int catId = 1;
+                        var OrdersList = (ProjectMy.Models.RepeatOrderViewModel)ViewData["OrderDetailsList"];
+                        var id = ViewData["CategoryID"];
+                        if (id != null)
+                        {
+                            catId = Convert.ToInt32(id);
+                        }
+                        Html.RenderAction("TakeAwayItems", "Home", new { categoryId = catId });
+                    }
                 </div>
-                <div class="col-sm-1">
+                <div class="operationsArea col-sm-4 col-md-4 col-lg-4 ">
+                    <div class="row " style="margin-left:0px !important;margin-right: 0px !important;">
+                        <div class="col-sm-12 col-lg-12 col-md-12 ordertableArea customRow">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Qty</th>
+                                        <th>Description</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tableBody" id="tbl">
+                                    @foreach (var item in OrdersList.OrderDetails)
+                                    {
+                                        <tr id="row1">
+                                            <td id="qty">@item.ItemQty</td>
+                                            <td>@item.ItemName</td>
+                                            <td id="price">@item.Amount</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tr></tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-right: 0px !important;margin-left: 0px !important;">
+
+                        <div class="col-sm-3"><button class="BtnOpt" id="plus"><b>+</b></button></div>
+
+                        <div class="col-sm-3"><button class="BtnOpt" id="minus"><b>-</b></button></div>
+
+                        <div class="col-sm-3"><button class="BtnOpt" id="miscItem"><b>Misc Item</b></button></div>
+
+                        <div class="col-sm-3"><button class="BtnOpt" id="editPrice"><b>Edit Price</b></button></div>
+                    </div>
+                    <div class="row totalRow">
+                        <div class="col-sm-4"><b>Total</b></div>
+                        <div class="col-sm-4">:</div>
+                        <div class="col-sm-4" id="totalAmount">@OrdersList.Total</div>
+
+                    </div>
+                    <div class="row" style="margin-top:7px; font-size:15px;">
+
+                        <div class="col-sm-5"><button class="redBg orderBtn" id="canelOrder"><b>Cancel Order</b></button> </div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5"><button class="greenBg orderBtn" id="orderCmplt"><b>Order Complete</b></button> </div>
+                    </div>
+
                 </div>
             </div>
+
             <div class="row">
-                
-                <div class="col-sm-3"><button class="BtnOpt"><b>+</b></button></div>
-
-                <div class="col-sm-3"><button class="BtnOpt"><b>-</b></button></div>
-
-                <div class="col-sm-3"><button class="BtnOpt"><b>Misc Item</b></button></div>
-
-                <div class="col-sm-3"><button class="BtnOpt"><b>Edit Price</b></button></div>
-            </div>
-            <div class="row totalRow" style="margin-right: -4px !important;margin-left:0px">
-                <div class="col-sm-4"><b>Total</b></div>
-                <div class="col-sm-4">:</div>
-                <div class="col-sm-4" id="totalAmount">0</div>
+                <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 skyBlueBg">Meal Deals</button></div>
+                <div class="col-md-1 col-lg-1 col-sm-1 "><button class="customBttn1 greenBg">Cook Inst</button></div>
+                <div class="col-md-1 col-lg-1 col-sm-1 "> <button class="customBttn1 redBg">No</button></div>
+                <div class="col-md-2 col-lg-2 col-sm-2 "><button class="customBttn1 greenBg" id="toppings">Extras / Toppings</button></div>
+                <div class="col-md-1 col-lg-1 col-sm-1 "> <button class="customBttn1 redBg" onclick="location.href='@Url.Action("TakeAwayHome", "Home")'">Back</button></div>
 
             </div>
-            <div class="row" style="margin-top:7px; font-size:15px;">
-                
-                <div class="col-sm-5"><button class="redBg orderBtn"><b>Cancel Order</b></button> </div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-5"><button class="greenBg orderBtn" id="orderCmplt"><b>Order Complete</b></button> </div>
-            </div>
+            <div class="row " style="padding-top:0px !important;padding-bottom:1px !important;margin-left:2px;margin-right:2px;margin-top:0px !important; background-color:antiquewhite;overflow-x:auto">
+                @{
+                    Html.RenderAction("GetCategories");
+                }
 
+            </div>
+            <div id="sizesDialog" title="Size">
+                @{
+                    Html.RenderAction("GetSizesPartial", "Home", new { categoryId = catId });
+                }
+            </div>
+            <div id="dialog" title="Toppings">
+                @{
+                    Html.RenderAction("GetExtrasPartial", "Home", new { categoryId = catId });
+                }
+            </div>
+            <div id="dialog-message" title="Buy One Get One Free">
+                <p>
+                    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+                    <b>Please Select Free Pizza ...</b>
+                </p>
+            </div>
+            <input type="hidden" value="@ViewBag.ordertype" id="orderType" />
+            <form action="@Url.Action("OrderComplete","Home")" id="formPost" method="post" hidden>
+                <table id="formtable"></table>
+            </form>
         </div>
-    </div>
-    <div class="row DeptArea">
-        <div class="col-md-3 "><button class="customBttn skyBlueBg">Meal Deals</button></div>
-        <div class="col-md-2 "><button class="customBttn greenBg">Cook Inst</button></div>
-        <div class="col-md-2 "> <button class="customBttn redBg">No</button></div>
-        <div class="col-md-3 "><button class="customBttn greenBg">Extras / Toppings</button></div>
-
-
-    </div>
-    <div class="row " style="padding-top:2px;padding-bottom:2px;margin-left:2px;margin-right:2px; background-color:antiquewhite">
-       @{ 
-           Html.RenderAction("GetCategories");
-       }
-         @*<div class="col-md-1"><button class="customBttn1 pinkBg">Pizza</button></div>
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Antipasti</button></div>
-        <div class="col-md-1"><button class="customBttn1 skyBlueBg">Le Nostre Past and Zuppe</button></div>
-        <div class="col-md-1"><button class="customBttn1" style="background-color:darkgoldenrod;">I Nostri Secondi and Contorni</button></div>
-        <div class="col-md-1"><button class="customBttn1 orangeBg">Soft and Hot Drinks</button></div>
-        <div class="col-md-1"><button class="customBttn1 pinkBg">Sheris Vermouths</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Lista dei vini and champane</button></div>
-        <div class="col-md-1"><button class="customBttn1 greenBg">Liqours Menu</button></div>
-        <div class="col-md-1"><button class="customBttn1 redBg">Larger Menu</button></div>
-        <div class="col-md-1"><button class="customBttn1 BlueBg">Desserts ice Cream</button></div>
-        <div class="col-md-1"><button class="customBttn1 aquaBg">Spirite and Whisky Menu</button></div>
-        <div class="col-md-1"><button class="customBttn1 greenBg">Extra Lunch and Special Menu</button></div>*@
-
-    </div>
-</body>
+    </body>
 
 </html>
