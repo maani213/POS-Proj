@@ -24,10 +24,9 @@ namespace DataLayer.Entities
 
         public decimal Balance { get; set; }
 
-        [MaxLength(20)]
-        public string OrderTypeName { get; set; }
+        public int OrderType { get; set; }
 
-        public string Status { get; set; }
+        public int Status { get; set; }
 
         public int PaymentTypeId { get; set; }
 

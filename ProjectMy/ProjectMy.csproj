@@ -279,6 +279,7 @@
     <Content Include="Views\ReportsManagement\MonthlySales.cshtml" />
     <Content Include="Views\ReportsManagement\_MonthlySaleReport.cshtml" />
     <Content Include="Views\ReportsManagement\WeeklySales.cshtml" />
+    <Content Include="Views\DeliveryManagement\_MakePayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

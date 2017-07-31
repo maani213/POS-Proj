@@ -51,7 +51,7 @@ namespace ProjectMy.Controllers
             if (ModelState.IsValid)
             {
                 CustomerViewModel.customer = c;
-                CustomerViewModel.OrderType = "Delivery";
+                CustomerViewModel.OrderType =(int) Constants.OrderType.Delivery;
                 return RedirectToAction("TakeAway", "Home");
             }
             else
@@ -66,7 +66,7 @@ namespace ProjectMy.Controllers
             if (ModelState.IsValid)
             {
                 CustomerViewModel.customer = c;
-                CustomerViewModel.OrderType = "Collection";
+                CustomerViewModel.OrderType = (int) Constants.OrderType.Collection;
                 return RedirectToAction("TakeAway", "Home");
             }
             else

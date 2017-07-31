@@ -36,9 +36,9 @@ namespace ProjectMy.Controllers
         [HttpGet]
         public ActionResult TakeAway(int categoryId = 1)
         {
-            if (CustomerViewModel.OrderType == null)
+            if (CustomerViewModel.OrderType == 0)
             {
-                CustomerViewModel.OrderType = "Take Away";
+                CustomerViewModel.OrderType = (int)Constants.OrderType.TakeAway;
             }
             ViewData["CategoryID"] = categoryId;
             var orderdetails = (List<OrderDetail>)TempData["orderlist"];
@@ -83,6 +83,7 @@ namespace ProjectMy.Controllers
                 ViewData["CustomerName"] = CustomerViewModel.customer.FirstName;
                 ViewData["CustomerAddress"] = CustomerViewModel.customer.Address1;
             }
+            TempData["orderlist"] = orders;
             return View(orders);
         }
 
@@ -96,21 +97,21 @@ namespace ProjectMy.Controllers
         [HttpPost]
         public JsonResult ClearCash(List<OrderDetail> ordersDetails, Order order)
         {
-            order.OrderTypeName = CustomerViewModel.OrderType;
+            order.OrderType = CustomerViewModel.OrderType;
             int NewCustomerId = 0;
             order.Date = DateTime.Now;
-            order.Status = "Paid";
+            order.Status = (int)Constants.PaymentStatus.Paid;
             if (CustomerViewModel.customer != null)
             {
                 NewCustomerId = DAC.AddOrUpdateCustomer(CustomerViewModel.customer);
                 var NewOrder = DAC.AddOrder(order);
                 NewOrder.CustomerId = NewCustomerId;
 
-                if (CustomerViewModel.OrderType.ToLower().Contains("collection"))
+                if (CustomerViewModel.OrderType == (int)Constants.OrderType.Collection)
                 {
                     DAC.AddCollectionOrder(NewOrder.OrderId);
                 }
-                if (CustomerViewModel.OrderType.ToLower().Contains("delivery"))
+                if (CustomerViewModel.OrderType == (int)Constants.OrderType.Delivery)
                 {
                     DAC.AddDeliverytoDespatch(NewOrder.OrderId);
                 }
@@ -121,7 +122,7 @@ namespace ProjectMy.Controllers
                     DAC.AddOrderDetails(item);
                 }
                 CustomerViewModel.customer = null;
-                CustomerViewModel.OrderType = null;
+                CustomerViewModel.OrderType = 0;
                 return Json("Order Completed", JsonRequestBehavior.AllowGet);
             }
 
@@ -134,7 +135,7 @@ namespace ProjectMy.Controllers
                     DAC.AddOrderDetails(item);
                 }
                 CustomerViewModel.customer = null;
-                CustomerViewModel.OrderType = null;
+                CustomerViewModel.OrderType = 0;
 
                 return Json("Order Completed", JsonRequestBehavior.AllowGet);
             }

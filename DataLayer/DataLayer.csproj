@@ -56,6 +56,7 @@
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\DeliverytoDespatch.cs" />
     <Compile Include="Entities\Discount.cs" />
+    <Compile Include="Entities\MealDeal.cs" />
     <Compile Include="Entities\PaymentType.cs" />
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\ExtrasAndTopping.cs" />

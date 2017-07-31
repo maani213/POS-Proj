@@ -9,10 +9,10 @@ namespace ProjectMy.Models
     public class CustomerViewModel
     {
         public static Customer customer { get; set; }
-        public static string OrderType { get; set; }
+        public static int OrderType { get; set; }
         static CustomerViewModel() {
             customer = null;
-            OrderType = null;
+            OrderType = 0;
         }
     }
 }

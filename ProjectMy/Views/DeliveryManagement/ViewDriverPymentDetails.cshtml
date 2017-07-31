@@ -152,7 +152,6 @@
                 width: 800,
                 position: { my: 'top', at: 'top+20' },
                 modal: true,
-                title: "Select Driver",
                 buttons: {
                     Ok: function () {
 
@@ -193,7 +192,8 @@
 
         });
         $(document).on("click", "#tbody tr", function () {
-            $(this).toggleClass("rowSelected");
+            $("#tbody tr").removeClass('rowSelected');
+            $(this).addClass("rowSelected");
         });
 
         $('#pay').on('click', function () {
@@ -202,7 +202,7 @@
             }
             else {
                 var Id = parseInt($('.rowSelected').find('input').val());
-                $('#paymentView').load();
+                $('#paymentView').load("/DeliveryManagement/MakePayment");
                 $("#paymentView").dialog("open");
             }
         });

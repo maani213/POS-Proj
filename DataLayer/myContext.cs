@@ -29,6 +29,7 @@ namespace DataLayer
         public DbSet<AwaitOrder> AwaitOrders { get; set; }
         public DbSet<Staff> Staff { get; set; }
         public DbSet<DeliverytoDespatch> DeliveriestoDespatch { get; set; }
+        public DbSet<MealDeal> MealDeals { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

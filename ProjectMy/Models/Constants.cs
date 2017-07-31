@@ -16,7 +16,7 @@ namespace ProjectMy.Models
 
         public enum PaymentStatus
         {
-            UnPaid = 0,
+            Unpaid = 0,
             Paid = 1
         }
 

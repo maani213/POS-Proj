@@ -94,9 +94,14 @@
         });
 
         $(document).on('click', '#viewdetails', function () {
-            var driverId = parseInt($('.rowSelected').find('input').val());
-            window.location = '/DeliveryManagement/ViewDriverPymentDetails/' + driverId;
-
+            if($('.rowSelected').length==1)
+            {
+                var driverId = parseInt($('.rowSelected').find('input').val());
+                window.location = '/DeliveryManagement/ViewDriverPymentDetails/' + driverId;
+            }
+            else {
+                alert('please select an order.')
+            }
         });
 
     });

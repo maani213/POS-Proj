@@ -24,7 +24,7 @@ namespace ProjectMy.Controllers
                     AwaitOrderId = ord.Id,
                     OrderNo = order.OrderId,
                     Date = order.Date.ToString("dd/MM/yyyy"),
-                    Status = order.Status,
+                    Status = ((Constants.PaymentType)order.Status).ToString(),
                     TotalAmount = order.TotalAmount,
                     Collect = order.Date.ToString("HH:mm:ss"),
                     Name = customer.FirstName + " " + customer.SurName,
@@ -49,7 +49,7 @@ namespace ProjectMy.Controllers
                     OrderId = order.OrderId,
                     OrderNo = order.OrderId,
                     Date = order.Date.ToString("dd/MM/yyyy"),
-                    Status = order.Status,
+                    Status = ((Constants.PaymentType)order.Status).ToString(),
                     TotalAmount = order.TotalAmount,
                 };
                 if (customer != null)

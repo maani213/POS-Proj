@@ -98,12 +98,13 @@ namespace ProjectMy.Controllers
                 {
                     DeliveryId = ord.Id,
                     OrderNo = order.OrderId,
-                    Time = order.Date.ToString("dd/MM/yyyy") +" "+ order.Date.ToString("HH:mm:ss"),
+                    Time = order.Date.ToString("dd/MM/yyyy") + " " + order.Date.ToString("HH:mm:ss"),
                     Address = customer.Address1 + " " + customer.Address2,
                     TotalAmount = order.TotalAmount,
                     Name = customer.FirstName + " " + customer.SurName,
                     Telephone = customer.Phone,
-                    PostCode = customer.PostCode
+                    PostCode = customer.PostCode,
+                    Status = ((Constants.PaymentStatus)order.Status).ToString()
                 };
 
                 deliveryorders.Add(deliveryOrder);
@@ -115,6 +116,12 @@ namespace ProjectMy.Controllers
         public ActionResult DriverPaymentView()
         {
             return PartialView();
+        }
+
+        [HttpGet]
+        public ActionResult MakePayment()
+        {
+            return PartialView("_MakePayment");
         }
     }
 }

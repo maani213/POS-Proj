@@ -448,7 +448,7 @@ namespace DataLayer.DAC
         public static decimal GetOrderPaymentStatus(int id)
         {
             var order = db.Orders.First(m => m.OrderId == id);
-            if (order.Status.Contains("paid"))
+            if (order.Status == 1)
             {
                 return order.TotalAmount;
             }
@@ -607,7 +607,15 @@ namespace DataLayer.DAC
         }
         public static int GetDriverPaymentsCount()
         {
-            return db.DeliveriestoDespatch.Where(m => m.DriverPaymentStatus == false && m.AssignedDriverId != 0).Count();
+            var r = (from d in db.DeliveriestoDespatch
+                     where d.DriverPaymentStatus == false && d.AssignedDriverId != 0
+                     group d by d.AssignedDriverId into driver
+                     select new
+                     {
+                         count = driver.Count()
+                     }).ToList();
+            return r.Count;
+            //return db.DeliveriestoDespatch.GroupBy(d=>d.AssignedDriverId).Where(m => m.DriverPaymentStatus == false && m.AssignedDriverId != 0).Count();
         }
         public static void AddDeliverytoDespatch(int orderId)
         {
